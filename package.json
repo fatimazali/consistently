@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/preset-flow": "^7.12.13",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
     "react": "16.13.1",
@@ -19,9 +21,7 @@
     "rn-apple-healthkit": "^0.8.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.13",
-    "@babel/core": "^7.9.6",
-    "@babel/preset-flow": "^7.12.13"
+    "@babel/core": "^7.9.6"
   },
   "private": true
 }
