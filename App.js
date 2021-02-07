@@ -6,6 +6,8 @@ import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 
+// test
+
 const App = () =>  {
   return (
     <View style={styles.container}>
