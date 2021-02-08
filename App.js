@@ -15,7 +15,18 @@ import { BottomNavigation } from 'react-native-paper';
 
 // Home page: after daily check in, link out to 3 suggestions for today 
 
-const HomeRoute = () => <Text>Home</Text>;
+ const HomeRoute = () => <Text>Home</Text>;
+
+// const HomeRoute = () => {
+//   <View style={styles.container}>
+//   <Text style={{color: 'white'}}>Welcome to consistent.ly!</Text>
+//   <Text style={{color: 'blue'}}
+//       onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
+//   Fill out our Google Form here.
+//   </Text>
+//   <StatusBar style="auto" />
+//   </View>
+// };
 
 const SearchRoute = () => <Text>Search</Text>;
 
@@ -39,20 +50,12 @@ const App = () =>  {
   });
 
   return (
-    <View style={styles.container}>
-      <Text style={{color: 'white'}}>Welcome to consistent.ly!</Text>
-      <Text style={{color: 'blue'}}
-          onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
-      Fill out our Google Form here.
-      </Text>
-      <StatusBar style="auto" />
       <BottomNavigation
       shifting={true}
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
       />
-    </View>
   );
 }
 
