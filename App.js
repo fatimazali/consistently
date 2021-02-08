@@ -5,10 +5,39 @@ import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
+import { BottomNavigation } from 'react-native-paper';
 
 // test
 
+
+// Profile [Activity History, Logout]
+// Search icons  
+
+// Home page: after daily check in, link out to 3 suggestions for today 
+
+const HomeRoute = () => <Text>Home</Text>;
+
+const SearchRoute = () => <Text>Search</Text>;
+
+const StatsRoute = () => <Text>Profile</Text>;
+
+
 const App = () =>  {
+
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'home', title: 'Home', icon: 'home' },
+    { key: 'search', title: 'Search', icon: 'search' },
+    { key: 'stats', title: 'History', icon: 'timeline' },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    home: HomeRoute,
+    search: SearchRoute,
+    stats: StatsRoute,
+  });
+
   return (
     <View style={styles.container}>
       <Text style={{color: 'white'}}>Welcome to consistent.ly!</Text>
@@ -17,8 +46,13 @@ const App = () =>  {
       Fill out our Google Form here.
       </Text>
       <StatusBar style="auto" />
+      <BottomNavigation
+      shifting={true}
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+      />
     </View>
-  
   );
 }
 
@@ -37,6 +71,6 @@ export default function Main() {
       <App />
     </PaperProvider>
   );
-}
+}; 
 
 AppRegistry.registerComponent(appName, () => Main);
