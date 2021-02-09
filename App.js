@@ -33,7 +33,7 @@ import Profile from './';
 
 const SearchRoute = () => <Text>Search</Text>;
 
-const ProfileRoute = () => <Profile></Profile>;
+const ProfileRoute = () => <Text>Profile</Text>;
 
 
 const App = () =>  {
