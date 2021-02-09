@@ -42,8 +42,8 @@ const App = () =>  {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'home', title: 'Home', icon: 'home' },
-    { key: 'search', title: 'Search', icon: 'search' },
-    { key: 'profile', title: 'History', icon: 'timeline' },
+    { key: 'search', title: 'Search', icon: 'magnify' },
+    { key: 'profile', title: 'History', icon: 'chart-timeline-variant' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
