@@ -6,9 +6,9 @@ import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 import { BottomNavigation } from 'react-native-paper';
-import Profile from './Profile.js';
-import Home from './Home.js';
-import Search from './Search.js';
+import Profile from './src/components/Profile.js';
+import Home from './src/components/Home.js';
+import Search from './src/components/Search.js';
 
 // Profile [Activity History, Logout]
 // Search icons  
@@ -41,6 +41,7 @@ const App = () =>  {
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
+      barStyle={{backgroundColor: '#48426d'}}
       />
   );
 }

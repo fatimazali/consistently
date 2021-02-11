@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
         <View style={styles.container}>
-        <Text style={{color: 'white'}}>Welcome to consistent.ly!</Text>
+        <Text style={{color: 'black'}}>Welcome to consistent.ly!</Text>
         <Text style={{color: 'blue'}}
             onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
             Fill out our Google Form here.
@@ -18,13 +18,13 @@ class Home extends Component {
   }
 }
 
+export default Home; // Don’t forget to use export default!
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#7bd7c7',
+    backgroundColor: '#fff3e6',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
-
-export default Home; // Don’t forget to use export default!
