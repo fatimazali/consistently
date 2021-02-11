@@ -1,6 +1,5 @@
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React, { Component } from 'react';
-import styles from './App.js';
 import { StatusBar } from 'expo-status-bar';
 
 class Home extends Component {
@@ -18,5 +17,14 @@ class Home extends Component {
     
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#7bd7c7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default Home; // Don’t forget to use export default!

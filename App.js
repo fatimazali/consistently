@@ -10,9 +10,6 @@ import Profile from './Profile.js';
 import Home from './Home.js';
 import Search from './Search.js';
 
-// test
-
-
 // Profile [Activity History, Logout]
 // Search icons  
 
@@ -47,15 +44,6 @@ const App = () =>  {
       />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#7bd7c7',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default function Main() {
   return (
