@@ -1,10 +1,13 @@
 // Profile.js
-
+import { Text } from 'react-native';
 import React, { Component } from 'react';
 
 class Profile extends Component {
   render() {
-    <Text>Home</Text>
+    return (
+      <Text>Profile</Text>
+    )
+    
   }
 }
 

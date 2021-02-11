@@ -6,7 +6,9 @@ import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 import { BottomNavigation } from 'react-native-paper';
-import Profile from './';
+import Profile from './Profile.js';
+import Home from './Home.js';
+import Search from './Search.js';
 
 // test
 
@@ -16,29 +18,12 @@ import Profile from './';
 
 // Home page: after daily check in, link out to 3 suggestions for today 
 
- const HomeRoute = () => <Text>Home</Text>;
-
-
-
-// const HomeRoute = () => {
-//   <View style={styles.container}>
-//   <Text style={{color: 'white'}}>Welcome to consistent.ly!</Text>
-//   <Text style={{color: 'blue'}}
-//       onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
-//   Fill out our Google Form here.
-//   </Text>
-//   <StatusBar style="auto" />
-//   </View>
-// };
-
-const SearchRoute = () => <Text>Search</Text>;
-
-const ProfileRoute = () => <Text>Profile</Text>;
+const HomeRoute = () => <Home></Home>;
+const SearchRoute = () => <Search></Search>;
+const ProfileRoute = () => <Profile></Profile>;
 
 
 const App = () =>  {
-
-
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'home', title: 'Home', icon: 'home' },
