@@ -1,13 +1,43 @@
 // Profile.js
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React, { Component } from 'react';
+import m_data from '../data/michelle-workouts.json'; 
+import r_data from '../data/rachel-allWorkouts.json';
+import { DataTable } from 'react-native-paper';
 
 class Profile extends Component {
+
   render() {
     return (
-      <Text>Profile</Text>
+      <View>
+        <Text style={styles.header}>Past History</Text>
+        <DataTable style={styles.container}>
+          <DataTable.Header style={styles.container}>
+            <DataTable.Title>Activity</DataTable.Title>
+            <DataTable.Title numeric>Average Heart Rate</DataTable.Title>
+            <DataTable.Title numeric>Duration</DataTable.Title>
+          </DataTable.Header>
+
+          {m_data.map(activity => {
+            return (
+              <DataTable.Row style={styles.container}>
+                <DataTable.Cell> {activity['Type']} </DataTable.Cell>
+                <DataTable.Cell numeric > {activity['Average Heart Rate']} </DataTable.Cell>
+                <DataTable.Cell numeric> {activity['Duration']} </DataTable.Cell>
+              </DataTable.Row>
+          )})}      
+
+          <DataTable.Pagination
+                  page={1}
+                  numberOfPages={10}
+                  onPageChange={page => {
+                    console.log(page);
+                  }}
+                  label="Page 1 of 1"
+            />
+        </DataTable>
+      </View>
     )
-    
   }
 }
 
@@ -16,8 +46,12 @@ export default Profile; // Don’t forget to use export default!
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff3e6',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff3e6'
   },
+  header: {
+    fontSize: 60,
+    fontFamily: 'Arial'
+  }
 });
+
+
