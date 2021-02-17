@@ -14,7 +14,8 @@ import Recommendation from './src/components/Recommendation.js';
 // Profile [Activity History, Logout]
 // Search icons  
 
-// Home page: after daily check in, link out to 3 suggestions for today 
+// Home page: after login, show daily check in [ remain in daily check in later that day?]
+// prev: link out to 3 suggestions for today 
 
 const HomeRoute = () => <Home></Home>;
 const SearchRoute = () => <Search></Search>;
