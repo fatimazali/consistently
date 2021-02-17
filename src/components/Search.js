@@ -1,7 +1,7 @@
 import { Text } from 'react-native';
 import React, { Component } from 'react';
 import styles from './Styles.js';
-import { IconButton, Colors , Modal, Portal, Button, Provider} from 'react-native-paper';
+import { IconButton, Dialog, Colors , Modal, Portal, Button, Provider} from 'react-native-paper';
 
 class Search extends Component {
     constructor(props) {
@@ -12,18 +12,26 @@ class Search extends Component {
     };
     
     render() {
+      const hideDialog = () => this.setState({ visible: false });
+      const showDialog = () => this.setState({ visible: true });
+
       return (
         <Provider>
           <Portal>
-            <Modal visible={this.state.visible} onDismiss={() => this.setState({ visible: false })} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
-              <Text style={styles.paragraph}>Add Activity</Text>
-            </Modal>
+            <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
+              <Dialog.Content>
+                <Text style={styles.paragraph}>Add Activity</Text>
+              </Dialog.Content>
+              <Dialog.Actions>
+                <Button onPress={hideDialog}>Done</Button>
+              </Dialog.Actions>
+            </Dialog>
           </Portal>
           <IconButton style={styles.bottomRightButton}
             icon="plus"
             color='black'
             size={70}s
-            onPress = {() => this.setState({ visible: true })}
+            onPress = {showDialog}
           />
         </Provider>
       );
