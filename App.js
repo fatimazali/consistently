@@ -9,6 +9,7 @@ import { BottomNavigation } from 'react-native-paper';
 import Profile from './src/components/Profile.js';
 import Home from './src/components/Home.js';
 import Search from './src/components/Search.js';
+import Recommendation from './src/components/Recommendation.js';
 
 // Profile [Activity History, Logout]
 // Search icons  
@@ -18,6 +19,7 @@ import Search from './src/components/Search.js';
 const HomeRoute = () => <Home></Home>;
 const SearchRoute = () => <Search></Search>;
 const ProfileRoute = () => <Profile></Profile>;
+const RecommendationRoute = () => <Recommendation></Recommendation>;
 
 
 const App = () =>  {
@@ -25,13 +27,17 @@ const App = () =>  {
   const [routes] = React.useState([
     { key: 'home', title: 'Home', icon: 'home' },
     { key: 'search', title: 'Search', icon: 'magnify' },
-    { key: 'profile', title: 'History', icon: 'chart-timeline-variant' },
+    { key: 'recommendation', title: 'Your Picks', icon: 'star' },
+    { key: 'profile', title: 'History', icon: 'chart-timeline-variant' }
+    
+
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     home: HomeRoute,
     search: SearchRoute,
     profile: ProfileRoute,
+    recommendation: RecommendationRoute
   });
 
   return (
