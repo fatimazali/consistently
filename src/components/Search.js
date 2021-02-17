@@ -1,5 +1,6 @@
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 import React, { Component } from 'react';
+import styles from './Styles.js';
 
 class Search extends Component {
   render() {
@@ -11,14 +12,3 @@ class Search extends Component {
 }
 
 export default Search; // Don’t forget to use export default!
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff3e6',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

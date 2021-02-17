@@ -1,16 +1,17 @@
 // Profile.js
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import React, { Component } from 'react';
 import m_data from '../data/michelle-workouts.json'; 
 import r_data from '../data/rachel-allWorkouts.json';
 import { DataTable } from 'react-native-paper';
+import styles from './Styles.js'
 
 class Profile extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.header}>Past History</Text>
+      <View style={styles.container}>
+        <Text style={styles.pageHeader}>Past History</Text>
         <DataTable style={styles.container}>
           <DataTable.Header style={styles.container}>
             <DataTable.Title>Activity</DataTable.Title>
@@ -42,16 +43,4 @@ class Profile extends Component {
 }
 
 export default Profile; // Don’t forget to use export default!
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff3e6'
-  },
-  header: {
-    fontSize: 60,
-    fontFamily: 'Arial'
-  }
-});
-
 

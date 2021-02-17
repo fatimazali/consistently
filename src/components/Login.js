@@ -1,6 +1,7 @@
-// Profile.js
+// Login.js
 import { StyleSheet, Text } from 'react-native';
 import React, { Component } from 'react';
+import styles from './Styles.js';
 
 class Login extends Component {
   render() {
@@ -13,11 +14,3 @@ class Login extends Component {
 
 export default Profile; // Don’t forget to use export default!
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff3e6',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
