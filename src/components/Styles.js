@@ -42,6 +42,11 @@ export default StyleSheet.create({
     buttonText: {
       color: "white",
       fontSize: 18
+    },
+    bottomRightButton: {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
     }
 
   });
