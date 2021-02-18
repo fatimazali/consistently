@@ -7,12 +7,6 @@ import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline,
 
 class Home extends Component {
 
-  /*
-  state = {
-    hasSignedUp: false
-  }
-  */
-
   constructor(props) {
     super(props);
     this.state = {
@@ -46,10 +40,10 @@ class Home extends Component {
       
     
       return (
-        <View>
+        <View style={styles.centerView}>
           <Provider>
-          <Headline>Welcome</Headline>
-          <Subheading>Here is how you're doing: </Subheading>
+          <Text style={styles.header}>Welcome</Text>
+          <Text style={styles.paragraph}>Here is how you're doing: </Text>
           <Badge>18</Badge>
             
           <Title>Daily Check-In </Title>
