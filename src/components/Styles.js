@@ -11,7 +11,8 @@ export default StyleSheet.create({
     header: {
       fontSize: 60,
       fontFamily: 'Arial',
-      alignItems: 'center'
+      alignItems: 'center',
+      color: "black",
     },
     paragraph: {
       margin: 24,
