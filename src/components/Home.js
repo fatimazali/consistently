@@ -7,49 +7,42 @@ import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline,
 
 class Home extends Component {
 
+  /*
   state = {
     hasSignedUp: false
   }
+  */
 
-  //this.onSignUp = this.onSignUp.bind(this);
-
-  // onSignUp = () => {
-  //   this.setState({
-  //     hasSignedUp: true
-  //   })
-  // }
-    // return (
-        // <View style={styles.centerView}>
-        //   <Text style={styles.header}>Welcome to consistent.ly!</Text>
-        //   <Text style={styles.paragraph}> To get started, fill out our Google Form...</Text>
-        //   <Button style={styles.button} mode="contained" onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
-        //     Let's go!
-        //   </Button>
-        // </View>
-    // )
-     signUpForm = () => {
-      //const { classes } = this.props;
-
-      return (
-        <View style={styles.centerView}>
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+      hasSignedUp: false,
+      text: '',
+      value: 'first',
+    };
+  };
+  
+  signUpForm = () => {
+    return (
+      <View style={styles.centerView}>
         <Text style={styles.header}>Welcome to consistent.ly!</Text>
         <Text style={styles.paragraph}> To get started, fill out our Google Form...</Text>
         <Button style={styles.button} mode="contained" onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
           Let's go!
         </Button>
       </View>      
-      );
-    }
+    );
+  }
   
-     dailyCheckIn = () => {
-      const [visible, setVisible] = React.useState(false);
+  dailyCheckIn = () => {
+      const showDialog = () => this.setState({ visible: true });
+      const hideDialog = () => this.setState({ visible: false });
 
-      const showDialog = () => setVisible(true);
-      const hideDialog = () => setVisible(false);
+      const setButtonChoice = value => this.setState({ value: value });
+      const setTextEntered = text => this.setState({ text: text });
+  
       const containerStyle = {backgroundColor: 'white', padding: 50};
-    
-      const [text, setText] = React.useState('');
-      const [value, setValue] = React.useState('first');
       
     
       return (
@@ -64,7 +57,7 @@ class Home extends Component {
           <Text> </Text>
     
           <Portal>
-              <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={visible} onDismiss={hideDialog}>
+              <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={this.state.visible} onDismiss={hideDialog}>
     
                 <Dialog.ScrollArea>
                 <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
@@ -74,7 +67,7 @@ class Home extends Component {
     
     
                   <Subheading>Today I prefer to...</Subheading>
-                    <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
+                    <RadioButton.Group onValueChange={setButtonChoice} value={this.state.value}>
                       <RadioButton.Item label="slow down and recover!" value="gentle" />
                       <RadioButton.Item label="take it easy!" value="easy" />
                       <RadioButton.Item label="work up a good sweat!" value="moderate" />
@@ -86,8 +79,8 @@ class Home extends Component {
                   <Subheading>I have __ min to workout today.</Subheading>
                     <TextInput
                       label="Enter min..."
-                      value={text}
-                      onChangeText={text => setText(text)}
+                      value={this.state.text}
+                      onChangeText={setTextEntered}
                     />
                   <Text> </Text>
     
@@ -117,15 +110,14 @@ class Home extends Component {
     }    
   
   render() {
-
-
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
 
-    return (
-      <View>
-      {this.state.hasSignedUp ? this.signUpForm() : this.dailyCheckIn()}
-      </View>
-    )    
+    if (this.state.hasSignedUp) {
+      return this.dailyCheckIn();
+    }
+    else {
+      return this.signUpForm();
+    }  
   }
 }
 
