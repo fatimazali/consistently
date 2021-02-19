@@ -23,6 +23,7 @@ class Search extends Component {
             placeholder="Search"
             onChangeText={onChangeSearch}
             value={this.state.searchQuery}
+            style={{marginTop:50}}
           />
 
           <ScrollView>
