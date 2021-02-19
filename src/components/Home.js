@@ -11,7 +11,7 @@ class Home extends Component {
     super(props);
     this.state = {
       visible: false,
-      hasSignedUp: false,
+      hasSignedUp: true,
       text: '',
       value: 'first',
     };
@@ -44,8 +44,7 @@ class Home extends Component {
           <Provider>
           <Text style={styles.header}>Welcome</Text>
           <Text style={styles.paragraph}>Here is how you're doing: </Text>
-          <Badge>18</Badge>
-            
+          <Badge size={150} style={{left:-100}}>18</Badge>
           <Title>Daily Check-In </Title>
           <Paragraph> Tell us how you're doing today so we can find the best workouts for you! </Paragraph>
           <Text> </Text>
