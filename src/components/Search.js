@@ -31,7 +31,7 @@ class Search extends Component {
                 <Title>Biking for Transportation</Title>
                 <Paragraph>Card content</Paragraph>
               </Card.Content>
-              <Card.Cover source={require('../images/biking.svg')} />
+              <Card.Cover source={require('../images/biking.png')} />
               <Card.Actions>
                 <Button>Cancel</Button>
                 <Button>Ok</Button>
@@ -43,7 +43,7 @@ class Search extends Component {
                 <Title>Ab Workout(Video or Class)</Title>
                 <Paragraph>Card content</Paragraph>
               </Card.Content>
-              <Card.Cover source={require('../images/abs.svg')} />
+              <Card.Cover source={require('../images/core.png')} />
               <Card.Actions>
                 <Button>Cancel</Button>
                 <Button>Ok</Button>
@@ -55,7 +55,7 @@ class Search extends Component {
                 <Title>Power Yoga</Title>
                 <Paragraph>Card content.</Paragraph>
               </Card.Content>
-              <Card.Cover source={require('../images/yoga.svg')} />
+              <Card.Cover source={require('../images/yoga.png')} />
               <Card.Actions>
                 <Button>Cancel</Button>
                 <Button>Ok</Button>

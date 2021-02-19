@@ -10,10 +10,10 @@ class Recommendation extends Component {
             <Text style={styles.pageHeader}>             Top 3 Picks</Text> 
             <Card>
                 <Card.Content>
-                    <Title>Running</Title>
+                    <Title>Pilates</Title>
                     <Paragraph>Card content</Paragraph>
                 </Card.Content>
-                <Card.Cover source={require('../images/running.png')} />
+                <Card.Cover source={require('../images/pilates.png')} />
                 <Card.Actions>
                     <Button>Cancel</Button>
                     <Button>Ok</Button>
@@ -21,10 +21,10 @@ class Recommendation extends Component {
             </Card>
             <Card>
                 <Card.Content>
-                    <Title>Dancing</Title>
+                    <Title>Running</Title>
                     <Paragraph>Card content</Paragraph>
                 </Card.Content>
-                <Card.Cover source={require('../images/dancing.png')} />
+                <Card.Cover source={require('../images/running.png')} />
                 <Card.Actions>
                     <Button>Cancel</Button>
                     <Button>Ok</Button>
