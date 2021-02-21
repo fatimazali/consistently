@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import React, { Component } from 'react';
 import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
@@ -6,8 +6,19 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 class Recommendation extends Component {
   render() {
     return (
-        <View>
+        <ScrollView>
             <Text style={styles.pageHeader}>             Top 3 Picks</Text> 
+            <Card>
+                <Card.Content>
+                    <Title>Pilates</Title>
+                    <Paragraph>Card content</Paragraph>
+                </Card.Content>
+                <Card.Cover source={require('../images/pilates.png')} />
+                <Card.Actions>
+                    <Button>Cancel</Button>
+                    <Button>Ok</Button>
+                </Card.Actions>
+            </Card>
             <Card>
                 <Card.Content>
                     <Title>Running</Title>
@@ -19,7 +30,18 @@ class Recommendation extends Component {
                     <Button>Ok</Button>
                 </Card.Actions>
             </Card>
-        </View>
+            <Card>
+                <Card.Content>
+                    <Title>Core Training</Title>
+                    <Paragraph>Card content</Paragraph>
+                </Card.Content>
+                <Card.Cover source={require('../images/core.png')} />
+                <Card.Actions>
+                    <Button>Cancel</Button>
+                    <Button>Ok</Button>
+                </Card.Actions>
+            </Card>
+        </ScrollView>
     )
     
   }
