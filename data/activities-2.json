@@ -1,6 +1,6 @@
 [
   {
-    "name": "Stationary cycling - light",
+    "name": "Stationary cycling",
     "intensity-1": 1,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -13,7 +13,7 @@
     "strength": 0
   },
   {
-    "name": "Stationary cycling - moderate",
+    "name": "Stationary cycling",
     "intensity-1": 1,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -26,7 +26,7 @@
     "strength": 0
   },
   {
-    "name": "Stationary cycling - vigorous",
+    "name": "Stationary cycling",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 1,
@@ -39,7 +39,7 @@
     "strength": 0
   },
   {
-    "name": "Body weight conditioning exercises - light",
+    "name": "Body weight conditioning exercises",
     "intensity-1": 1,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -91,20 +91,7 @@
     "strength": 1
   },
   {
-    "name": "Ab workout (video or class)",
-    "intensity-1": 0,
-    "intensity-2": 0,
-    "intensity-3": 0,
-    "intensity-4": 0,
-    "targets-lower": 0,
-    "targets-upper": 0,
-    "targets-abdominal": 1,
-    "targets-whole": 0,
-    "cardio": 0,
-    "strength": 1
-  },
-  {
-    "name": "Body weight conditioning exercises - moderate (plan 1: flutter kicks, crunches, planks)",
+    "name": "Body weight conditioning exercises",
     "intensity-1": 0,
     "intensity-2": 1,
     "intensity-3": 0,
@@ -117,7 +104,7 @@
     "strength": 1
   },
   {
-    "name": "Body weight conditioning exercises - vigorous",
+    "name": "Body weight conditioning exercises",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 1,
@@ -130,7 +117,7 @@
     "strength": 1
   },
   {
-    "name": "Weight lifting/Resistance training - light loads (plan 1: one arm dumbbell rows, seated leg flexion machine, seated leg extension machine)",
+    "name": "Weight lifting",
     "intensity-1": 1,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -143,7 +130,7 @@
     "strength": 1
   },
   {
-    "name": "Weight lifting/Resistance training - moderate loads (plan 1: one arm dumbbell rows, seated leg flexion machine, seated leg extension machine)",
+    "name": "Weight lifting",
     "intensity-1": 1,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -156,7 +143,7 @@
     "strength": 1
   },
   {
-    "name": "Weight lifting/Resistance training - heavy loads (plan 1: one arm dumbbell rows, olympic clean and jerk, pull-ups)",
+    "name": "Weight lifting",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 1,
@@ -169,7 +156,7 @@
     "strength": 1
   },
   {
-    "name": "Circuit training - moderate",
+    "name": "Circuit training",
     "intensity-1": 0,
     "intensity-2": 1,
     "intensity-3": 0,
@@ -182,7 +169,7 @@
     "strength": 1
   },
   {
-    "name": "Circuit training - vigorous",
+    "name": "Circuit training",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -195,7 +182,7 @@
     "strength": 1
   },
   {
-    "name": "Stairmaster Stepmill",
+    "name": "Stairmaster",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 1,
@@ -208,7 +195,7 @@
     "strength": 0
   },
   {
-    "name": "Rope Skipping",
+    "name": "Jumping Rope",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 1,
@@ -247,7 +234,7 @@
     "strength": 0
   },
   {
-    "name": "Running - slow",
+    "name": "Running",
     "intensity-1": 1,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -260,7 +247,7 @@
     "strength": 0
   },
   {
-    "name": "Running - moderate",
+    "name": "Running",
     "intensity-1": 0,
     "intensity-2": 1,
     "intensity-3": 0,
@@ -273,7 +260,7 @@
     "strength": 0
   },
   {
-    "name": "Running - fast",
+    "name": "Running",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 1,
@@ -312,7 +299,7 @@
     "strength": 1
   },
   {
-    "name": "Walking - slow",
+    "name": "Walking",
     "intensity-1": 1,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -325,7 +312,7 @@
     "strength": 0
   },
   {
-    "name": "Walking - moderate",
+    "name": "Walking",
     "intensity-1": 0,
     "intensity-2": 1,
     "intensity-3": 0,
@@ -338,7 +325,7 @@
     "strength": 0
   },
   {
-    "name": "Walking - Fast",
+    "name": "Walking",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 1,
@@ -351,10 +338,10 @@
     "strength": 0
   },
   {
-    "name": "Swimming - light to moderate",
+    "name": "Swimming",
     "intensity-1": 0,
     "intensity-2": 1,
-    "intensity-3": 0,
+    "intensity-3": 1,
     "intensity-4": 0,
     "targets-lower": 0,
     "targets-upper": 1,
@@ -364,7 +351,7 @@
     "strength": 0
   },
   {
-    "name": "Swimming - hard",
+    "name": "Swimming",
     "intensity-1": 0,
     "intensity-2": 0,
     "intensity-3": 0,
@@ -416,23 +403,10 @@
     "strength": 0
   },
   {
-    "name": "Transportation Biking",
+    "name": "Biking",
     "intensity-1": 0,
     "intensity-2": 1,
     "intensity-3": 0,
-    "intensity-4": 0,
-    "targets-lower": 1,
-    "targets-upper": 0,
-    "targets-abdominal": 0,
-    "targets-whole": 0,
-    "cardio": 1,
-    "strength": 0
-  },
-  {
-    "name": "Mountain biking",
-    "intensity-1": 0,
-    "intensity-2": 0,
-    "intensity-3": 1,
     "intensity-4": 0,
     "targets-lower": 1,
     "targets-upper": 0,
