@@ -23,7 +23,7 @@ class Search extends Component {
       const showDialog = () => this.setState({ visible: true });
       const setSearch = query => this.setState({searchQuery : query});
 
-      const ourData = require('../../data/activities-2.json');
+      const ourData = require('../../data/activities.json');
       const setFilteredDataSource = () => this.setState({filteredDataSource : ourData});
       const setMasterDataSource = () => this.setState({masterDataSource : ourData});
 
