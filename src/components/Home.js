@@ -26,17 +26,6 @@ class Home extends Component {
 
   };
 
-  sendData = () => {
-    this.state.parentCallback(this.intensity,this.focus,this.duration,this.affirmation,this.hasWeights,this.hasMat,this.hasBike,this.hasStepmill);
-  }
-
-  hideDialog = () => {
-    this.setState(
-      { visible: false }
-    );
-    //this.sendData();
-  }
-
   
   signUpForm = () => {
     return (
@@ -54,7 +43,7 @@ class Home extends Component {
   
   dailyCheckIn = () => {
       const showDialog = () => this.setState({ visible: true });
-      //const hideDialog = () => this.setState({ visible: false });
+      const hideDialog = () => this.setState({ visible: false });
 
       const setIntensity = value => this.setState({ intensity: value });
       const setFocus = value => this.setState({ focus: value });
@@ -79,10 +68,22 @@ class Home extends Component {
           <Paragraph> Tell us how you're doing today so we can find the best workouts for you! </Paragraph>
           <Text> </Text>
 
+          <div>
+                <Recommendation 
+                intensity= {this.intensity}
+                focus= {this.focus}
+                duration= {this.duration}
+                affirmation= {this.affirmation}
+                hasWeights= {this.hasWeights}
+                hasMat= {this.hasMat}
+                hasBike= {this.hasBike}
+                hasStepmill= {this.hasStepmill}
+                />
+          </div>
 
     
           <Portal>
-              <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={this.state.visible} onDismiss={this.hideDialog}>
+              <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={this.state.visible} onDismiss={hideDialog}>
     
                 <Dialog.ScrollArea>
                 <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
@@ -148,7 +149,7 @@ class Home extends Component {
     
                 </Dialog.Content>
                 <Dialog.Actions>
-                  <Button onPress={this.hideDialog}>Done</Button>
+                  <Button onPress={hideDialog}>Done</Button>
                 </Dialog.Actions>
     
                 </ScrollView>
