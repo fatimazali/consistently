@@ -10,7 +10,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 4.8
   },
   {
     "name": "Stationary cycling",
@@ -23,7 +24,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 6.8
   },
   {
     "name": "Stationary cycling",
@@ -36,7 +38,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 8.8
   },
   {
     "name": "Body weight conditioning exercises",
@@ -49,7 +52,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 2.8
   },
   {
     "name": "Upper body workout",
@@ -62,7 +66,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 3.8
   },
   {
     "name": "Lower body workout",
@@ -75,7 +80,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 3.8
   },
   {
     "name": "Ab workout",
@@ -88,7 +94,8 @@
     "targets-abdominal": 1,
     "targets-whole": 0,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 3.8
   },
   {
     "name": "Body weight conditioning exercises",
@@ -101,7 +108,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 3.8
   },
   {
     "name": "Body weight conditioning exercises",
@@ -114,7 +122,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 8
   },
   {
     "name": "Weight lifting",
@@ -127,7 +136,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 3.5
   },
   {
     "name": "Weight lifting",
@@ -140,7 +150,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 5
   },
   {
     "name": "Weight lifting",
@@ -153,7 +164,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 6
   },
   {
     "name": "Circuit training",
@@ -166,7 +178,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 4.3
   },
   {
     "name": "Circuit training",
@@ -179,7 +192,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 8
   },
   {
     "name": "Stairmaster",
@@ -192,7 +206,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 9
   },
   {
     "name": "Jumping Rope",
@@ -205,7 +220,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 12.3
   },
   {
     "name": "Sun salutation yoga",
@@ -218,7 +234,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 3.3
   },
   {
     "name": "Power yoga",
@@ -231,7 +248,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 4
   },
   {
     "name": "Running",
@@ -244,7 +262,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 6
   },
   {
     "name": "Running",
@@ -257,7 +276,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 9.8
   },
   {
     "name": "Running",
@@ -270,7 +290,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 12.3
   },
   {
     "name": "Running stairs",
@@ -283,7 +304,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 15
   },
   {
     "name": "Sprinting",
@@ -296,7 +318,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 19.8
   },
   {
     "name": "Walking",
@@ -309,7 +332,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 3
   },
   {
     "name": "Walking",
@@ -322,7 +346,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 4.3
   },
   {
     "name": "Walking",
@@ -335,7 +360,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 7
   },
   {
     "name": "Swimming",
@@ -348,7 +374,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 5.8
   },
   {
     "name": "Swimming",
@@ -361,7 +388,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 9.8
   },
   {
     "name": "Pilates",
@@ -374,7 +402,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 0,
-    "strength": 1
+    "strength": 1,
+    "activity-met-value": 3
   },
   {
     "name": "Elliptical machine",
@@ -387,7 +416,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 5
   },
   {
     "name": "Dancing",
@@ -400,7 +430,8 @@
     "targets-abdominal": 0,
     "targets-whole": 1,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 7.8
   },
   {
     "name": "Biking",
@@ -413,7 +444,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 4
   },
   {
     "name": "Hiking",
@@ -426,7 +458,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 7.8
   },
   {
     "name": "Step aerobics with 4 inch step",
@@ -439,7 +472,8 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 5.5
   },
   {
     "name": "Step aerobics with 6-8 inch step",
@@ -452,6 +486,7 @@
     "targets-abdominal": 0,
     "targets-whole": 0,
     "cardio": 1,
-    "strength": 0
+    "strength": 0,
+    "activity-met-value": 7.5
   }
 ]

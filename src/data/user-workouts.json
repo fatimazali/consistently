@@ -1,6 +1,6 @@
 [
   {
-    "Type": "Outdoor Cycling",
+    "Type": "Biking",
     "Start": "2021-01-15 12:24",
     "End": "2021-01-15 12:59",
     "Duration": "0:35:16",
@@ -18,7 +18,7 @@
     "Weather Humidity": 9
   },
   {
-    "Type": "Outdoor Walking",
+    "Type": "Biking",
     "Start": "2021-01-08 16:05",
     "End": "2021-01-08 17:09",
     "Duration": "1:03:58",
@@ -36,7 +36,7 @@
     "Weather Humidity": 61
   },
   {
-    "Type": "Jump Rope",
+    "Type": "Jumping Rope",
     "Start": "2020-12-19 16:02",
     "End": "2020-12-19 16:17",
     "Duration": "0:15:01",
@@ -54,7 +54,7 @@
     "Weather Humidity": 64
   },
   {
-    "Type": "Mixed Cardio",
+    "Type": "Walking",
     "Start": "2020-12-05 16:03",
     "End": "2020-12-05 16:22",
     "Duration": "0:19:19",
@@ -72,7 +72,7 @@
     "Weather Humidity": 28
   },
   {
-    "Type": "Yoga",
+    "Type": "Power yoga",
     "Start": "2020-12-01 23:04",
     "End": "2020-12-01 23:17",
     "Duration": "0:13:40",
@@ -90,7 +90,7 @@
     "Weather Humidity": 65
   },
   {
-    "Type": "Core Training",
+    "Type": "Ab workout",
     "Start": "2020-11-28 00:21",
     "End": "2020-11-28 00:32",
     "Duration": "0:10:47",
