@@ -1,8 +1,7 @@
 // Profile.js
 import { Text, View } from 'react-native';
 import React, { Component } from 'react';
-import m_data from '../data/michelle-workouts.json'; 
-import r_data from '../data/rachel-allWorkouts.json';
+import user_data from '../data/user-workouts.json'; 
 import { DataTable } from 'react-native-paper';
 import styles from './Styles.js'
 
@@ -19,7 +18,7 @@ class Profile extends Component {
             <DataTable.Title numeric>Duration</DataTable.Title>
           </DataTable.Header>
 
-          {m_data.map(activity => {
+          {user_data.map(activity => {
             return (
               <DataTable.Row style={styles.container}>
                 <DataTable.Cell> {activity['Type']} </DataTable.Cell>
