@@ -1,9 +1,10 @@
 import { Text, View, Linking, Picker, ScrollView} from 'react-native';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import styles from './Styles';
 import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline, 
   Modal, Dialog, Portal, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
+import Recommendation from './Recommendation';
 
 class Home extends Component {
 
@@ -12,16 +13,30 @@ class Home extends Component {
     this.state = {
       visible: false,
       hasSignedUp: true,
+      
       intensity: 'first',
       focus: 'first',
       duration: '15',
-      affirmation: 'first',
+      affirmation: 'aff1',
       hasWeights: false,
       hasMat: false,
       hasBike: false,
       hasStepmill: false,
     };
+
   };
+
+  sendData = () => {
+    this.state.parentCallback(this.intensity,this.focus,this.duration,this.affirmation,this.hasWeights,this.hasMat,this.hasBike,this.hasStepmill);
+  }
+
+  hideDialog = () => {
+    this.setState(
+      { visible: false }
+    );
+    //this.sendData();
+  }
+
   
   signUpForm = () => {
     return (
@@ -34,10 +49,12 @@ class Home extends Component {
       </View>      
     );
   }
+
+
   
   dailyCheckIn = () => {
       const showDialog = () => this.setState({ visible: true });
-      const hideDialog = () => this.setState({ visible: false });
+      //const hideDialog = () => this.setState({ visible: false });
 
       const setIntensity = value => this.setState({ intensity: value });
       const setFocus = value => this.setState({ focus: value });
@@ -61,9 +78,11 @@ class Home extends Component {
           <Title>Daily Check-In </Title>
           <Paragraph> Tell us how you're doing today so we can find the best workouts for you! </Paragraph>
           <Text> </Text>
+
+
     
           <Portal>
-              <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={this.state.visible} onDismiss={hideDialog}>
+              <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={this.state.visible} onDismiss={this.hideDialog}>
     
                 <Dialog.ScrollArea>
                 <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
@@ -129,7 +148,7 @@ class Home extends Component {
     
                 </Dialog.Content>
                 <Dialog.Actions>
-                  <Button onPress={hideDialog}>Done</Button>
+                  <Button onPress={this.hideDialog}>Done</Button>
                 </Dialog.Actions>
     
                 </ScrollView>
@@ -141,15 +160,23 @@ class Home extends Component {
           <Button icon="camera" mode="contained" onPress={showDialog}>
             Let's go!
           </Button>
+
+          
+
           </Provider>
         </View> 
       );
     }    
+
+
   
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
 
     if (this.state.hasSignedUp) {
+      console.log("hi!!!!")
+      console.log(this.state)
+      console.log(this.props)
       return this.dailyCheckIn();
     }
     else {
@@ -157,5 +184,39 @@ class Home extends Component {
     }  
   }
 }
+
+/*
+class DataPipe extends Component {
+
+  constructor(props) {
+          super(props);
+          this.handler = this.handler.bind(this);
+  }
+
+  handler(tn, fo, du, af, hw, hm, hb, hs) {
+    this.setState({
+      intensity: tn,
+      focus: fo,
+      duration: du,
+      affirmation: af,
+      hasWeights: hw,
+      hasMat: hm,
+      hasBike: hb,
+      hasStepmill: hs,
+    });
+  }
+
+  render() {
+    console.log('IN DATAPIPE')
+    console.log(this.state)
+    return (
+      <Home handler = {this.handler} />
+    )
+    
+  }
+  
+}
+*/
+
 
 export default Home; // Don’t forget to use export default!
