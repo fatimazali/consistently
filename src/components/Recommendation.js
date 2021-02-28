@@ -2,7 +2,7 @@ import { Text, ScrollView } from 'react-native';
 import React, { Component } from 'react';
 import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { Activity } from './Activity';
+//import { Activity } from './Activity';
 import activities_json from '../../data/activities.json';
 
 class Recommendation extends Component {
@@ -13,6 +13,39 @@ class Recommendation extends Component {
             user_vector: []
         };
     };
+
+    getWeatherFromApi = () => {
+        console.log('hey');
+        return fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial')
+          .then((response) => response.json())
+          .then((json) => {
+            return json;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      
+    toExcludeOutdoorActivities = () => {
+        let weather = this.getWeatherFromApi();
+        // does null call or does it just return null for comparison? 
+        console.log('weather is', weather);
+        let result = true;
+        // find possible reasons to return false
+        if (weather.main.feels_like > 90 || weather.main.feels_like < 50) { // 
+            result = false;
+        }
+
+        //if main
+        console.log('result is', result);
+        
+      };
+
+    componentDidMount = () => {
+        
+        
+    };
+
 
     build_activity_vector = () => {
         for (let i = 0; i < activities_json.length; i++) {
@@ -79,6 +112,7 @@ class Recommendation extends Component {
         this.build_activity_vector(); //Builds array of activities, each activity is in dictionary form
         this.build_user_vector(); //Builds user vector 
         console.log(this.state.activity_vector)
+        //this.toExcludeOutdoorActivities();
         return (
             <ScrollView>
                 <Text style={styles.pageHeader}>             Top 3 Picks</Text> 
