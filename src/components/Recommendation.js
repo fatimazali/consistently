@@ -89,7 +89,7 @@ componentDidMount() {
     // Returns a dictionary of weights for activities based on past history 
     get_user_preferences_and_experience_weights = () => {
         var columns = Object.keys(user_json[0]);
-        for (i = 8; i < columns.length; i++) {
+        for (let i = 8; i < columns.length; i++) {
             var activity_name = columns[i].substring(22, columns[i].length-1); //Gets the activity name between the brackets
             this.state.preferences_and_experience_weights[activity_name] = (user_json[0][columns[i]].includes("try")) ? 3 : 1; //Prefers to try it, so higher weight of 3
         }
@@ -177,7 +177,7 @@ componentDidMount() {
     // Returns an array of activities, sorted by dot product score (descending)
     compute_dot_product = () => {
         var activity_score = 0;
-        for (i = 0; i < this.state.activity_vector.length; i++) {
+        for (let i = 0; i < this.state.activity_vector.length; i++) {
             activity_score = 0; //Reset score back to 0 for each activity computation
             
             // Adjusts activity names from the activity vector to match the user vector, since 
