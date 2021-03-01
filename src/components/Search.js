@@ -13,10 +13,27 @@ class Search extends Component {
       this.state = {
         visible: false,
         searchQuery: '',
-        filteredDataSource: [],
-        masterDataSource: [],
+        filteredDataSource: require('../../data/activities.json'),
+        masterDataSource: require('../../data/activities.json'),
       };
     };
+
+    searchstyles = StyleSheet.create({
+      container: {
+        backgroundColor: 'white',
+      },
+      itemStyle: {
+        padding: 10,
+      },
+      textInputStyle: {
+        height: 40,
+        borderWidth: 1,
+        paddingLeft: 20,
+        margin: 5,
+        borderColor: '#009688',
+        backgroundColor: '#FFFFFF',
+      },
+    });
     
     render() {
       const hideDialog = () => this.setState({ visible: false });
@@ -24,10 +41,11 @@ class Search extends Component {
       const setSearch = query => this.setState({searchQuery : query});
 
       const ourData = require('../../data/activities.json');
-      const setFilteredDataSource = () => this.setState({filteredDataSource : ourData});
-      const setMasterDataSource = () => this.setState({masterDataSource : ourData});
+      const setFilteredDataSource = someData => this.setState({filteredDataSource : someData});
+      const setMasterDataSource = someData => this.setState({masterDataSource : someData});
 
-
+      //setFilteredDataSource(ourData);
+      //setMasterDataSource(ourData);
 
       const searchFilterFunction = (text) => {
         // Check if searched text is not blank
@@ -61,7 +79,7 @@ class Search extends Component {
               <Title>{item.name}</Title>
               <Paragraph>{item.cardio ? 'CARDIO' : 'STRENGTH'}</Paragraph>
             </Card.Content>
-            
+            <Card.Cover source={require('../images/core.png')} />
             <Card.Actions>
               <Button>Cancel</Button>
               <Button>Ok</Button>
@@ -91,8 +109,9 @@ class Search extends Component {
 
       return(
         <SafeAreaView style={{ flex: 1 }}>
-        <View>
+        <View style={this.searchstyles.container}>
           <TextInput
+            style={this.searchstyles.textInputStyle}
             onChangeText={(text) => searchFilterFunction(text)}
             value={this.state.searchQuery}
             underlineColorAndroid="transparent"
@@ -108,6 +127,7 @@ class Search extends Component {
       </SafeAreaView>
       );
 
+      //old code
       return (
         <Provider>
           <Searchbar

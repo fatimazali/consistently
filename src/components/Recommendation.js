@@ -2,13 +2,14 @@ import { Text, ScrollView } from 'react-native';
 import React, { Component } from 'react';
 import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import Home from './Home';
 import activities_json from '../../data/activities.json';
 import history_json from '../../data/history.json';
 import user_json from '../../data/user.json';
 
-
 class Recommendation extends Component {
     constructor(props) {
+        console.log(props)
         super(props);
         this.state = {
             activity_vector: [], //Array of dictionaries, each dictionary is the activity's item vector
@@ -18,39 +19,46 @@ class Recommendation extends Component {
         };
     };
 
-    getWeatherFromApi = () => {
-        console.log('hey');
-        return fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial')
-          .then((response) => response.json())
-          .then((json) => {
-            return json;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
-      
-    toExcludeOutdoorActivities = () => {
-        let weather = this.getWeatherFromApi();
-        // does null call or does it just return null for comparison? 
-        console.log('weather is', weather);
-        let result = true;
-        // find possible reasons to return false
-        if (weather.main.feels_like > 90 || weather.main.feels_like < 50) { // 
-            result = false;
-        }
+  /*
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', nextProps);
+    this.setState(nextProps);
+  }
 
-        //if main
-        console.log('result is', result);
-        
-      };
+  componentWillMount() {
+    console.log("in componentWillMount")
+    console.log(this.props)
+    this.handlerRecc(this.props);
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log("in componentWillReceiveProps")
+    console.log(nextProps)
+    this.handlerRecc(nextProps);
+  }
 
-    componentDidMount = () => {
-        
-        
-    };
+  componentWillReceiveProps(nextProps) {
+    console.log("in componentWillReceiveProps")
+    console.log(nextProps)
+    //this.handlerRecc(nextProps.intensity, nextProps.focus, nextProps.duration, nextProps.affirmation,
+    //  nextProps.hasWeights, nextProps.hasMat, nextProps.hasBike, nextProps.hasStepmill);
+  }
 
 
+shouldComponentUpdate (nextProps, nextState) {
+  console.log('in shouldComponentUpdate')
+  //this.setState(nextState)
+  console.log(nextProps)
+  console.log(nextProps !== this.props)
+  return nextProps !== this.props
+}
+
+componentDidMount() {
+  console.log("in componentDidMount")
+  console.log(this.props)
+  console.log(this.props.intensity)
+}
+*/
+  
     // Returns a dictionary of weights for activities based on past history 
     get_user_preferences_and_experience_weights = () => {
         var columns = Object.keys(user_json[0]);
@@ -181,6 +189,13 @@ class Recommendation extends Component {
         this.build_user_vector(); // Builds user vector 
         this.compute_dot_product(); // Ranks the activities
         //this.toExcludeOutdoorActivities();
+        console.log("IN RECOMMENDATION")
+        console.log(this.state)
+
+        // <div>
+        //     <p> {this.state} </p>
+        // </div>
+
         return (
             <ScrollView>
                 <Text style={styles.pageHeader}>             Top 3 Picks</Text> 
