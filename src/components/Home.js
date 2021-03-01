@@ -25,7 +25,6 @@ class Home extends Component {
     };
 
   };
-
   
   signUpForm = () => {
     return (
@@ -67,21 +66,6 @@ class Home extends Component {
           <Title>Daily Check-In </Title>
           <Paragraph> Tell us how you're doing today so we can find the best workouts for you! </Paragraph>
           <Text> </Text>
-
-          {/* This was a div before but can't run */}
-          <View> 
-                <Recommendation 
-                intensity= {this.intensity}
-                focus= {this.focus}
-                duration= {this.duration}
-                affirmation= {this.affirmation}
-                hasWeights= {this.hasWeights}
-                hasMat= {this.hasMat}
-                hasBike= {this.hasBike}
-                hasStepmill= {this.hasStepmill}
-                />
-          </View>
-
     
           <Portal>
               <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={this.state.visible} onDismiss={hideDialog}>
@@ -163,7 +147,19 @@ class Home extends Component {
             Let's go!
           </Button>
 
-          
+          {/* This was a div before but can't run in iOS simulator */}
+          <View style={styles.hidden}> 
+                <Recommendation 
+                intensity= {this.intensity}
+                focus= {this.focus}
+                duration= {this.duration}
+                affirmation= {this.affirmation}
+                hasWeights= {this.hasWeights}
+                hasMat= {this.hasMat}
+                hasBike= {this.hasBike}
+                hasStepmill= {this.hasStepmill}
+                />
+          </View>
 
           </Provider>
         </View> 
