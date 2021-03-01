@@ -17,6 +17,23 @@ class Search extends Component {
         masterDataSource: require('../../data/activities.json'),
       };
     };
+
+    searchstyles = StyleSheet.create({
+      container: {
+        backgroundColor: 'white',
+      },
+      itemStyle: {
+        padding: 10,
+      },
+      textInputStyle: {
+        height: 40,
+        borderWidth: 1,
+        paddingLeft: 20,
+        margin: 5,
+        borderColor: '#009688',
+        backgroundColor: '#FFFFFF',
+      },
+    });
     
     render() {
       const hideDialog = () => this.setState({ visible: false });
@@ -62,7 +79,7 @@ class Search extends Component {
               <Title>{item.name}</Title>
               <Paragraph>{item.cardio ? 'CARDIO' : 'STRENGTH'}</Paragraph>
             </Card.Content>
-            
+            <Card.Cover source={require('../images/core.png')} />
             <Card.Actions>
               <Button>Cancel</Button>
               <Button>Ok</Button>
@@ -92,8 +109,9 @@ class Search extends Component {
 
       return(
         <SafeAreaView style={{ flex: 1 }}>
-        <View>
+        <View style={this.searchstyles.container}>
           <TextInput
+            style={this.searchstyles.textInputStyle}
             onChangeText={(text) => searchFilterFunction(text)}
             value={this.state.searchQuery}
             underlineColorAndroid="transparent"
