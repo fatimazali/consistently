@@ -169,7 +169,6 @@ class Home extends Component {
       );
     }    
 
-
   
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
@@ -221,3 +220,4 @@ class DataPipe extends Component {
 
 
 export default Home; // Don’t forget to use export default!
+
