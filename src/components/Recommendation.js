@@ -19,6 +19,33 @@ class Recommendation extends Component {
         };
     };
 
+    getWeatherFromApi = () => {
+        console.log('hey');
+        return fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial')
+          .then((response) => response.json())
+          .then((json) => {
+            return json;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+    toExcludeOutdoorActivities = () => {
+        let weather = this.getWeatherFromApi();
+        // does null call or does it just return null for comparison? 
+        console.log('weather is', weather);
+        let result = true;
+        // find possible reasons to return false
+        if (weather.main.feels_like > 90 || weather.main.feels_like < 50) { // 
+            result = false;
+        }
+
+        //if main
+        console.log('result is', result);
+
+      };
+
   /*
   componentWillReceiveProps(nextProps) {
     console.log('componentWillReceiveProps', nextProps);
