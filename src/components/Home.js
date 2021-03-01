@@ -68,7 +68,8 @@ class Home extends Component {
           <Paragraph> Tell us how you're doing today so we can find the best workouts for you! </Paragraph>
           <Text> </Text>
 
-          <div>
+          {/* This was a div before but can't run */}
+          <View> 
                 <Recommendation 
                 intensity= {this.intensity}
                 focus= {this.focus}
@@ -79,7 +80,7 @@ class Home extends Component {
                 hasBike= {this.hasBike}
                 hasStepmill= {this.hasStepmill}
                 />
-          </div>
+          </View>
 
     
           <Portal>

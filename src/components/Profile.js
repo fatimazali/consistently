@@ -1,7 +1,7 @@
 // Profile.js
 import { Text, View } from 'react-native';
 import React, { Component } from 'react';
-import user_data from '../data/user-workouts.json'; 
+import user_data from '../../data/history.json'; 
 import { DataTable } from 'react-native-paper';
 import styles from './Styles.js'
 
