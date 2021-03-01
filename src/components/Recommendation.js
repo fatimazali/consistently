@@ -34,7 +34,7 @@ class Recommendation extends Component {
     //this.handlerRecc(nextProps.intensity, nextProps.focus, nextProps.duration, nextProps.affirmation,
     //  nextProps.hasWeights, nextProps.hasMat, nextProps.hasBike, nextProps.hasStepmill);
   }
-*/
+
 
 shouldComponentUpdate (nextProps, nextState) {
   console.log('in shouldComponentUpdate')
@@ -49,7 +49,7 @@ componentDidMount() {
   console.log(this.props)
   console.log(this.props.intensity)
 }
-
+*/
   render() {
     console.log("IN RECOMMENDATION")
     console.log(this.state)

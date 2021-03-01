@@ -13,8 +13,8 @@ class Search extends Component {
       this.state = {
         visible: false,
         searchQuery: '',
-        filteredDataSource: [],
-        masterDataSource: [],
+        filteredDataSource: require('../../data/activities.json'),
+        masterDataSource: require('../../data/activities.json'),
       };
     };
     
@@ -24,10 +24,11 @@ class Search extends Component {
       const setSearch = query => this.setState({searchQuery : query});
 
       const ourData = require('../../data/activities.json');
-      const setFilteredDataSource = () => this.setState({filteredDataSource : ourData});
-      const setMasterDataSource = () => this.setState({masterDataSource : ourData});
+      const setFilteredDataSource = someData => this.setState({filteredDataSource : someData});
+      const setMasterDataSource = someData => this.setState({masterDataSource : someData});
 
-
+      //setFilteredDataSource(ourData);
+      //setMasterDataSource(ourData);
 
       const searchFilterFunction = (text) => {
         // Check if searched text is not blank
@@ -108,6 +109,7 @@ class Search extends Component {
       </SafeAreaView>
       );
 
+      //old code
       return (
         <Provider>
           <Searchbar
