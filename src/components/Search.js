@@ -109,21 +109,24 @@ class Search extends Component {
 
       return(
         <SafeAreaView style={{ flex: 1 }}>
-        <View style={this.searchstyles.container}>
-          <TextInput
-            style={this.searchstyles.textInputStyle}
-            onChangeText={(text) => searchFilterFunction(text)}
-            value={this.state.searchQuery}
-            underlineColorAndroid="transparent"
-            placeholder="Search workouts..."
-          />
-          <FlatList
-            data={this.state.filteredDataSource}
-            keyExtractor={(item, index) => index.toString()}
-            ItemSeparatorComponent={ItemSeparatorView}
-            renderItem={ItemView}
-          />
-        </View>
+          <ScrollView>
+            <View style={this.searchstyles.container}>
+              <TextInput
+                style={this.searchstyles.textInputStyle}
+                onChangeText={(text) => searchFilterFunction(text)}
+                value={this.state.searchQuery}
+                underlineColorAndroid="transparent"
+                placeholder="Search workouts..."
+              />
+              
+              <FlatList
+                data={this.state.filteredDataSource}
+                keyExtractor={(item, index) => index.toString()}
+                ItemSeparatorComponent={ItemSeparatorView}
+                renderItem={ItemView}
+              />
+            </View>
+        </ScrollView>
       </SafeAreaView>
       );
 
