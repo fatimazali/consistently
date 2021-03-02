@@ -123,41 +123,26 @@ class Search extends Component {
             ItemSeparatorComponent={ItemSeparatorView}
             renderItem={ItemView}
           />
-        </View>
-      </SafeAreaView>
-      );
-
-      //old code
-      return (
-        <Provider>
-          <Searchbar
-            placeholder="Search"
-            onChangeText={setSearch}
-            value={this.state.searchQuery}
-            style={{marginTop:50}}
-          />
-
-          <ScrollView>
- 
-          </ScrollView>
-          
-          <Portal>
-            <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
-              <Dialog.Content>
-                <Text style={styles.paragraph}>Add Activity</Text>
-              </Dialog.Content>
-              <Dialog.Actions>
-                <Button onPress={hideDialog}>Done</Button>
-              </Dialog.Actions>
-            </Dialog>
-          </Portal>
-          <IconButton style={styles.bottomRightButton}
-            icon="plus"
-            color='black'
-            size={70}s
-            onPress = {showDialog}
-          />
+          <Provider>
+            <Portal>
+              <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
+                <Dialog.Content>
+                  <Text style={styles.paragraph}>Add Activity</Text>
+                </Dialog.Content>
+                <Dialog.Actions>
+                  <Button onPress={hideDialog}>Done</Button>
+                </Dialog.Actions>
+              </Dialog>
+            </Portal>
+            <IconButton style={styles.bottomRightButton}
+              icon="plus"
+              color='black'
+              size={70}s
+              onPress = {showDialog}
+            />
         </Provider>
+      </View>
+      </SafeAreaView>
       );
     }
   };
