@@ -17,6 +17,8 @@ class Recommendation extends Component {
             user_vector: [],
             preferences_and_experience_weights: {}, //Dictionary with activity name as key and weight as value
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
+            weather: {}, // Weather data for user's zipcode 
+            weatherLoading: false, 
             intensity: "", //light, moderate, vigorous, extreme 
             focus: "", //lower, upper, abdominal, whole
             duration: "", //15-90
@@ -42,32 +44,48 @@ class Recommendation extends Component {
         console.log('state:');
         console.log(this.state);   
     };
-
-    getWeatherFromApi = () => {
+    
+    getWeatherFromApi = async () => {
         console.log('hey');
-        return fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial')
-          .then((response) => response.json())
-          .then((json) => {
-            return json;
-          })
-          .catch((error) => {
+        try {
+            const response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial');
+            const json = await response.json();
+            this.setState({
+                weather: json,
+                weatherLoading: true
+            });
+        } catch (error) {
             console.error(error);
-          });
+        }
       };
 
-    toExcludeOutdoorActivities = () => { //returns true so filter out things that are outdoors 
-        let weather = this.getWeatherFromApi();
-        // does null call or does it just return null for comparison? 
-        console.log('weather is', weather);
-        let result = true;
-        // find possible reasons to return false
-        // if (weather.main.feels_like > 90 || weather.main.feels_like < 50) { // 
-        //     result = false;
-        // }
-
-        //if main
-        console.log('result is', result);
-    };
+    toExcludeOutdoorActivities = () => {
+        let result = false;
+        if (this.state.weatherLoading === true) {
+            const weather = this.state.weather;
+            const main = weather.main;
+            console.log('in exclusion, state weather is', weather);
+            console.log('snow check', weather.snow);
+            if (main.feels_like > 90 || main.feels_like < 45) { // nested dict too?
+                return true;
+            }            
+            if (weather.wind.speed > 20) {
+                return true;
+            }
+            if ("snow" in weather && weather.snow['1h'] > 0) { // default val if not found or smt? null > 15 - .ff gives issues though
+                return true;
+            }
+            if ("rain" in weather && weather.rain['1h'] > 0) { // default val if not found or smt? null > 15 - .ff gives issues though
+                return true;
+            }
+            const thirty_min_before_sunrise = weather.sys.sunrise - 1800;  // 30 min = 1800 seconds
+            const sixty_min_after_sunset = weather.sys.sunset + 3600 // 60 min = 3600 seconds
+            if (!(weather.dt > thirty_min_before_sunrise &&  weather.dt < sixty_min_after_sunset)) { // if < 30min before sunrise or > 30min after sunset
+                return true;
+            }
+        }
+        return result;
+      };
 
   /*
   componentWillReceiveProps(nextProps) {
@@ -101,13 +119,14 @@ shouldComponentUpdate (nextProps, nextState) {
   console.log(nextProps !== this.props)
   return nextProps !== this.props
 }
-
-componentDidMount() {
-  console.log("in componentDidMount")
-  console.log(this.props)
-  console.log(this.props.intensity)
-}
 */
+componentDidMount() {
+//   console.log("in componentDidMount")
+//   console.log(this.props)
+//   console.log(this.props.intensity)
+    this.getWeatherFromApi();
+};
+
   
     // Returns a dictionary of weights for activities based on past history 
     get_user_preferences_and_experience_weights = () => {
@@ -252,15 +271,11 @@ componentDidMount() {
     
     render() {
         this.getCheckInData(); // Get data from Daily Check-In
-
         this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
         this.filterByWeather();
         this.build_user_vector(); // Builds user vector 
         this.compute_dot_product(); // Ranks the activities
-
-        //this.toExcludeOutdoorActivities();
-        console.log("IN RECOMMENDATION")
-        console.log(this.state)
+        let exclude = this.toExcludeOutdoorActivities(); // this gets called infinitely here?
 
         return (
             <ScrollView>
