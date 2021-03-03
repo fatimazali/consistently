@@ -16,8 +16,7 @@ class Recommendation extends Component {
             user_vector: [],
             preferences_and_experience_weights: {}, //Dictionary with activity name as key and weight as value
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
-            weather: {}, // 
-            excludeOutdoorActivities: false,
+            weather: {}, // Weather data for user's zipcode 
             weatherLoading: false, 
         };
     };
@@ -37,33 +36,31 @@ class Recommendation extends Component {
       };
 
     toExcludeOutdoorActivities = () => {
-        let result = true;
+        let result = false;
         if (this.state.weatherLoading === true) {
             const weather = this.state.weather;
             const main = weather.main;
             console.log('in exclusion, state weather is', weather);
             console.log('snow check', weather.snow);
-
-
-        if (main.feels_like > 90 || main.feels_like < 45) { // nested dict too?
-            return false;
-        }            
-
-        if (weather.wind.speed > 15) {
-            return false;
+            if (main.feels_like > 90 || main.feels_like < 45) { // nested dict too?
+                return true;
+            }            
+            if (weather.wind.speed > 20) {
+                return true;
+            }
+            if ("snow" in weather && weather.snow['1h'] > 0) { // default val if not found or smt? null > 15 - .ff gives issues though
+                return true;
+            }
+            if ("rain" in weather && weather.rain['1h'] > 0) { // default val if not found or smt? null > 15 - .ff gives issues though
+                return true;
+            }
+            const thirty_min_before_sunrise = weather.sys.sunrise - 1800;  // 30 min = 1800 seconds
+            const sixty_min_after_sunset = weather.sys.sunset + 3600 // 60 min = 3600 seconds
+            if (!(weather.dt > thirty_min_before_sunrise &&  weather.dt < sixty_min_after_sunset)) { // if < 30min before sunrise or > 30min after sunset
+                return true;
+            }
         }
-
-        if (weather.snow > 15) { // default val if not found or smt? null > 15
-            return false;
-        }
-
-
-        }
-        //console.log('false res is', result);
         return result;
-        //const { weather } = this.state;
-        // var columns = Object.keys(user_json[0]);
-        // does null call or does it just return null for comparison? 
       };
 
   /*
@@ -104,12 +101,6 @@ componentDidMount() {
 //   console.log(this.props)
 //   console.log(this.props.intensity)
     this.getWeatherFromApi();
-    //console.log('state weather is', this.state.weather);
-    // this.setState({
-    //     weatherLoading: true
-    // })
-
-    // mark loading as complete etc? 
 };
 
   
@@ -242,16 +233,9 @@ componentDidMount() {
         this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
         this.build_user_vector(); // Builds user vector 
         this.compute_dot_product(); // Ranks the activities
-        // this.getWeatherFromApi();
         let exclude = this.toExcludeOutdoorActivities(); // this gets called infinitely here?
 
-        console.log('in render?state weather is', this.state.weather);
-        console.log("IN RECOMMENDATION")
-        console.log(this.state)
-
-        // <div>
-        //     <p> {this.state} </p>
-        // </div>
+        console.log('to exc?', exclude);
 
         return (
             <ScrollView>
