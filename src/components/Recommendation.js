@@ -18,7 +18,9 @@ class Recommendation extends Component {
             preferences_and_experience_weights: {}, //Dictionary with activity name as key and weight as value
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
             intensity: "", //light, moderate, vigorous, extreme 
-            focus: "" //lower, upper, abdominal, whole
+            focus: "", //lower, upper, abdominal, whole
+            duration: "", //15-90
+            equipment: [],
 
         };
     };
@@ -30,6 +32,13 @@ class Recommendation extends Component {
         console.log(checkin);
         this.state.intensity = checkin['intensity']
         this.state.focus = checkin['focus']
+        this.state.duration = checkin['duration']
+        for (var key in checkin) {
+            if (checkin.hasOwnProperty(key) && checkin[key] == 1) {
+                this.state.equipment.push(key);
+            }
+        };
+        
         console.log('state:');
         console.log(this.state);   
     };
