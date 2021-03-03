@@ -123,7 +123,7 @@ componentDidMount() {
     // Filter out all the activities that are required to be outdoors aka outdoor = 1
     filterByWeather = () => {
         var filteredActivities = [];
-        if(true) {
+        if(this.toExcludeOutdoorActivities()) {
             for (let i = 0; i < this.state.activity_vector.length; i++) {
                 if(this.state.activity_vector[i]["outdoors"] != 1) {
                     filteredActivities.push(this.state.activity_vector[i]);
