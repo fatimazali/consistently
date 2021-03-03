@@ -37,18 +37,13 @@ class Recommendation extends Component {
         console.log('weather is', weather);
         let result = true;
         // find possible reasons to return false
-        if (weather.main.feels_like > 90 || weather.main.feels_like < 50) { // 
-            result = false;
-        }
+        // if (weather.main.feels_like > 90 || weather.main.feels_like < 50) { // 
+        //     result = false;
+        // }
 
         //if main
         console.log('result is', result);
-
-      };
-
-    
-
-      
+    };
 
   /*
   componentWillReceiveProps(nextProps) {

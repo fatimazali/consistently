@@ -125,6 +125,24 @@ class Search extends Component {
               />
             </View>
         </ScrollView>
+          <Provider>
+              <Portal>
+                <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
+                  <Dialog.Content>
+                    <Text style={styles.paragraph}>Add Activity</Text>
+                  </Dialog.Content>
+                  <Dialog.Actions>
+                    <Button onPress={hideDialog}>Done</Button>
+                  </Dialog.Actions>
+                </Dialog>
+              </Portal>
+              <IconButton style={styles.bottomRightButton}
+                icon="plus"
+                color='black'
+                size={70}s
+                onPress = {showDialog}
+              />
+          </Provider>
       </SafeAreaView>
       );
     }
