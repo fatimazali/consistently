@@ -16,6 +16,9 @@ class Recommendation extends Component {
             user_vector: [],
             preferences_and_experience_weights: {}, //Dictionary with activity name as key and weight as value
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
+            intensity: "", //light, moderate, vigorous, extreme 
+            focus: "" //lower, upper, abdominal, whole
+
         };
     };
 
