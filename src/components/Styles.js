@@ -46,7 +46,7 @@ export default StyleSheet.create({
     },
     bottomRightButton: {
       position: 'absolute',
-      bottom: 55,
+      bottom: 0,
       right: 0,
     },
     hidden : {
