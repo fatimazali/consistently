@@ -51,7 +51,10 @@ export default StyleSheet.create({
     },
     hidden : {
       bottom: -400
+    },
+    snackBar : {
+      flex: 1,
+      justifyContent: 'space-between',
     }
-
   });
   

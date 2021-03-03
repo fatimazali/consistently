@@ -1,7 +1,7 @@
 import { Text, ScrollView, SafeAreaView, StyleSheet, View, FlatList } from 'react-native';
 import React, { Component, useState, useEffect } from 'react';
 import styles from './Styles.js';
-import { IconButton, Title, Dialog, TextInput, Colors , Card, Avatar, Paragraph, Searchbar, Modal, Portal, Button, Provider} from 'react-native-paper';
+import { Snackbar, IconButton, Title, Dialog, TextInput, Colors , Card, Avatar, Paragraph, Searchbar, Modal, Portal, Button, Provider} from 'react-native-paper';
 
 
 class Search extends Component {
@@ -13,8 +13,11 @@ class Search extends Component {
         searchQuery: '',
         filteredDataSource: require('../../data/activities.json'),
         masterDataSource: require('../../data/activities.json'),
+        snackBarVisible: false
       };
     };
+
+    
 
     searchstyles = StyleSheet.create({
       container: {
@@ -35,12 +38,17 @@ class Search extends Component {
     
     render() {
       const hideDialog = () => this.setState({ visible: false });
+      const hideSnackBar = () => this.setState({snackBarVisible: false});
+      
       const showDialog = () => this.setState({ visible: true });
+      const showSnackBar = () => this.setState({snackBarVisible: true});
       const setSearch = query => this.setState({searchQuery : query});
 
       const ourData = require('../../data/activities.json');
       const setFilteredDataSource = someData => this.setState({filteredDataSource : someData});
       const setMasterDataSource = someData => this.setState({masterDataSource : someData});
+
+      
 
       //setFilteredDataSource(ourData);
       //setMasterDataSource(ourData);
@@ -128,21 +136,32 @@ class Search extends Component {
           <Provider>
               <Portal>
                 <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
+                <Dialog.Title>Add Activity</Dialog.Title>
                   <Dialog.Content>
-                    <Text style={styles.paragraph}>Add Activity</Text>
+                    <TextInput mode='outlined' label="Activity"/>
+                    <TextInput mode='outlined' label="Duration (in mins)"/>
                   </Dialog.Content>
                   <Dialog.Actions>
-                    <Button onPress={hideDialog}>Done</Button>
+                    <Button onPress={() => {hideDialog(); showSnackBar();}}>Submit</Button>
                   </Dialog.Actions>
                 </Dialog>
               </Portal>
               <IconButton style={styles.bottomRightButton}
                 icon="plus"
                 color='black'
-                size={70}s
+                size={70}
                 onPress = {showDialog}
               />
           </Provider>
+          <View style={styles.snackBar}>
+            <Button onPress={showSnackBar}>{this.state.snackBarVisible ? 'Hide' : 'Show'}</Button>
+            <Snackbar
+              visible={this.state.snackBarVisible}
+              duration={2000}
+              onDismiss={hideSnackBar}>
+              Added!
+            </Snackbar>
+          </View>
       </SafeAreaView>
       );
     }
