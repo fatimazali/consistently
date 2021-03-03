@@ -143,7 +143,7 @@ class Home extends Component {
     
               </Dialog>
           </Portal>
-          <Button icon="camera" mode="contained" onPress={() => Linking.openURL('https://forms.gle/CX9WU8FEz3Nrt6YDA')}>
+          <Button icon="camera" mode="contained" onPress={() => Linking.openURL('https://forms.gle/pGXoybdudrLjFxCLA')}>
             Let's go!
           </Button>
 
