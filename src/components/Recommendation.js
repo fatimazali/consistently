@@ -18,7 +18,7 @@ class Recommendation extends Component {
             preferences_and_experience_weights: {}, //Dictionary with activity name as key and weight as value
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
             weather: {}, // Weather data for user's zipcode 
-            weatherLoading: false, 
+            weatherLoaded: false, 
             intensity: "", //light, moderate, vigorous, extreme 
             focus: "", //lower, upper, abdominal, whole
             duration: "", //15-90
@@ -52,7 +52,7 @@ class Recommendation extends Component {
             const json = await response.json();
             this.setState({
                 weather: json,
-                weatherLoading: true
+                weatherLoaded: true
             });
         } catch (error) {
             console.error(error);
@@ -61,11 +61,9 @@ class Recommendation extends Component {
 
     toExcludeOutdoorActivities = () => {
         let result = false;
-        if (this.state.weatherLoading === true) {
+        if (this.state.weatherLoaded === true) {
             const weather = this.state.weather;
             const main = weather.main;
-            console.log('in exclusion, state weather is', weather);
-            console.log('snow check', weather.snow);
             if (main.feels_like > 90 || main.feels_like < 45) { // nested dict too?
                 return true;
             }            
@@ -161,7 +159,7 @@ componentDidMount() {
     // Filter out all the activities that are required to be outdoors aka outdoor = 1
     filterByWeather = () => {
         var filteredActivities = [];
-        if(this.toExcludeOutdoorActivities()) {
+        if((this.state.weatherLoaded === true) && this.toExcludeOutdoorActivities()) {
             for (let i = 0; i < this.state.activity_vector.length; i++) {
                 if(this.state.activity_vector[i]["outdoors"] != 1) {
                     filteredActivities.push(this.state.activity_vector[i]);
@@ -272,10 +270,11 @@ componentDidMount() {
     render() {
         this.getCheckInData(); // Get data from Daily Check-In
         this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
-        this.filterByWeather();
+        this.filterByWeather(); // must happen after compDidMount? otherwise: will be false until then which is fine
         this.build_user_vector(); // Builds user vector 
         this.compute_dot_product(); // Ranks the activities
-        let exclude = this.toExcludeOutdoorActivities(); // this gets called infinitely here?
+        let exclude = this.toExcludeOutdoorActivities();
+        console.log("to exclude?", exclude);
 
         return (
             <ScrollView>
