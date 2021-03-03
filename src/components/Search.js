@@ -1,9 +1,7 @@
-import { Text, ScrollView, SafeAreaView, StyleSheet, View, FlatList, TextInput, } from 'react-native';
+import { Text, ScrollView, SafeAreaView, StyleSheet, View, FlatList } from 'react-native';
 import React, { Component, useState, useEffect } from 'react';
 import styles from './Styles.js';
-import { IconButton, Title, Dialog, Colors , Card, Avatar, Paragraph, Searchbar, Modal, Portal, Button, Provider} from 'react-native-paper';
-
-
+import { IconButton, Title, Dialog, TextInput, Colors , Card, Avatar, Paragraph, Searchbar, Modal, Portal, Button, Provider} from 'react-native-paper';
 
 
 class Search extends Component {

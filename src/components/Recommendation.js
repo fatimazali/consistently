@@ -31,7 +31,7 @@ class Recommendation extends Component {
           });
       };
 
-    toExcludeOutdoorActivities = () => {
+    toExcludeOutdoorActivities = () => { //returns true so filter out things that are outdoors 
         let weather = this.getWeatherFromApi();
         // does null call or does it just return null for comparison? 
         console.log('weather is', weather);
@@ -45,6 +45,10 @@ class Recommendation extends Component {
         console.log('result is', result);
 
       };
+
+    
+
+      
 
   /*
   componentWillReceiveProps(nextProps) {
@@ -109,9 +113,25 @@ componentDidMount() {
                 whole : activities_json[i]['targets-whole'],
                 cardio : activities_json[i]['cardio'],
                 strength : activities_json[i]['strength'], 
-                met: activities_json[i]['activity-met-value'] // Using the MET value for Calorie display for the 3 recommended activities
+                met: activities_json[i]['activity-met-value'], // Using the MET value for Calorie display for the 3 recommended activities
+                outdoors: activities_json[i]['outdoors']
             };
             this.state.activity_vector.push(activity);
+        }
+    };
+
+    // Filter out all the activities that are required to be outdoors aka outdoor = 1
+    filterByWeather = () => {
+        var filteredActivities = [];
+        if(true) {
+            for (let i = 0; i < this.state.activity_vector.length; i++) {
+                if(this.state.activity_vector[i]["outdoors"] != 1) {
+                    filteredActivities.push(this.state.activity_vector[i]);
+                    console.log(this.state.activity_vector[i]['name']);
+                }
+            }
+            this.state.activity_vector = filteredActivities;
+            console.log(this.state.activity_vector);
         }
     };
 
@@ -213,15 +233,13 @@ componentDidMount() {
     
     render() {
         this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
+        this.filterByWeather();
         this.build_user_vector(); // Builds user vector 
         this.compute_dot_product(); // Ranks the activities
+
         //this.toExcludeOutdoorActivities();
         console.log("IN RECOMMENDATION")
         console.log(this.state)
-
-        // <div>
-        //     <p> {this.state} </p>
-        // </div>
 
         return (
             <ScrollView>
