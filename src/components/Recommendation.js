@@ -18,46 +18,57 @@ class Recommendation extends Component {
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
             weather: {}, // 
             excludeOutdoorActivities: false,
+            weatherLoading: false, 
         };
     };
 
-    getWeatherFromApi = () => {
+    getWeatherFromApi = async () => {
         console.log('hey');
-        return fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial')
-          .then((response) => response.json())
-          .then((json) => {
-              this.setState({
-                weather: json
-              })
-          })
-          .catch((error) => {
+        try {
+            const response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial');
+            const json = await response.json();
+            this.setState({
+                weather: json,
+                weatherLoading: true
+            });
+        } catch (error) {
             console.error(error);
-          });
+        }
       };
 
     toExcludeOutdoorActivities = () => {
-        const { weather } = this.state;
+        let result = true;
+        if (this.state.weatherLoading === true) {
+            console.log('in exclusion, state weather is', this.state.weather);
+            //console.log('wee main is', this.state.weather[main]);
+            console.log('w main is', this.state.weather['main']);
+            console.log('w main is', this.state.weather.main);
+    
+            const ft = this.state.weather['main'];
+            console.log('w222 main is', ft ); // ['feels_like']
+            //console.log('w233 main is', this.state.weather.main.feels_like );
+            console.log('w233 main hh is', this.state.weather['main']['feels_like']);
+        }
+        return result;
+        //const { weather } = this.state;
 
-        // let weather = Object(this.getWeatherFromApi());
+        // let weather = Object(
+        //this.getWeatherFromApi();
         // var columns = Object.keys(user_json[0]);
         // does null call or does it just return null for comparison? 
-        console.log('state weather is', this.state.weather);
-        //console.log('wee main is', this.state.weather[main]);
-        console.log('w main is', this.state.weather['main']);
-        let ft = this.state.weather['main'];
-        // console.log('w222 main is', ft['feels_like'] );
-        
+
         //weather = {this.state.weather};
-        let result = true;
+        
         // find possible reasons to return false
         // if (weather['main']['feels_like'] > 3 || weather['main']['feels_like']  < 50) { // nested dict too?
         //     result = false;
         // }
 
         //if main
-        this.setState({
-            excludeOutdoorActivities: result
-        });
+        // or only do this thing when we're done?? hm 
+        // this.setState({
+        //     excludeOutdoorActivities: result
+        // });
         console.log('result is', result);
 
       };
@@ -95,14 +106,18 @@ shouldComponentUpdate (nextProps, nextState) {
   return nextProps !== this.props
 }
 */
-componentDidMount() {
+componentDidMount(){
 //   console.log("in componentDidMount")
 //   console.log(this.props)
 //   console.log(this.props.intensity)
     this.getWeatherFromApi();
-    this.toExcludeOutdoorActivities();
+    //console.log('state weather is', this.state.weather);
+    // this.setState({
+    //     weatherLoading: true
+    // })
+
     // mark loading as complete etc? 
-}
+};
 
   
     // Returns a dictionary of weights for activities based on past history 
@@ -234,7 +249,10 @@ componentDidMount() {
         this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
         this.build_user_vector(); // Builds user vector 
         this.compute_dot_product(); // Ranks the activities
-        //this.toExcludeOutdoorActivities(); // this gets called infinitely here?
+        // this.getWeatherFromApi();
+        let exclude = this.toExcludeOutdoorActivities(); // this gets called infinitely here?
+
+        console.log('in render?state weather is', this.state.weather);
         console.log("IN RECOMMENDATION")
         console.log(this.state)
 
