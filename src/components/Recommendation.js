@@ -39,16 +39,19 @@ class Recommendation extends Component {
     toExcludeOutdoorActivities = () => {
         let result = true;
         if (this.state.weatherLoading === true) {
-            console.log('in exclusion, state weather is', this.state.weather);
-            //console.log('wee main is', this.state.weather[main]);
-            console.log('w main is', this.state.weather['main']);
-            console.log('w main is', this.state.weather.main);
-    
-            const ft = this.state.weather['main'];
-            console.log('w222 main is', ft ); // ['feels_like']
-            //console.log('w233 main is', this.state.weather.main.feels_like );
-            console.log('w233 main hh is', this.state.weather['main']['feels_like']);
+            const weather = this.state.weather;
+            const main = weather.main;
+            console.log('in exclusion, state weather is', weather);
+
+        if (main.feels_like > 3 || main.feels_like < 50) { // nested dict too?
+            result = false;
+        }            
+
+
+            console.log('w233 main is', this.state.weather.main.feels_like );
         }
+
+        console.log('false res is', result);
         return result;
         //const { weather } = this.state;
 
@@ -69,7 +72,7 @@ class Recommendation extends Component {
         // this.setState({
         //     excludeOutdoorActivities: result
         // });
-        console.log('result is', result);
+        
 
       };
 
