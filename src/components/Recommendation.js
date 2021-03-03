@@ -6,6 +6,7 @@ import Home from './Home';
 import activities_json from '../../data/activities.json';
 import history_json from '../../data/history.json';
 import user_json from '../../data/user.json';
+import checkin_json from '../../data/dailyCheckIn.json';
 
 class Recommendation extends Component {
     constructor(props) {
@@ -20,6 +21,17 @@ class Recommendation extends Component {
             focus: "" //lower, upper, abdominal, whole
 
         };
+    };
+
+    // Get data from Daily Check-In and set state
+    getCheckInData = () => {
+        console.log('fetching data from daily check-in...');
+        var checkin = require('../../data/dailyCheckIn.json')[0];
+        console.log(checkin);
+        this.state.intensity = checkin['intensity']
+        this.state.focus = checkin['focus']
+        console.log('state:');
+        console.log(this.state);   
     };
 
     getWeatherFromApi = () => {
@@ -230,6 +242,8 @@ componentDidMount() {
     };
     
     render() {
+        this.getCheckInData(); // Get data from Daily Check-In
+
         this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
         this.filterByWeather();
         this.build_user_vector(); // Builds user vector 
