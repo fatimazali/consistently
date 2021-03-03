@@ -5,7 +5,7 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import Home from './Home';
 import activities_json from '../../data/activities.json';
 import history_json from '../../data/history.json';
-import user_json from '../../data/user.json';
+import user_json from '../../data/user.json'; // TODO: confirm that no extra state for reading this in is needed, like the fetch response
 
 class Recommendation extends Component {
     constructor(props) {
@@ -42,38 +42,28 @@ class Recommendation extends Component {
             const weather = this.state.weather;
             const main = weather.main;
             console.log('in exclusion, state weather is', weather);
+            console.log('snow check', weather.snow);
 
-        if (main.feels_like > 3 || main.feels_like < 50) { // nested dict too?
-            result = false;
+
+        if (main.feels_like > 90 || main.feels_like < 45) { // nested dict too?
+            return false;
         }            
 
-
-            console.log('w233 main is', this.state.weather.main.feels_like );
+        if (weather.wind.speed > 15) {
+            return false;
         }
 
-        console.log('false res is', result);
+        if (weather.snow > 15) { // default val if not found or smt? null > 15
+            return false;
+        }
+
+
+        }
+        //console.log('false res is', result);
         return result;
         //const { weather } = this.state;
-
-        // let weather = Object(
-        //this.getWeatherFromApi();
         // var columns = Object.keys(user_json[0]);
         // does null call or does it just return null for comparison? 
-
-        //weather = {this.state.weather};
-        
-        // find possible reasons to return false
-        // if (weather['main']['feels_like'] > 3 || weather['main']['feels_like']  < 50) { // nested dict too?
-        //     result = false;
-        // }
-
-        //if main
-        // or only do this thing when we're done?? hm 
-        // this.setState({
-        //     excludeOutdoorActivities: result
-        // });
-        
-
       };
 
   /*
@@ -109,7 +99,7 @@ shouldComponentUpdate (nextProps, nextState) {
   return nextProps !== this.props
 }
 */
-componentDidMount(){
+componentDidMount() {
 //   console.log("in componentDidMount")
 //   console.log(this.props)
 //   console.log(this.props.intensity)
