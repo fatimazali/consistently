@@ -13,17 +13,19 @@ class Profile extends Component {
         <Text style={styles.pageHeader}>Past History</Text>
         <DataTable style={styles.container}>
           <DataTable.Header style={styles.container}>
+          <DataTable.Title>Day</DataTable.Title>
             <DataTable.Title>Activity</DataTable.Title>
-            <DataTable.Title numeric>Average Heart Rate</DataTable.Title>
             <DataTable.Title numeric>Duration</DataTable.Title>
+            <DataTable.Title numeric>Cals Burned</DataTable.Title>
           </DataTable.Header>
 
           {user_data.map(activity => {
             return (
               <DataTable.Row style={styles.container}>
+                <DataTable.Cell> {activity['Start'].slice(5,10)} </DataTable.Cell>
                 <DataTable.Cell> {activity['Type']} </DataTable.Cell>
-                <DataTable.Cell numeric > {activity['Average Heart Rate']} </DataTable.Cell>
                 <DataTable.Cell numeric> {activity['Duration']} </DataTable.Cell>
+                <DataTable.Cell numeric > {activity['Active Energy'].toFixed(2)} </DataTable.Cell>
               </DataTable.Row>
           )})}      
 

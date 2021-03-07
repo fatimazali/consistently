@@ -17,12 +17,16 @@ class Recommendation extends Component {
             user_vector: [],
             preferences_and_experience_weights: {}, //Dictionary with activity name as key and weight as value
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
+
             weather: {}, // Weather data for user's zipcode 
             weatherLoaded: false, 
+
             intensity: "", //light, moderate, vigorous, extreme 
             focus: "", //lower, upper, abdominal, whole
-            duration: "", //15-90
+            duration: 0, //15-90
             equipment: [],
+            user_time: 30, // default in case of any issues in user data 
+            checkInLoaded: false,
 
         };
     };
@@ -40,7 +44,10 @@ class Recommendation extends Component {
                 this.state.equipment.push(key);
             }
         };
-        
+        // this.setState({
+        //     checkInLoaded: true
+        // });
+        this.state.checkInLoaded = true;
         console.log('state:');
         console.log(this.state);   
     };
@@ -85,47 +92,28 @@ class Recommendation extends Component {
         return result;
       };
 
-  /*
-  componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', nextProps);
-    this.setState(nextProps);
-  }
-
-  componentWillMount() {
-    console.log("in componentWillMount")
-    console.log(this.props)
-    this.handlerRecc(this.props);
-  }
-  componentWillReceiveProps(nextProps) {
-    console.log("in componentWillReceiveProps")
-    console.log(nextProps)
-    this.handlerRecc(nextProps);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log("in componentWillReceiveProps")
-    console.log(nextProps)
-    //this.handlerRecc(nextProps.intensity, nextProps.focus, nextProps.duration, nextProps.affirmation,
-    //  nextProps.hasWeights, nextProps.hasMat, nextProps.hasBike, nextProps.hasStepmill);
-  }
-
-
-shouldComponentUpdate (nextProps, nextState) {
-  console.log('in shouldComponentUpdate')
-  //this.setState(nextState)
-  console.log(nextProps)
-  console.log(nextProps !== this.props)
-  return nextProps !== this.props
-}
-*/
 componentDidMount() {
-//   console.log("in componentDidMount")
-//   console.log(this.props)
-//   console.log(this.props.intensity)
     this.getWeatherFromApi();
 };
 
-  
+    // Returns a dictionary of weights for activities based on past history 
+    get_user_preferences_and_experience_weights = () => {
+        var columns = Object.keys(user_json[0]);
+        for (let i = 8; i < columns.length; i++) {
+            var activity_name = columns[i].substring(22, columns[i].length-1); //Gets the activity name between the brackets
+            this.state.preferences_and_experience_weights[activity_name] = (user_json[0][columns[i]].includes("try")) ? 3 : 1; //Prefers to try it, so higher weight of 3
+        }
+        this.state.user_weight = user_json[0]["Weight (round to the nearest pound)"];
+        // this.setState({
+        //     this.state.preferences_and_experience_weights[activity_name]: (user_json[0][columns[i]].includes("try")) ? 3 : 1
+        // });
+        // see if ss works, otherwise switch? 
+        // this.setState({
+        //     user_weight: user_json[0]["Weight (round to the nearest pound)"]
+        // });
+    };
+
+
     // Returns a dictionary of weights for activities based on past history 
     get_user_preferences_and_experience_weights = () => {
         var columns = Object.keys(user_json[0]);
@@ -150,7 +138,9 @@ componentDidMount() {
                 cardio : activities_json[i]['cardio'],
                 strength : activities_json[i]['strength'], 
                 met: activities_json[i]['activity-met-value'], // Using the MET value for Calorie display for the 3 recommended activities
-                outdoors: activities_json[i]['outdoors']
+                outdoors: activities_json[i]['outdoors'],
+                workout_calories: ((((this.state.user_weight/2.205)*activities_json[i]['activity-met-value']*3.5)/1000)*5)*this.state.duration
+
             };
             this.state.activity_vector.push(activity);
         }
@@ -274,7 +264,6 @@ componentDidMount() {
         this.build_user_vector(); // Builds user vector 
         this.compute_dot_product(); // Ranks the activities
         let exclude = this.toExcludeOutdoorActivities();
-        console.log("to exclude?", exclude);
 
         return (
             <ScrollView>
