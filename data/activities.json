@@ -29,7 +29,7 @@
     "strength": 0,
     "activity-met-value": 6.8,
     "outdoors": 0,
-    "image": "stationaryCycling.png"
+    "image": "stationaryCycling2.jpg"
   },
   {
     "name": "Stationary cycling",
@@ -45,7 +45,7 @@
     "strength": 0,
     "activity-met-value": 8.8,
     "outdoors": 0,
-    "image": "stationaryCycling.png"
+    "image": "stationaryCycling3.jpg"
   },
   {
     "name": "Body weight conditioning exercises",
@@ -125,7 +125,7 @@
     "strength": 1,
     "activity-met-value": 3.8,
     "outdoors": 0,
-    "image": "conditioning.png"
+    "image": "conditioning2.png"
   },
   {
     "name": "Body weight conditioning exercises",
@@ -141,7 +141,7 @@
     "strength": 1,
     "activity-met-value": 8,
     "outdoors": 0,
-    "image": "conditioning.png"
+    "image": "conditioning3.png"
   },
   {
     "name": "Weight lifting",
@@ -173,7 +173,7 @@
     "strength": 1,
     "activity-met-value": 5,
     "outdoors": 0,
-    "image": "weightlifting.png"
+    "image": "weightlifting2.jpg"
   },
   {
     "name": "Weight lifting",
@@ -189,7 +189,7 @@
     "strength": 1,
     "activity-met-value": 6,
     "outdoors": 0,
-    "image": "weightlifting.png"
+    "image": "weightlifting3.jpg"
   },
   {
     "name": "Circuit training",
@@ -285,7 +285,7 @@
     "strength": 0,
     "activity-met-value": 4,
     "outdoors": 0,
-    "image": "yoga.png"
+    "image": "yoga2.png"
   },
   {
     "name": "Running",
@@ -317,7 +317,7 @@
     "strength": 0,
     "activity-met-value": 9.8,
     "outdoors": 1,
-    "image": "running.png"
+    "image": "running2.png"
   },
   {
     "name": "Running",
@@ -333,7 +333,7 @@
     "strength": 0,
     "activity-met-value": 12.3,
     "outdoors": 1,
-    "image": "running.png"
+    "image": "running3.png"
   },
   {
     "name": "Running stairs",
@@ -397,7 +397,7 @@
     "strength": 0,
     "activity-met-value": 4.3,
     "outdoors": 1,
-    "image": "walking.png"
+    "image": "walking2.png"
   },
   {
     "name": "Walking",
@@ -413,7 +413,7 @@
     "strength": 0,
     "activity-met-value": 7,
     "outdoors": 1,
-    "image": "walking.png"
+    "image": "walking3.png"
   },
   {
     "name": "Swimming",
