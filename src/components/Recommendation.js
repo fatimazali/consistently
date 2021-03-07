@@ -44,9 +44,10 @@ class Recommendation extends Component {
                 this.state.equipment.push(key);
             }
         };
-        this.setState({
-            checkInLoaded: true
-        });
+        // this.setState({
+        //     checkInLoaded: true
+        // });
+        this.state.checkInLoaded = true;
         console.log('state:');
         console.log(this.state);   
     };
