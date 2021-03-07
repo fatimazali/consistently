@@ -221,7 +221,7 @@
     "strength": 1,
     "activity-met-value": 8,
     "outdoors": 0,
-    "image": "circuitTraining.png"
+    "image": "circuitTraining2.jpg"
   },
   {
     "name": "Stairmaster",
@@ -237,7 +237,7 @@
     "strength": 0,
     "activity-met-value": 9,
     "outdoors": 0,
-    "image": "runningStairs.png"
+    "image": "stairmaster.jpg"
   },
   {
     "name": "Jumping Rope",
@@ -445,7 +445,7 @@
     "strength": 0,
     "activity-met-value": 9.8,
     "outdoors": 1,
-    "image": "swimming.png"
+    "image": "swimming2.png"
   },
   {
     "name": "Pilates",
@@ -493,7 +493,7 @@
     "strength": 0,
     "activity-met-value": 7.8,
     "outdoors": 0,
-    "image": "dancing.png"
+    "image": "dancing.jpg"
   },
   {
     "name": "Biking",
@@ -557,6 +557,6 @@
     "strength": 0,
     "activity-met-value": 7.5,
     "outdoors": 0,
-    "image": "stepAerobics.jpg"
+    "image": "stepAerobics2.jpg"
   }
 ]
