@@ -17,17 +17,15 @@ class Recommendation extends Component {
             user_vector: [],
             preferences_and_experience_weights: {}, //Dictionary with activity name as key and weight as value
             ranked: [], //Array of the activities, ordered by value of the dot product (higher value, better recommendation)
-
             weather: {}, // Weather data for user's zipcode 
             weatherLoaded: false, 
-
             intensity: "", //light, moderate, vigorous, extreme 
             focus: "", //lower, upper, abdominal, whole
             duration: 0, //15-90
-            equipment: [],
+            equipment: [], //Array of Strings - equipment that is available to the user
             user_time: 30, // default in case of any issues in user data 
             checkInLoaded: false,
-
+            recommendationMade: false
         };
     };
 
@@ -256,53 +254,65 @@ componentDidMount() {
             return b.score - a.score;
         });
     };
+
+    filterByEquipment = () => {
+        var filteredActivities = [];
+        console.log(this.state.equipment);
+        for (let i = 0; i < this.state.activity_vector.length; i++) {
+            if(this.state.activity_vector[i]["activity_name"] == "Stationary cycling" && !this.state.equipment.includes("stationary bike")) {
+                continue;
+            } else if (this.state.activity_vector[i]["activity_name"] == "Weight lifting" && !this.state.equipment.includes("weights")) {
+                continue;
+            } else if (this.state.activity_vector[i]["activity_name"] == "Stairmaster" && !this.state.equipment.includes("stepmill/stairmaster")) {
+                continue;
+            } else if (this.state.activity_vector[i]["activity_name"] == "Sun salutation yoga" && !this.state.equipment.includes("yoga mat")) {
+                continue;
+            } else if (this.state.activity_vector[i]["activity_name"] == "Power yoga" && !this.state.equipment.includes("yoga mat")) {
+                continue;
+            } else if (this.state.activity_vector[i]["activity_name"] == "Biking" && !this.state.equipment.includes("bike")) {
+                continue;
+            } else if (this.state.activity_vector[i]["activity_name"] == "Running stairs" && !this.state.equipment.includes("stairs")) {
+                continue;
+            } else {
+                filteredActivities.push(this.state.activity_vector[i]);
+            }
+        }
+
+        this.state.activity_vector = filteredActivities;
+        this.setState({ recommendationMade: true }); //Once we make a recommendation, set to true
+    }
     
     render() {
         this.getCheckInData(); // Get data from Daily Check-In
-        this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
-        this.filterByWeather(); // must happen after compDidMount? otherwise: will be false until then which is fine
-        this.build_user_vector(); // Builds user vector 
-        this.compute_dot_product(); // Ranks the activities
-        let exclude = this.toExcludeOutdoorActivities();
+        if (!this.state.recommendationMade) {
+            this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
+            this.filterByWeather(); // must happen after compDidMount? otherwise: will be false until then which is fine
+            this.build_user_vector(); // Builds user vector
+            this.compute_dot_product(); // Ranks the activities
+            let exclude = this.toExcludeOutdoorActivities();
+            this.filterByEquipment(); //Post filter
+        }
 
         return (
             <ScrollView>
                 <Text style={styles.pageHeader}>             Top 3 Picks</Text> 
-                <Card>
-                    <Card.Content>
-                        <Title>Pilates</Title>
-                        <Paragraph>Card content</Paragraph>
-                    </Card.Content>
-                    <Card.Cover source={require('../images/pilates.png')} />
-                    <Card.Actions>
-                        <Button>Cancel</Button>
-                        <Button>Ok</Button>
-                    </Card.Actions>
-                </Card>
-                <Card>
-                    <Card.Content>
-                        <Title>Running</Title>
-                        <Paragraph>Card content</Paragraph>
-                    </Card.Content>
-                    <Card.Cover source={require('../images/running.png')} />
-                    <Card.Actions>
-                        <Button>Cancel</Button>
-                        <Button>Ok</Button>
-                    </Card.Actions>
-                </Card>
-                <Card>
-                    <Card.Content>
-                        <Title>Core Training</Title>
-                        <Paragraph>Card content</Paragraph>
-                    </Card.Content>
-                    <Card.Cover source={require('../images/core.png')} />
-                    <Card.Actions>
-                        <Button>Cancel</Button>
-                        <Button>Ok</Button>
-                    </Card.Actions>
-                </Card>
+    
+                {this.state.activity_vector.slice(0, 3).map((recommendation) => {
+                    return (
+                        <Card>
+                            <Card.Content>
+                                <Title>{recommendation["activity_name"]}</Title>
+                                <Paragraph>{this.state.focus.toUpperCase() + " | " + this.state.intensity.toUpperCase() + " | " + this.state.duration + " MINS"}</Paragraph>
+                            </Card.Content>
+                            <Card.Cover source={require('../images/pilates.png')} />
+                            <Card.Actions>
+                                <Button>Do it!</Button>
+                            </Card.Actions>
+                        </Card>
+                )})}
+
             </ScrollView>
-        )
+         )
     }
 }
 
