@@ -12,7 +12,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 4.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/stationaryCycling.png"
   },
   {
     "name": "Stationary cycling",
@@ -27,7 +28,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 6.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/stationaryCycling.png"
   },
   {
     "name": "Stationary cycling",
@@ -42,7 +44,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 8.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/stationaryCycling.png"
   },
   {
     "name": "Body weight conditioning exercises",
@@ -57,7 +60,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 2.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/conditioning.png"
   },
   {
     "name": "Upper body workout",
@@ -72,7 +76,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 3.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/upperBody.png"
   },
   {
     "name": "Lower body workout",
@@ -87,7 +92,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 3.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/lowerBody.png"
   },
   {
     "name": "Ab workout",
@@ -102,7 +108,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 3.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/abs.png"
   },
   {
     "name": "Body weight conditioning exercises",
@@ -117,7 +124,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 3.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/conditioning.png"
   },
   {
     "name": "Body weight conditioning exercises",
@@ -132,7 +140,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/conditioning.png"
   },
   {
     "name": "Weight lifting",
@@ -147,7 +156,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 3.5,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/weightlifting.png"
   },
   {
     "name": "Weight lifting",
@@ -162,7 +172,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 5,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/weightlifting.png"
   },
   {
     "name": "Weight lifting",
@@ -177,7 +188,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 6,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/weightlifting.png"
   },
   {
     "name": "Circuit training",
@@ -192,7 +204,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 4.3,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/circuitTraining.png"
   },
   {
     "name": "Circuit training",
@@ -207,7 +220,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/circuitTraining.png"
   },
   {
     "name": "Stairmaster",
@@ -222,7 +236,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 9,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/runningStairs.png"
   },
   {
     "name": "Jumping Rope",
@@ -237,7 +252,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 12.3,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/jumpingRope.jpg"
   },
   {
     "name": "Sun salutation yoga",
@@ -252,7 +268,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 3.3,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/yoga.png"
   },
   {
     "name": "Power yoga",
@@ -267,7 +284,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 4,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/yoga.png"
   },
   {
     "name": "Running",
@@ -282,7 +300,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 6,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/running.png"
   },
   {
     "name": "Running",
@@ -297,7 +316,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 9.8,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/running.png"
   },
   {
     "name": "Running",
@@ -312,7 +332,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 12.3,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/running.png"
   },
   {
     "name": "Running stairs",
@@ -327,7 +348,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 15,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/runningStairs.png"
   },
   {
     "name": "Sprinting",
@@ -342,7 +364,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 19.8,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/sprinting.png"
   },
   {
     "name": "Walking",
@@ -357,7 +380,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 3,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/walking.png"
   },
   {
     "name": "Walking",
@@ -372,7 +396,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 4.3,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/walking.png"
   },
   {
     "name": "Walking",
@@ -387,7 +412,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 7,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/walking.png"
   },
   {
     "name": "Swimming",
@@ -402,7 +428,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 5.8,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/swimming.png"
   },
   {
     "name": "Swimming",
@@ -417,7 +444,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 9.8,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/swimming.png"
   },
   {
     "name": "Pilates",
@@ -432,7 +460,8 @@
     "cardio": 0,
     "strength": 1,
     "activity-met-value": 3,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/pilates.png"
   },
   {
     "name": "Elliptical machine",
@@ -447,7 +476,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 5,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/elliptical.jpg"
   },
   {
     "name": "Dancing",
@@ -462,7 +492,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 7.8,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/dancing.png"
   },
   {
     "name": "Biking",
@@ -477,7 +508,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 4,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/biking.png"
   },
   {
     "name": "Hiking",
@@ -492,7 +524,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 7.8,
-    "outdoors": 1
+    "outdoors": 1,
+    "image": "../images/hiking.png"
   },
   {
     "name": "Step aerobics with 4 inch step",
@@ -507,7 +540,8 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 5.5,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "../images/stepAerobics.jpg"
   },
   {
     "name": "Step aerobics with 6-8 inch step",
@@ -522,6 +556,7 @@
     "cardio": 1,
     "strength": 0,
     "activity-met-value": 7.5,
-    "outdoors": 0
+    "outdoors": 0,
+    "image": "'../images/stepAerobics.jpg"
   }
 ]
