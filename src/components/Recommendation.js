@@ -233,8 +233,6 @@ componentDidMount() {
                 activity_name = "Jumping rope";
             } else if (activity_name == "Sun salutation yoga" || activity_name == "Power yoga") {
                 activity_name = "Yoga";
-            } else if (activity_name == "Sprinting") {
-                activity_name = "Running";
             } else if (activity_name == "Step aerobics with 4 inch step" || activity_name == "Step aerobics with 6-8 inch step") {
                 activity_name = "Step aerobics";
             }
