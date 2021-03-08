@@ -93,7 +93,7 @@ class Search extends Component {
                 <Title>{item.name}</Title>
                 <Paragraph>{item.cardio ? 'CARDIO' : 'STRENGTH'}</Paragraph>
               </Card.Content>
-              <Card.Cover source={require("../images/" + item.image)} />
+              <Card.Cover source={require("../images/stationaryCycling3.jpg")} />
               <Card.Actions>
                 <Button>Cancel</Button>
                 <Button>Ok</Button>

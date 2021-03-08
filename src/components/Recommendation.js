@@ -4,8 +4,10 @@ import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import Home from './Home';
 import activities_json from '../../data/activities.json';
-import history_json from '../../data/history.json';
-import user_json from '../../data/user.json';
+//import history_json from '../../data/history.json';
+import history_json from '../../data/history-2.json';
+//import user_json from '../../data/user.json';
+import user_json from '../../data/user-2.json';
 import checkin_json from '../../data/dailyCheckIn.json';
 
 class Recommendation extends Component {
@@ -258,27 +260,27 @@ componentDidMount() {
     filterByEquipment = () => {
         var filteredActivities = [];
         console.log(this.state.equipment);
-        for (let i = 0; i < this.state.activity_vector.length; i++) {
-            if(this.state.activity_vector[i]["activity_name"] == "Stationary cycling" && !this.state.equipment.includes("stationary bike")) {
+        for (let i = 0; i < this.state.ranked.length; i++) {
+            if(this.state.ranked[i]["activity_name"] == "Stationary cycling" && !this.state.equipment.includes("stationary bike")) {
                 continue;
-            } else if (this.state.activity_vector[i]["activity_name"] == "Weight lifting" && !this.state.equipment.includes("weights")) {
+            } else if (this.state.ranked[i]["activity_name"] == "Weight lifting" && !this.state.equipment.includes("weights")) {
                 continue;
-            } else if (this.state.activity_vector[i]["activity_name"] == "Stairmaster" && !this.state.equipment.includes("stepmill/stairmaster")) {
+            } else if (this.state.ranked[i]["activity_name"] == "Stairmaster" && !this.state.equipment.includes("stepmill/stairmaster")) {
                 continue;
-            } else if (this.state.activity_vector[i]["activity_name"] == "Sun salutation yoga" && !this.state.equipment.includes("yoga mat")) {
+            } else if (this.state.ranked[i]["activity_name"] == "Sun salutation yoga" && !this.state.equipment.includes("yoga mat")) {
                 continue;
-            } else if (this.state.activity_vector[i]["activity_name"] == "Power yoga" && !this.state.equipment.includes("yoga mat")) {
+            } else if (this.state.ranked[i]["activity_name"] == "Power yoga" && !this.state.equipment.includes("yoga mat")) {
                 continue;
-            } else if (this.state.activity_vector[i]["activity_name"] == "Biking" && !this.state.equipment.includes("bike")) {
+            } else if (this.state.ranked[i]["activity_name"] == "Biking" && !this.state.equipment.includes("bike")) {
                 continue;
-            } else if (this.state.activity_vector[i]["activity_name"] == "Running stairs" && !this.state.equipment.includes("stairs")) {
+            } else if (this.state.ranked[i]["activity_name"] == "Running stairs" && !this.state.equipment.includes("stairs")) {
                 continue;
             } else {
-                filteredActivities.push(this.state.activity_vector[i]);
+                filteredActivities.push(this.state.ranked[i]);
             }
         }
 
-        this.state.activity_vector = filteredActivities;
+        this.state.ranked = filteredActivities;
         this.setState({ recommendationMade: true }); //Once we make a recommendation, set to true
     }
     
@@ -297,7 +299,7 @@ componentDidMount() {
             <ScrollView>
                 <Text style={styles.pageHeader}>             Top 3 Picks</Text> 
     
-                {this.state.activity_vector.slice(0, 3).map((recommendation) => {
+                {this.state.ranked.slice(0, 7).map((recommendation) => {
                     return (
                         <Card>
                             <Card.Content>
