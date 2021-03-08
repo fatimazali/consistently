@@ -5,6 +5,7 @@ import styles from './Styles';
 import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline, 
   Modal, Dialog, Portal, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import Recommendation from './Recommendation';
+import user_activity_data from '../../data/history.json'; 
 
 class Home extends Component {
 
@@ -25,6 +26,37 @@ class Home extends Component {
     };
 
   };
+
+
+  workoutIsInLastWeek = (workout) => {
+    // date is within 7 days of today
+    const workoutDate = workout['Start'];
+  
+    let millisecond_dif = Date.now() - Date(workoutDate.slice(0,4), workoutDate.slice(5,7), workoutDate.slice(8,10));
+    let days_diff = (millisecond_dif / (1000*60*60*24));
+  
+    return days_diff <= 7.0;
+  
+  };
+  
+  getCaloriesBurned = (total, workout) => {
+    return total + workout['Total Energy'];
+   
+  };
+  
+  calculateCaloriesBurnedInLastWeek = () => {
+    // Iterate through recent logged workouts of the last 7 days 
+    // = 0.0; 
+
+    // if date within last 7 days, add calorie value
+    let workoutsWithinLastWeek = user_activity_data.filter(this.workoutIsInLastWeek);
+    console.log('last week?', workoutsWithinLastWeek);
+    //user_data.map(activity => {
+    //return workoutsWithinLastWeek.reduce(this.getCaloriesBurned);
+    return workoutsWithinLastWeek;
+  };
+
+
   
   signUpForm = () => {
     return (
@@ -38,8 +70,6 @@ class Home extends Component {
     );
   }
 
-
-  
   dailyCheckIn = () => {
       const showDialog = () => this.setState({ visible: true });
       const hideDialog = () => this.setState({ visible: false });
@@ -146,21 +176,6 @@ class Home extends Component {
           <Button icon="camera" mode="contained" onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
             Let's go!
           </Button>
-
-          {/* This was a div before but can't run in iOS simulator */}
-          <View style={styles.hidden}> 
-                <Recommendation 
-                intensity= {this.intensity}
-                focus= {this.focus}
-                duration= {this.duration}
-                affirmation= {this.affirmation}
-                hasWeights= {this.hasWeights}
-                hasMat= {this.hasMat}
-                hasBike= {this.hasBike}
-                hasStepmill= {this.hasStepmill}
-                />
-          </View>
-
           </Provider>
         </View> 
       );
@@ -169,6 +184,8 @@ class Home extends Component {
   
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
+    let cals = this.calculateCaloriesBurnedInLastWeek();
+    console.log("cals are", cals);
 
     if (this.state.hasSignedUp) {
       console.log("hi!!!!")
