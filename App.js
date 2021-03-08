@@ -28,7 +28,7 @@ const App = () =>  {
   const [routes] = React.useState([
     { key: 'home', title: 'Home', icon: 'home' },
     { key: 'search', title: 'Search', icon: 'magnify' },
-    { key: 'recommendation', title: 'Your Picks', icon: 'star' },
+    { key: 'recommendation', title: 'Your Picks', icon: 'run-fast' },
     { key: 'profile', title: 'History', icon: 'chart-timeline-variant' }
     
 

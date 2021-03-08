@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import styles from './Styles';
 import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline, 
-  Modal, Dialog, Portal, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
+  Modal, Dialog, Portal, IconButton, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import Recommendation from './Recommendation';
 import user_activity_data from '../../data/history.json'; 
 
@@ -34,8 +34,6 @@ class Home extends Component {
     console.log('wd', workoutDate);
     console.log(workoutDate.slice(0,4));
     console.log(workoutDate.slice(5,7));
-
-  
     let prev_date = new Date(workoutDate.slice(0,4), workoutDate.slice(5,7), workoutDate.slice(8,10));
 
     let millisecond_dif = Date.now() - prev_date; // this is nan...
@@ -43,7 +41,7 @@ class Home extends Component {
     console.log("ddif", millisecond_dif);
   
     console.log('result it', (days_diff <= 7.0));
-    return days_diff <= 7.0;
+    return days_diff <= 7.0;java
   
   };
   
@@ -53,13 +51,10 @@ class Home extends Component {
   };
   
   calculateCaloriesBurnedInLastWeek = () => {
-    // Iterate through recent logged workouts of the last 7 days 
-    // = 0.0; 
-
     // if date within last 7 days, add calorie value
     let workoutsWithinLastWeek = user_activity_data.filter(this.workoutIsInLastWeek);
     console.log('last week?', workoutsWithinLastWeek);
-    return workoutsWithinLastWeek.reduce(this.getCaloriesBurned, 0);
+    return [workoutsWithinLastWeek.length, workoutsWithinLastWeek.reduce(this.getCaloriesBurned, 0)];
   };
 
 
@@ -179,9 +174,8 @@ class Home extends Component {
     
               </Dialog>
           </Portal>
-          <Button icon="camera" mode="contained" onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
-            Let's go!
-          </Button>
+          <IconButton icon='arrow-right-bold-circle' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
+          </IconButton>
           </Provider>
         </View> 
       );
@@ -190,8 +184,12 @@ class Home extends Component {
   
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
-    let cals = this.calculateCaloriesBurnedInLastWeek();
-    console.log("cals are", cals);
+    const results = this.calculateCaloriesBurnedInLastWeek();
+    // 1000 calories for now?
+    const days = results[0];
+    const calsBurned = results[1];
+    console.log("days", days);
+    console.log("cals are", calsBurned);
 
     if (this.state.hasSignedUp) {
       console.log("hi!!!!")
