@@ -294,9 +294,10 @@ componentDidMount() {
         }
 
         return (
-            <ScrollView>
-                <Text style={styles.pageHeader}>             Top 3 Picks</Text> 
-    
+            <ScrollView style={{
+            paddingVertical: 20,
+          }}>
+                <Text style={styles.homePageHeader}>  Top 3 Picks</Text> 
                 {this.state.ranked.slice(0, 7).map((recommendation) => {
                     return (
                         <Card>
@@ -309,8 +310,8 @@ componentDidMount() {
                                 <Button>Do it!</Button>
                             </Card.Actions>
                         </Card>
-                )})}
 
+                )})}
             </ScrollView>
          )
     }
