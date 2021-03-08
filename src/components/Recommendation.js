@@ -284,7 +284,7 @@ componentDidMount() {
     
     render() {
         this.getCheckInData(); // Get data from Daily Check-In
-        if (!this.state.recommendationMade) {
+        if (!this.state.recommendationMade && this.state.checkInLoaded) {
             this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
             this.filterByWeather(); // must happen after compDidMount? otherwise: will be false until then which is fine
             this.build_user_vector(); // Builds user vector
