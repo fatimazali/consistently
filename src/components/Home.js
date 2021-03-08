@@ -3,8 +3,9 @@ import React, { Component, PropTypes } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import styles from './Styles';
 import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline, 
-  Modal, Dialog, Portal, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
+  Modal, Dialog, Portal, IconButton, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import Recommendation from './Recommendation';
+import user_activity_data from '../../data/history.json'; 
 
 class Home extends Component {
 
@@ -25,6 +26,38 @@ class Home extends Component {
     };
 
   };
+
+
+  workoutIsInLastWeek = (workout) => {
+    // check whether a previous date is within 7 days of today
+    const workoutDate = workout['Start'];
+    console.log('wd', workoutDate);
+    console.log(workoutDate.slice(0,4));
+    console.log(workoutDate.slice(5,7));
+    let prev_date = new Date(workoutDate.slice(0,4), workoutDate.slice(5,7), workoutDate.slice(8,10));
+
+    let millisecond_dif = Date.now() - prev_date; // this is nan...
+    let days_diff = (millisecond_dif / (1000*60*60*24));
+    console.log("ddif", millisecond_dif);
+  
+    console.log('result it', (days_diff <= 7.0));
+    return days_diff <= 7.0;java
+  
+  };
+  
+  getCaloriesBurned = (total, workout) => {
+    return total + workout['Total Energy'];
+   
+  };
+  
+  calculateCaloriesBurnedInLastWeek = () => {
+    // if date within last 7 days, add calorie value
+    let workoutsWithinLastWeek = user_activity_data.filter(this.workoutIsInLastWeek);
+    console.log('last week?', workoutsWithinLastWeek);
+    return [workoutsWithinLastWeek.length, workoutsWithinLastWeek.reduce(this.getCaloriesBurned, 0)];
+  };
+
+
   
   signUpForm = () => {
     return (
@@ -38,8 +71,6 @@ class Home extends Component {
     );
   }
 
-
-  
   dailyCheckIn = () => {
       const showDialog = () => this.setState({ visible: true });
       const hideDialog = () => this.setState({ visible: false });
@@ -143,24 +174,8 @@ class Home extends Component {
     
               </Dialog>
           </Portal>
-          <Button icon="camera" mode="contained" onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
-            Let's go!
-          </Button>
-
-          {/* This was a div before but can't run in iOS simulator */}
-          <View style={styles.hidden}> 
-                <Recommendation 
-                intensity= {this.intensity}
-                focus= {this.focus}
-                duration= {this.duration}
-                affirmation= {this.affirmation}
-                hasWeights= {this.hasWeights}
-                hasMat= {this.hasMat}
-                hasBike= {this.hasBike}
-                hasStepmill= {this.hasStepmill}
-                />
-          </View>
-
+          <IconButton icon='arrow-right-bold-circle' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
+          </IconButton>
           </Provider>
         </View> 
       );
@@ -169,6 +184,12 @@ class Home extends Component {
   
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
+    const results = this.calculateCaloriesBurnedInLastWeek();
+    // 1000 calories for now?
+    const days = results[0];
+    const calsBurned = results[1];
+    console.log("days", days);
+    console.log("cals are", calsBurned);
 
     if (this.state.hasSignedUp) {
       console.log("hi!!!!")
