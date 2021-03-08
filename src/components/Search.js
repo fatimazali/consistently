@@ -13,7 +13,8 @@ class Search extends Component {
         searchQuery: '',
         filteredDataSource: require('../../data/activities.json'),
         masterDataSource: require('../../data/activities.json'),
-        snackBarVisible: false
+        snackBarVisible: false,
+        imagesLoaded: false,
       };
     };
 
@@ -73,25 +74,34 @@ class Search extends Component {
           // Update FilteredDataSource with masterDataSource
           setFilteredDataSource(this.masterDataSource);
           setSearch(text);
+          //this.setState
+          this.state.imagesLoaded = true;
         }
       };
 
 
       const ItemView = ({ item }) => {
-        return (
-          // Flat List Item
-          <Card>
-            <Card.Content>
-              <Title>{item.name}</Title>
-              <Paragraph>{item.cardio ? 'CARDIO' : 'STRENGTH'}</Paragraph>
-            </Card.Content>
-            <Card.Cover source={require("../images/" + item.image)} />
-            <Card.Actions>
-              <Button>Cancel</Button>
-              <Button>Ok</Button>
-            </Card.Actions>
-          </Card>
-        );
+        // if (this.state.imagesLoaded) {
+          const imgPath = "../images/" + item.image;
+          console.log('img is', imgPath);
+          // "../images/stationaryCycling3.jpg"
+          
+          return (
+            // Flat List Item
+            <Card>
+              <Card.Content>
+                <Title>{item.name}</Title>
+                <Paragraph>{item.cardio ? 'CARDIO' : 'STRENGTH'}</Paragraph>
+              </Card.Content>
+              <Card.Cover source={require("../images/" + item.image)} />
+              <Card.Actions>
+                <Button>Cancel</Button>
+                <Button>Ok</Button>
+              </Card.Actions>
+            </Card>
+          );
+        // }
+
       };
     
       const ItemSeparatorView = () => {
@@ -111,7 +121,6 @@ class Search extends Component {
         // Function for click on an item
         alert('Id : ' + item.id + ' Title : ' + item.title);
       };
-
 
       return(
         <SafeAreaView style={{ flex: 1 }}>
