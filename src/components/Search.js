@@ -182,9 +182,9 @@ class Search extends Component {
           // Flat List Item Separator
           <View
             style={{
-              height: 0.5,
+              height: 5.0,
               width: '100%',
-              backgroundColor: '#C8C8C8',
+              backgroundColor: '#fff3e6',
             }}
           />
         );

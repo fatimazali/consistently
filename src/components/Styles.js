@@ -14,12 +14,18 @@ export default StyleSheet.create({
       alignItems: 'center',
       color: "black",
     },
-    paragraph: {
-      margin: 24,
-      fontSize: 18,
+    subtitle: {
+      margin: 4,
+      fontSize: 22,
       fontWeight: 'bold',
-      textAlign: 'center',
-    },
+      textAlign: 'left',
+    }, 
+    body: {
+      margin: 4,
+      fontSize: 18,
+      fontWeight: 'normal',
+      textAlign: 'left',
+    }, 
     centerView: {
       flex: 1,
       justifyContent: 'center',
@@ -28,7 +34,14 @@ export default StyleSheet.create({
       alignItems: 'center',
       padding: 8,
     }, 
+    homePageHeader: {
+      justifyContent: 'flex-start',
+      marginTop: 60,
+      fontSize: 40,
+      fontWeight: 'bold',
+    },
     pageHeader: {
+      justifyContent: 'flex-start',
       marginTop: 60,
       fontSize: 40,
       fontWeight: 'bold',

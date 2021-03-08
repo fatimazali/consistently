@@ -11,6 +11,12 @@ class Profile extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.pageHeader}>Past History</Text>
+        <View
+            style={{
+              height: 10.0,
+              width: '100%',
+              backgroundColor: '#fff3e6',
+            }}></View>
         <DataTable style={styles.container}>
           <DataTable.Header style={styles.container}>
           <DataTable.Title>Date</DataTable.Title>
