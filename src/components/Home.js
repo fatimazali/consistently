@@ -29,12 +29,20 @@ class Home extends Component {
 
 
   workoutIsInLastWeek = (workout) => {
-    // checks whether the old date is within 7 days of right now
+    // check whether a previous date is within 7 days of today
     const workoutDate = workout['Start'];
+    console.log('wd', workoutDate);
+    console.log(workoutDate.slice(0,4));
+    console.log(workoutDate.slice(5,7));
+
+  
     let prev_date = new Date(workoutDate.slice(0,4), workoutDate.slice(5,7), workoutDate.slice(8,10));
-    let now =  Date(Date.now());
-    let millisecond_dif = now - prev_date; 
-    let days_diff = (millisecond_dif / (1000*60*60*24));  
+
+    let millisecond_dif = Date.now() - prev_date; // this is nan...
+    let days_diff = (millisecond_dif / (1000*60*60*24));
+    console.log("ddif", millisecond_dif);
+  
+    console.log('result it', (days_diff <= 7.0));
     return days_diff <= 7.0;
   
   };
@@ -51,9 +59,7 @@ class Home extends Component {
     // if date within last 7 days, add calorie value
     let workoutsWithinLastWeek = user_activity_data.filter(this.workoutIsInLastWeek);
     console.log('last week?', workoutsWithinLastWeek);
-    //user_data.map(activity => {
-    return workoutsWithinLastWeek.reduce(this.getCaloriesBurned);
-    //return workoutsWithinLastWeek;
+    return workoutsWithinLastWeek.reduce(this.getCaloriesBurned, 0);
   };
 
 
