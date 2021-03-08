@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import styles from './Styles';
 import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline, 
-  Modal, Dialog, Portal, IconButton, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
+  Modal, Dialog, ProgressBar, Portal, IconButton, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import Recommendation from './Recommendation';
 import user_activity_data from '../../data/history.json'; 
 
@@ -86,14 +86,18 @@ class Home extends Component {
       const setHasStepmill = () => this.setState({ hasStepmill: !this.state.hasStepmill });
   
       const containerStyle = {backgroundColor: 'white', padding: 50};
+
+      let cals = 540;
       
     
       return (
-        <View style={styles.centerView}>
-          <Provider>
-          <Text style={styles.header}>Welcome</Text>
-          <Text style={styles.paragraph}>Here is how you're doing: </Text>
-          <Badge size={150} style={{left:-100}}>18</Badge>
+        <View style={styles.container}>
+          <Provider style={styles.container}>
+          <Text style={styles.pageHeader}>Welcome, Annie</Text> 
+          <Text style={styles.subtitle}>This week, so far: </Text>
+          <Text style={styles.paragraph}>Calories Burned: </Text>
+          <Text style={styles.body}>{cals}/1000 cal </Text>
+          <ProgressBar progress={0.7}/>
           <Title>Daily Check-In </Title>
           <Paragraph> Tell us how you're doing today so we can find the best workouts for you! </Paragraph>
           <Text> </Text>
