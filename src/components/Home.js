@@ -93,13 +93,48 @@ class Home extends Component {
       return (
         <View style={styles.container}>
           <Provider style={styles.container}>
-          <Text style={styles.pageHeader}>Welcome, Annie</Text> 
-          <Text style={styles.subtitle}>This week, so far: </Text>
+          <Text style={styles.homePageHeader}>Welcome, Annie</Text> 
+          <View
+            style={{
+              height: 10.0,
+              width: '100%',
+              backgroundColor: '#fff3e6',
+            }}
+          />
+          <Card style={{
+              height: 200.0,
+            }}>
+                <Card.Content>
+                    <Title>Our week </Title>
+                    <Text style={styles.paragraph}>Calories Burned: </Text>
+                    <Text style={styles.body}>{cals}/1000 cal </Text>
+                    <ProgressBar progress={0.7}/>
+                </Card.Content>
+          </Card>
+          <View
+            style={{
+              height: 10.0,
+              width: '100%',
+              backgroundColor: '#fff3e6',
+            }}
+          />
+          <Card>
+                <Card.Content>
+                    <Title>Daily Check-In </Title>
+                    <Text style={styles.body}>Tell us how you're doing today so we can find the best workouts for you! </Text>
+                    <IconButton icon='arrow-right-bold-circle' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
+          </IconButton>
+                </Card.Content>
+                <Card.Cover source={require('../images/circuitTraining.png')} />
+          </Card>
+          <Text style={styles.subtitle}>Our week </Text>
           <Text style={styles.paragraph}>Calories Burned: </Text>
           <Text style={styles.body}>{cals}/1000 cal </Text>
           <ProgressBar progress={0.7}/>
-          <Title>Daily Check-In </Title>
-          <Paragraph> Tell us how you're doing today so we can find the best workouts for you! </Paragraph>
+          <Text style={styles.subtitle}>Daily Check-In </Text>
+          <Text style={styles.body}>Tell us how you're doing today so we can find the best workouts for you! </Text>
+          <IconButton icon='arrow-right-bold-circle' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
+          </IconButton>
           <Text> </Text>
     
           <Portal>
@@ -178,8 +213,6 @@ class Home extends Component {
     
               </Dialog>
           </Portal>
-          <IconButton icon='arrow-right-bold-circle' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
-          </IconButton>
           </Provider>
         </View> 
       );

@@ -34,12 +34,18 @@ export default StyleSheet.create({
       alignItems: 'center',
       padding: 8,
     }, 
+    homePageHeader: {
+      justifyContent: 'flex-start',
+      marginTop: 60,
+      fontSize: 40,
+      fontWeight: 'bold',
+    },
     pageHeader: {
       justifyContent: 'flex-start',
       marginTop: 60,
       fontSize: 40,
       fontWeight: 'bold',
-      //left: -85
+      left: -85
     },
     button: {
       backgroundColor: '#F8CDDA',
