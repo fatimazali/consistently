@@ -94,7 +94,7 @@ class Home extends Component {
       return (
         <View style={styles.container}>
           <Provider style={styles.container}>
-          <Text style={styles.homePageHeader}> Welcome, Annie</Text> 
+          <Text style={styles.homePageHeader}> Welcome Annie</Text> 
           <View
             style={{
               height: 10.0,

@@ -23,6 +23,7 @@ class Recommendation extends Component {
             weatherLoaded: false, 
             intensity: "", //light, moderate, vigorous, extreme 
             focus: "", //lower, upper, abdominal, whole
+            user_weight: 130,
             duration: 0, //15-90
             equipment: [], //Array of Strings - equipment that is available to the user
             user_time: 30, // default in case of any issues in user data 
@@ -103,7 +104,7 @@ componentDidMount() {
             var activity_name = columns[i].substring(22, columns[i].length-1); //Gets the activity name between the brackets
             this.state.preferences_and_experience_weights[activity_name] = (user_json[0][columns[i]].includes("try")) ? 3 : 1; //Prefers to try it, so higher weight of 3
         }
-        this.state.user_weight = user_json[0]["Weight (round to the nearest pound)"];
+        this.state.user_weight = user_json[0]["Weight (round to the nearest pound)"]; // TODO: this isn't getting updated?
         // this.setState({
         //     this.state.preferences_and_experience_weights[activity_name]: (user_json[0][columns[i]].includes("try")) ? 3 : 1
         // });
@@ -125,6 +126,10 @@ componentDidMount() {
 
     build_activity_vector = () => {
         for (let i = 0; i < activities_json.length; i++) {
+            const cals = ((((this.state.user_weight/2.205)*(activities_json[i]['activity-met-value'])*3.5)/1000)*5)*this.state.duration;
+            const cals2 = ((((130/2.205)*(4.8)*3.5)/1000)*5)*45;
+            console.log('state here is', this.state);
+            
             var activity = {
                 activity_name : activities_json[i]['name'],
                 intensity_1 : activities_json[i]['intensity-1'], // Light
@@ -139,9 +144,9 @@ componentDidMount() {
                 strength : activities_json[i]['strength'], 
                 met: activities_json[i]['activity-met-value'], // Using the MET value for Calorie display for the 3 recommended activities
                 outdoors: activities_json[i]['outdoors'],
-                workout_calories: ((((this.state.user_weight/2.205)*activities_json[i]['activity-met-value']*3.5)/1000)*5)*this.state.duration
-
+                workout_calories: cals
             };
+            console.log('cals here are', cals);
             this.state.activity_vector.push(activity);
         }
     };
@@ -248,7 +253,7 @@ componentDidMount() {
             activity_score += this.state.user_vector[0]["whole"] * this.state.activity_vector[i]["whole"]; 
             activity_score += this.state.user_vector[0]["cardio"] * this.state.activity_vector[i]["cardio"];
             activity_score += this.state.user_vector[0]["strength"] * this.state.activity_vector[i]["strength"];
-            this.state.ranked.push({activity_name: this.state.activity_vector[i]["activity_name"], score: activity_score});
+            this.state.ranked.push({activity_name: this.state.activity_vector[i]["activity_name"], score: activity_score, cals: this.state.activity_vector[i]["workout_calories"]});
         }
         this.state.ranked.sort(function(a, b) { // Sorts the ranked list by its score
             return b.score - a.score;
@@ -285,12 +290,14 @@ componentDidMount() {
     render() {
         this.getCheckInData(); // Get data from Daily Check-In
         if (!this.state.recommendationMade && this.state.checkInLoaded) {
-            this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form
+            console.log("activities", this.state.activity_vector);
+            this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form\
             this.filterByWeather(); // must happen after compDidMount? otherwise: will be false until then which is fine
             this.build_user_vector(); // Builds user vector
             this.compute_dot_product(); // Ranks the activities
             let exclude = this.toExcludeOutdoorActivities();
             this.filterByEquipment(); //Post filter
+            console.log("final ranked", this.state.ranked);
         }
 
         return (
@@ -303,7 +310,10 @@ componentDidMount() {
                         <Card>
                             <Card.Content>
                                 <Title>{recommendation["activity_name"]}</Title>
-                                <Paragraph>{this.state.focus.toUpperCase() + " | " + this.state.intensity.toUpperCase() + " | " + this.state.duration + " MINS"}</Paragraph>
+                                <Paragraph>{this.state.focus.toUpperCase() + " | " + this.state.intensity.toUpperCase() + " | " 
+                                + this.state.duration + " MINS\n" +  "MODERATE INTENSITY | "
+                                + recommendation["cals"].toFixed(2) + " CALS"
+                                }</Paragraph>
                             </Card.Content>
                             <Card.Cover source={require('../images/pilates.png')} />
                             <Card.Actions>
@@ -316,6 +326,12 @@ componentDidMount() {
          )
     }
 }
+
+/*
+                                {(recommendation.intensity_1 == 1) ? :"Light" : ""} 
+                                intensity_2 : (this.state.intensity == 'moderate') ? 1 : 0, 
+                                intensity_3 : (this.state.intensity == 'vigorous') ? 1 : 0, 
+                                intensity_4 : (this.state.intensity == 'extreme') ? 1 : 0, */
 
 export default Recommendation; // Don’t forget to use export default!
 

@@ -19,10 +19,10 @@ class Profile extends Component {
             }}></View>
         <DataTable style={styles.container}>
           <DataTable.Header style={styles.container}>
-          <DataTable.Title>Date</DataTable.Title>
+          <DataTable.Title style={styles.body}>Date</DataTable.Title>
             <DataTable.Title>Activity</DataTable.Title>
             <DataTable.Title numeric>Duration</DataTable.Title>
-            <DataTable.Title numeric>Cals Burned</DataTable.Title>
+            <DataTable.Title numeric>Cal Burned</DataTable.Title>
           </DataTable.Header>
 
           {user_data.map(activity => {
