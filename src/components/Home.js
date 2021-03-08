@@ -95,6 +95,7 @@ class Home extends Component {
         <View style={styles.container}>
           <Provider style={styles.container}>
           <Text style={styles.homePageHeader}> Welcome, Annie</Text> 
+          <ScrollView>
           <View
             style={{
               height: 10.0,
@@ -139,6 +140,7 @@ class Home extends Component {
           <IconButton icon='arrow-right-bold-circle' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
           </IconButton>
           <Text> </Text>
+          </ScrollView>
     
           <Portal>
               <Dialog style={{ maxHeight: 450, alignSelf: "center" }} visible={this.state.visible} onDismiss={hideDialog}>
