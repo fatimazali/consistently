@@ -300,12 +300,65 @@ componentDidMount() {
             console.log("final ranked", this.state.ranked);
         }
 
+        
         return (
             <ScrollView style={{
             paddingVertical: 20,
           }}>
                 <Text style={styles.homePageHeader}>  Top 3 Picks</Text> 
                 {this.state.ranked.slice(0, 7).map((recommendation) => {
+                    
+                    let img = require("../images/circuitTraining.png"); //set general default image
+
+                    if (recommendation["activity_name"].includes("yoga")) {
+                      img = require("../images/yoga.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("conditioning")) {
+                      img = require("../images/conditioning.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("cycling")) {
+                      img = require("../images/stationaryCycling.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Upper")) {
+                      img = require("../images/upperBody.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Lower")) {
+                      img = require("../images/lowerBody.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Weight")) {
+                      img = require("../images/weightlifting.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Swimming")) {
+                      img = require("../images/swimming.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Hiking")) {
+                      img = require("../images/hiking.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Ab")) {
+                      img = require("../images/abs.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Running")) {
+                      img = require("../images/running2.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Walking")) {
+                      img = require("../images/walking.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Sprinting")) {
+                      img = require("../images/sprinting.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Dancing")) {
+                      img = require("../images/Dancing.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Biking")) {
+                      img = require("../images/biking.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Pilates")) {
+                      img = require("../images/pilates.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("aerobics")) {
+                      img = require("../images/running3.png"); 
+                    }
+            
                     return (
                         <Card>
                             <Card.Content>
@@ -315,7 +368,7 @@ componentDidMount() {
                                 + recommendation["cals"].toFixed(2) + " CALS"
                                 }</Paragraph>
                             </Card.Content>
-                            <Card.Cover source={require('../images/pilates.png')} />
+                            <Card.Cover source={img} />
                             <Card.Actions>
                                 <Button>Do it!</Button>
                             </Card.Actions>
