@@ -145,7 +145,7 @@ class Search extends Component {
           img = require("../images/sprinting.png"); 
         }
         if (item.name.includes("Dancing")) {
-          img = require("../images/Dancing.png"); 
+          img = require("../images/dancing.png"); 
         }
         if (item.name.includes("Biking")) {
           img = require("../images/biking.png"); 
