@@ -357,7 +357,7 @@ componentDidMount() {
                       img = require("../images/sprinting.png"); 
                     }
                     if (recommendation["activity_name"].includes("Dancing")) {
-                      img = require("../images/Dancing.png"); 
+                      img = require("../images/dancing.png"); 
                     }
                     if (recommendation["activity_name"].includes("Biking")) {
                       img = require("../images/biking.png"); 
