@@ -132,7 +132,7 @@ class Home extends Component {
                 }}
               />
               <Card style={{
-                  height: 324.0,
+                  height: 340.0,
                   width: 410,
                   borderRadius: 40,                  
                 }}>

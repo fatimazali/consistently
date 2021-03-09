@@ -11,26 +11,21 @@ class Profile extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.pageHeader}>Past History</Text>
-        <View
-            style={{
-              height: 10.0,
-              width: '100%',
-              backgroundColor: '#fff3e6',
-            }}></View>
-        <DataTable style={styles.container}>
-          <DataTable.Header style={styles.container}>
-          <DataTable.Title style={styles.body}>Date</DataTable.Title>
+        <View style={styles.containerHistory}>
+        <DataTable style={styles.containerHistory}>
+          <DataTable.Header style={styles.containerHistory}>
+          <DataTable.Title >Date</DataTable.Title>
             <DataTable.Title>Activity</DataTable.Title>
             <DataTable.Title numeric>Duration</DataTable.Title>
-            <DataTable.Title numeric>Cal Burned</DataTable.Title>
+            <DataTable.Title numeric>Cals</DataTable.Title>
           </DataTable.Header>
 
           {user_data.map(activity => {
             return (
-              <DataTable.Row style={styles.container}>
+              <DataTable.Row style={styles.containerHistory}>
                 <DataTable.Cell> {activity['Start'].slice(5,10)} </DataTable.Cell>
                 <DataTable.Cell> {activity['Type']} </DataTable.Cell>
-                <DataTable.Cell numeric> {activity['Duration']} </DataTable.Cell>
+                <DataTable.Cell numeric> {activity['Duration'].slice(0,4)} </DataTable.Cell>
                 <DataTable.Cell numeric > {activity['Total Energy'].toFixed(2)} </DataTable.Cell>
               </DataTable.Row>
           )})}      
@@ -44,6 +39,16 @@ class Profile extends Component {
                   label="Page 1 of 1"
             />
         </DataTable>
+
+        </View>
+        {/* <View
+            style={{
+              height: 10.0,
+              width: '100%',
+              //backgroundColor: '#fff3e6',
+              //color: '#fff3e6'
+            }}></View> */}
+
       </View>
     )
   }

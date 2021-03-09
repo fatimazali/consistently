@@ -7,7 +7,19 @@ export default StyleSheet.create({
       backgroundColor: '#aca9ff', // lightsteelblue
       alignItems: 'center',
       justifyContent: 'center',
+      color: '#fff3e6' // off-white
     },
+    containerHistory: { 
+      flex: 1,
+      backgroundColor: '#ffffff', // white
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#ebe7f1', // off-white
+      borderRadius: 25,
+      margin:10,
+      width: 410,
+
+    },    
     header: {
       fontSize: 60,
       fontFamily: 'Arial',
