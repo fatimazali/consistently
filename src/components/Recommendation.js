@@ -4,10 +4,10 @@ import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import Home from './Home';
 import activities_json from '../../data/activities.json';
-//import history_json from '../../data/history.json';
-import history_json from '../../data/history-2.json';
-//import user_json from '../../data/user.json';
-import user_json from '../../data/user-2.json';
+import history_json from '../../data/history.json';
+// import history_json from '../../data/history-2.json';
+import user_json from '../../data/user.json';
+// import user_json from '../../data/user-2.json';
 import checkin_json from '../../data/dailyCheckIn.json';
 
 class Recommendation extends Component {
@@ -104,27 +104,10 @@ componentDidMount() {
             var activity_name = columns[i].substring(22, columns[i].length-1); //Gets the activity name between the brackets
             this.state.preferences_and_experience_weights[activity_name] = (user_json[0][columns[i]].includes("try")) ? 3 : 1; //Prefers to try it, so higher weight of 3
         }
-        this.state.user_weight = user_json[0]["Weight (round to the nearest pound)"]; // TODO: this isn't getting updated?
-        // this.setState({
-        //     this.state.preferences_and_experience_weights[activity_name]: (user_json[0][columns[i]].includes("try")) ? 3 : 1
-        // });
-        // see if ss works, otherwise switch? 
-        // this.setState({
-        //     user_weight: user_json[0]["Weight (round to the nearest pound)"]
-        // });
+        this.state.user_weight = user_json[0]["Weight (round to the nearest pound)"];
     };
 
-
-    // Returns a dictionary of weights for activities based on past history 
-    get_user_preferences_and_experience_weights = () => {
-        var columns = Object.keys(user_json[0]);
-        for (let i = 8; i < columns.length; i++) {
-            var activity_name = columns[i].substring(22, columns[i].length-1); //Gets the activity name between the brackets
-            this.state.preferences_and_experience_weights[activity_name] = (user_json[0][columns[i]].includes("try")) ? 3 : 1; //Prefers to try it, so higher weight of 3
-        }
-    };
-
-    build_activity_vector = () => {
+    build_activity_vector = () => { // hey 
         for (let i = 0; i < activities_json.length; i++) {
             const cals = ((((this.state.user_weight/2.205)*(activities_json[i]['activity-met-value'])*3.5)/1000)*5)*this.state.duration;
             const cals2 = ((((130/2.205)*(4.8)*3.5)/1000)*5)*45;
@@ -151,6 +134,39 @@ componentDidMount() {
         }
     };
 
+    getIntensity = (activity) => {
+        var intensity = "";
+        if (activity["intensity_1"] == 1) {
+            intensity = "Light";
+        }
+        if (activity["intensity_2"] == 1) {
+            intensity = "Moderate";
+        }
+        if (activity["intensity_3"] == 1) {
+            intensity = "Vigorous";
+        }
+        if (activity["intensity_4"] == 1) {
+            intensity = "Extreme";
+        }
+        return intensity;
+    }
+
+    getFocus = (activity) => {
+        var focus = "";
+        if (activity["lower"] == 1) {
+            focus = "Lower";
+        }
+        if (activity["upper"] == 1) {
+            focus = "Upper";
+        }
+        if (activity["abdominal"] == 1) {
+            focus = "Abdominal";
+        }
+        if (activity["whole"] == 1) {
+            focus = "Whole";
+        }
+        return focus;
+    }
     // Filter out all the activities that are required to be outdoors aka outdoor = 1
     filterByWeather = () => {
         var filteredActivities = [];
@@ -211,10 +227,10 @@ componentDidMount() {
 
         var user = {
             activity_name : this.state.preferences_and_experience_weights,   //[Previously done activities, New activities preferred]
-            intensity_1 : (this.state.intensity == 'light') ? 1 : 0, 
-            intensity_2 : (this.state.intensity == 'moderate') ? 1 : 0, 
-            intensity_3 : (this.state.intensity == 'vigorous') ? 1 : 0, 
-            intensity_4 : (this.state.intensity == 'extreme') ? 1 : 0, 
+            intensity_1 : (this.state.intensity == 'light') ? 5 : 0,
+            intensity_2 : (this.state.intensity == 'moderate') ? 5 : 0,
+            intensity_3 : (this.state.intensity == 'vigorous') ? 5 : 0,
+            intensity_4 : (this.state.intensity == 'extreme') ? 5 : 0,
             lower : (this.state.focus == 'lower') ? 1 : 0,
             upper : (this.state.focus == 'upper') ? 1 : 0,
             abdominal : (this.state.focus == 'abdominal') ? 1 : 0,
@@ -253,7 +269,8 @@ componentDidMount() {
             activity_score += this.state.user_vector[0]["whole"] * this.state.activity_vector[i]["whole"]; 
             activity_score += this.state.user_vector[0]["cardio"] * this.state.activity_vector[i]["cardio"];
             activity_score += this.state.user_vector[0]["strength"] * this.state.activity_vector[i]["strength"];
-            this.state.ranked.push({activity_name: this.state.activity_vector[i]["activity_name"], score: activity_score, cals: this.state.activity_vector[i]["workout_calories"]});
+            this.state.ranked.push({activity_name: this.state.activity_vector[i]["activity_name"], score: activity_score,
+                                    intensity: this.getIntensity(this.state.activity_vector[i]), focus: this.getFocus(this.state.activity_vector[i])});
         }
         this.state.ranked.sort(function(a, b) { // Sorts the ranked list by its score
             return b.score - a.score;
@@ -300,22 +317,74 @@ componentDidMount() {
             console.log("final ranked", this.state.ranked);
         }
 
+        
         return (
             <ScrollView style={{
             paddingVertical: 20,
           }}>
                 <Text style={styles.homePageHeader}>  Top 3 Picks</Text> 
                 {this.state.ranked.slice(0, 7).map((recommendation) => {
+                    
+                    let img = require("../images/circuitTraining.png"); //set general default image
+
+                    if (recommendation["activity_name"].includes("yoga")) {
+                      img = require("../images/yoga.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("conditioning")) {
+                      img = require("../images/conditioning.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("cycling")) {
+                      img = require("../images/stationaryCycling.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Upper")) {
+                      img = require("../images/upperBody.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Lower")) {
+                      img = require("../images/lowerBody.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Weight")) {
+                      img = require("../images/weightlifting.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Swimming")) {
+                      img = require("../images/swimming.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Hiking")) {
+                      img = require("../images/hiking.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Ab")) {
+                      img = require("../images/abs.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Running")) {
+                      img = require("../images/running2.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Walking")) {
+                      img = require("../images/walking.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Sprinting")) {
+                      img = require("../images/sprinting.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Dancing")) {
+                      img = require("../images/dancing.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Biking")) {
+                      img = require("../images/biking.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("Pilates")) {
+                      img = require("../images/pilates.png"); 
+                    }
+                    if (recommendation["activity_name"].includes("aerobics")) {
+                      img = require("../images/running3.png"); 
+                    }
+            
                     return (
                         <Card>
                             <Card.Content>
                                 <Title>{recommendation["activity_name"]}</Title>
-                                <Paragraph>{this.state.focus.toUpperCase() + " | " + this.state.intensity.toUpperCase() + " | " 
-                                + this.state.duration + " MINS\n" +  "MODERATE INTENSITY | "
+                                <Paragraph>{recommendation["focus"] + " | " + recommendation["intensity"] + " | " + this.state.duration + " mins\n"
                                 + recommendation["cals"].toFixed(2) + " CALS"
                                 }</Paragraph>
                             </Card.Content>
-                            <Card.Cover source={require('../images/pilates.png')} />
+                            <Card.Cover source={img} />
                             <Card.Actions>
                                 <Button>Do it!</Button>
                             </Card.Actions>

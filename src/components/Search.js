@@ -2,10 +2,9 @@ import { Text, ScrollView, SafeAreaView, StyleSheet, View, FlatList } from 'reac
 import React, { Component, useState, useEffect } from 'react';
 import styles from './Styles.js';
 import { Snackbar, IconButton, Title, Dialog, TextInput, Colors , Card, Avatar, Paragraph, Searchbar, Modal, Portal, Button, Provider} from 'react-native-paper';
-
-
+ 
 class Search extends Component {
-
+ 
     constructor(props) {
       super(props);
       this.state = {
@@ -14,12 +13,14 @@ class Search extends Component {
         filteredDataSource: require('../../data/activities.json'),
         masterDataSource: require('../../data/activities.json'),
         snackBarVisible: false,
-        imagesLoaded: false,
+        activities: [],
+        loadedActivities: false,
       };
     };
-
+ 
+   
     
-
+ 
     searchstyles = StyleSheet.create({
       container: {
         backgroundColor: 'white',
@@ -36,24 +37,46 @@ class Search extends Component {
         backgroundColor: '#FFFFFF',
       },
     });
+ 
+    build_activities = () => {
+      for (let i = 0; i < this.state.masterDataSource.length; i++) {
+          if (this.state.activities.some(a => a['activity_name'] == this.state.masterDataSource[i]['name'])) {
+            continue;
+          }
+          else {
+            var activity = {
+                activity_name : this.state.masterDataSource[i]['name'],
+                image : "../images/" + this.state.masterDataSource[i]['image']
+            };
+            this.state.activities.push(activity);
+        }
+      }
+      
+    };
+ 
+    componentDidMount() {
+      console.log("in componentDidMount")
+      if (this.state.loadedActivities == false) {
+        this.build_activities();
+        this.setState({loadedActivities: true});
+      }
+      console.log(this.state.activities)
+      console.log(" ")
+    }
     
     render() {
+      //this.build_activities();
       const hideDialog = () => this.setState({ visible: false });
       const hideSnackBar = () => this.setState({snackBarVisible: false});
       
       const showDialog = () => this.setState({ visible: true });
       const showSnackBar = () => this.setState({snackBarVisible: true});
       const setSearch = query => this.setState({searchQuery : query});
-
+ 
       const ourData = require('../../data/activities.json');
       const setFilteredDataSource = someData => this.setState({filteredDataSource : someData});
       const setMasterDataSource = someData => this.setState({masterDataSource : someData});
-
-      
-
-      //setFilteredDataSource(ourData);
-      //setMasterDataSource(ourData);
-
+ 
       const searchFilterFunction = (text) => {
         // Check if searched text is not blank
         if (text) {
@@ -74,18 +97,68 @@ class Search extends Component {
           // Update FilteredDataSource with masterDataSource
           setFilteredDataSource(this.masterDataSource);
           setSearch(text);
-          //this.setState
-          this.state.imagesLoaded = true;
         }
       };
-
-
+ 
+ 
       const ItemView = ({ item }) => {
-        // if (this.state.imagesLoaded) {
-          const imgPath = "../images/" + item.image;
-          console.log('img is', imgPath);
-          // "../images/stationaryCycling3.jpg"
-          
+        console.log(this.state.loadedActivities);
+        console.log(this.state.activities);
+        console.log(item.name);
+
+        let img = require("../images/circuitTraining.png"); //set general default image
+
+        if (item.name.includes("yoga")) {
+          img = require("../images/yoga.png"); 
+        }
+        if (item.name.includes("conditioning")) {
+          img = require("../images/conditioning.png"); 
+        }
+        if (item.name.includes("cycling")) {
+          img = require("../images/stationaryCycling.png"); 
+        }
+        if (item.name.includes("Upper")) {
+          img = require("../images/upperBody.png"); 
+        }
+        if (item.name.includes("Lower")) {
+          img = require("../images/lowerBody.png"); 
+        }
+        if (item.name.includes("Weight")) {
+          img = require("../images/weightlifting.png"); 
+        }
+        if (item.name.includes("Swimming")) {
+          img = require("../images/swimming.png"); 
+        }
+        if (item.name.includes("Hiking")) {
+          img = require("../images/hiking.png"); 
+        }
+        if (item.name.includes("Ab")) {
+          img = require("../images/abs.png"); 
+        }
+        if (item.name.includes("Running")) {
+          img = require("../images/running2.png"); 
+        }
+        if (item.name.includes("Walking")) {
+          img = require("../images/walking.png"); 
+        }
+        if (item.name.includes("Sprinting")) {
+          img = require("../images/sprinting.png"); 
+        }
+        if (item.name.includes("Dancing")) {
+          img = require("../images/dancing.png"); 
+        }
+        if (item.name.includes("Biking")) {
+          img = require("../images/biking.png"); 
+        }
+        if (item.name.includes("Pilates")) {
+          img = require("../images/pilates.png"); 
+        }
+        if (item.name.includes("aerobics")) {
+          img = require("../images/running3.png"); 
+        }
+
+
+        if (this.state.loadedActivities) {
           return (
             // Flat List Item
             <Card>
@@ -93,15 +166,15 @@ class Search extends Component {
                 <Title>{item.name}</Title>
                 <Paragraph>{item.cardio ? 'CARDIO' : 'STRENGTH'}</Paragraph>
               </Card.Content>
-              <Card.Cover source={require("../images/stationaryCycling3.jpg")} />
+              <Card.Cover source={img} />
               <Card.Actions>
                 <Button>Cancel</Button>
                 <Button>Ok</Button>
               </Card.Actions>
             </Card>
           );
-        // }
-
+        }
+        
       };
     
       const ItemSeparatorView = () => {
@@ -121,7 +194,8 @@ class Search extends Component {
         // Function for click on an item
         alert('Id : ' + item.id + ' Title : ' + item.title);
       };
-
+ 
+ 
       return(
         <SafeAreaView style={{ flex: 1 }}>
           <ScrollView>
@@ -175,5 +249,5 @@ class Search extends Component {
       );
     }
   };
-
+ 
 export default Search; // Don’t forget to use export default!
