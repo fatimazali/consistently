@@ -87,8 +87,12 @@ class Home extends Component {
   
       const containerStyle = {backgroundColor: 'white', padding: 50};
 
-      let calsBurned = 540;
+      let calsBurned = 540; // fetch this
       let numWorkouts = 3;
+      let workoutGoal = 5;
+      let calsGoal = 1025; // calculate from age and weight
+      // num workouts cardio and strength percentage 
+      // change text based on time of day 
       
     
       return (
@@ -100,45 +104,57 @@ class Home extends Component {
                 style={{
                   height: 10.0,
                   width: '100%',
-                  backgroundColor: '#fff3e6',
                 }}
               />
               <Card style={{
-                  height: 200.0,
+                  height: 280.0,
+                  width: 410,
+                  borderRadius: 40,
                 }}>
                     <Card.Content>
-                        <Title>Our week </Title>
-                        <Text style={styles.paragraph}>Calories Burned: </Text>
-                        <Text style={styles.body}>{calsBurned}/1000 cal </Text>
-              
-                        <ProgressBar progress={0.7}/>
-
-                        <Text style={styles.paragraph}>Workouts this week: </Text>
-                        <Text style={styles.body}>{numWorkouts} </Text>          
-
+                        <Text style={styles.subtitle}>This Week</Text>
+                        <Text style={styles.body}>{calsBurned}/{calsGoal} cals burned</Text>
+                        <ProgressBar style={styles.progressBar} progress={calsBurned/calsGoal}/>
+                        <Text></Text>
+                        <Text style={styles.body}>{numWorkouts}/{workoutGoal} workouts logged</Text>
+                        <ProgressBar style={styles.progressBar} progress={numWorkouts/workoutGoal}/>
+                        <Text></Text>
+                        <Text style={styles.body}>{numWorkouts}/{workoutGoal} cardio workouts</Text>
+                        <ProgressBar style={styles.progressBar} progress={numWorkouts/workoutGoal}/>
+                        <Text></Text>
+                        <Text style={styles.body}>{numWorkouts}/{workoutGoal} strength workouts</Text>
+                        <ProgressBar style={styles.progressBar} progress={numWorkouts/workoutGoal}/>
                     </Card.Content>
               </Card>
               <View
                 style={{
                   height: 10.0,
-                  width: '100%',
-                  backgroundColor: '#fff3e6',
                 }}
               />
-              <Card>
+              <Card style={{
+                  height: 324.0,
+                  width: 410,
+                  borderRadius: 40,                  
+                }}>
                     <Card.Content>
-                        <Title>Daily Check-In </Title>
-                        <Text style={styles.body}>Tell us how you're doing today so we can find the best workouts for you! </Text>
-                        <IconButton icon='arrow-right-bold-circle' color='#6300ee' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
-              </IconButton>
+                        <Text style={styles.subtitle2}>Daily Check-In </Text>
+                        <View
+                          style={{
+                            //alignItems: 'flex-start',
+                            paddingVertical: 0,
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            alignItems: "center"
+                          }}>
+                          <Text style={styles.body}>Let's find the best workouts for today!</Text>
+                          <IconButton style={styles.goButton} icon='arrow-right-bold-circle' color='#680aec' size={44}  onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
+                          </IconButton>
+                          </View>                       
+
                     </Card.Content>
                     <Card.Cover source={require('../images/circuitTraining.png')} />
               </Card>
-              <Text style={styles.subtitle}>Our week </Text>
-              <Text style={styles.subtitle}>Daily Check-In </Text>
-              <Text style={styles.body}>Tell us how you're doing today so we can find the best workouts for you! </Text>
-              <IconButton icon='arrow-right-bold-circle' size={40} onPress={() => Linking.openURL('https://forms.gle/q4Es51t2ayKsJrDd9')}>
-              </IconButton>
+
               </ScrollView>
           </Provider>
         </View> 

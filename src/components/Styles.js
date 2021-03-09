@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
-    container: {
+    container: { 
       flex: 1,
-      backgroundColor: '#fff3e6',
+      backgroundColor: '#aca9ff', // lightsteelblue
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -15,14 +15,31 @@ export default StyleSheet.create({
       color: "black",
     },
     subtitle: {
-      margin: 4,
+      marginLeft: 4,
+      marginBottom: 4,
       fontSize: 22,
       fontWeight: 'bold',
       textAlign: 'left',
     }, 
+    subtitle2: {
+      marginLeft: 4,
+      marginBottom: -10,
+      fontSize: 22,
+      fontWeight: 'bold',
+      textAlign: 'left',
+    }, 
+    progressBar: {
+      margin: 4,
+    },
     body: {
       margin: 4,
       fontSize: 18,
+      fontWeight: 'normal',
+      textAlign: 'left',
+    }, 
+    bodySpacing: {
+      margin: 4,
+      fontSize: 9,
       fontWeight: 'normal',
       textAlign: 'left',
     }, 
@@ -34,6 +51,12 @@ export default StyleSheet.create({
       alignItems: 'center',
       padding: 8,
     }, 
+    goButton: {
+      display: 'flex'
+      // marginTop: 10,
+      // display: 'flex',
+      // justifyContent: 'flex-end'
+    },    
     homePageHeader: {
       justifyContent: 'flex-start',
       marginTop: 60,
