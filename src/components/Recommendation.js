@@ -270,7 +270,8 @@ componentDidMount() {
             activity_score += this.state.user_vector[0]["cardio"] * this.state.activity_vector[i]["cardio"];
             activity_score += this.state.user_vector[0]["strength"] * this.state.activity_vector[i]["strength"];
             this.state.ranked.push({activity_name: this.state.activity_vector[i]["activity_name"], score: activity_score,
-                                    intensity: this.getIntensity(this.state.activity_vector[i]), focus: this.getFocus(this.state.activity_vector[i])});
+                                    intensity: this.getIntensity(this.state.activity_vector[i]), focus: this.getFocus(this.state.activity_vector[i]),
+                                    cals: this.state.activity_vector[i]["workout_calories"]});
         }
         this.state.ranked.sort(function(a, b) { // Sorts the ranked list by its score
             return b.score - a.score;
