@@ -180,7 +180,7 @@ class Search extends Component {
             // Flat List Item
             <Card>
               <Card.Content>
-                <Title styles={styles.body_bold}>{item.name.toUpperCase()}</Title>
+                <Text style={styles.subtitle}>{item.name}</Text>
               </Card.Content>
               <Card.Actions>
                 <Button mode="contained" color="#d8d6ff">{classification}</Button>

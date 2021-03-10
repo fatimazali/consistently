@@ -184,7 +184,7 @@ class Home extends Component {
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
 
-    if (this.state.hasSignedUp) {
+    if (!this.state.hasSignedUp) {
       console.log("hi!!!!")
       console.log(this.state)
       console.log(this.props)
