@@ -87,17 +87,6 @@ class Home extends Component {
     const cardioCount = workoutCount - strengthCount;
     return [workoutCount, strengthCount, cardioCount];
   };
-//   findActivityType = (activityName) => {
-//     for (let i = 0; i < activities_json.length; i++) {   
-//       if (activities_json[i]['name'] ==  activityName) {
-//         if (activities_json[i]['cardio'] == 1) {
-//           return 'cardio';
-//         }
-//         if (activities_json[i]['strength'] == 1) {
-//           return 'strength';
-//         }
-//       }  
-// };
 
   signUpForm = () => {
     return (
