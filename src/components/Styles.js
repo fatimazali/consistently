@@ -18,14 +18,19 @@ export default StyleSheet.create({
       borderRadius: 25,
       margin:10,
       width: 410,
-      
-
     },    
     header: {
       fontSize: 60,
       fontFamily: 'Arial',
       alignItems: 'center',
-      color: "black",
+      color: "white",
+      
+    },
+    subheader: {
+      fontSize: 20,
+      fontFamily: 'Arial',
+      alignItems: 'center',
+      color: "white",
     },
     subtitle: {
       marginLeft: 4,
@@ -53,8 +58,7 @@ export default StyleSheet.create({
     }, 
     body_bold: {
       margin: 4,
-      fontSize: 18,
-      fontWeight: 'normal',
+      fontSize: 20,
       fontWeight: 'bold',
       textAlign: 'left',
     },     
@@ -92,7 +96,7 @@ export default StyleSheet.create({
       left: -85
     },
     button: {
-      backgroundColor: '#F8CDDA',
+      backgroundColor: '#d8d6ff',
       paddingVertical: 12, 
       paddingHorizontal: 25, 
       borderRadius: 25

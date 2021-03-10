@@ -5,7 +5,10 @@ import styles from './Styles';
 import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline, 
   Modal, Dialog, ProgressBar, Portal, IconButton, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import Recommendation from './Recommendation';
-import user_activity_data from '../../data/history.json'; 
+import user_activity_data from '../../data/history.json';
+import user_json from '../../data/user.json';
+// import user_json from '../../data/user-2.json';
+
 
 class Home extends Component {
 
@@ -13,7 +16,7 @@ class Home extends Component {
     super(props);
     this.state = {
       visible: false,
-      hasSignedUp: true,
+      hasSignedUp: false,
       
       intensity: 'first',
       focus: 'first',
@@ -62,9 +65,11 @@ class Home extends Component {
   
   signUpForm = () => {
     return (
-      <View style={styles.centerView}>
+      <View style={styles.container}>
         <Text style={styles.header}>Welcome to consistent.ly!</Text>
-        <Text style={styles.paragraph}> To get started, fill out our Google Form...</Text>
+        <Text></Text>
+        <Text style={styles.subheader}> To get started, fill out our Google Form...</Text>
+        <Text></Text>
         <Button style={styles.button} mode="contained" onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
           Let's go!
         </Button>
@@ -96,8 +101,8 @@ class Home extends Component {
 
       // let calsBurned = 540; // fetch this
       // let numWorkouts = 3;
-      let workoutGoal = 5;
-      let calsGoal = 1025; // (((user_weight/2.205)*1000*3.5)/1000)*5
+      let workoutGoal = user_json[0]["If you selected to work out a specific amount of times a week, how often?"];
+      let calsGoal = ((((user_json[0]["Weight (round to the nearest pound)"]/2.205)*1000*3.5)/1000)*5).toFixed(0);
       // calculate from age and weight
       // num workouts cardio and strength percentage 
       // lowrange =(((user_weight/2.205)*500*3.5)/1000)*
