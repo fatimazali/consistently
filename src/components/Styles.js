@@ -43,6 +43,7 @@ export default StyleSheet.create({
     }, 
     progressBar: {
       margin: 4,
+      height: 7,
     },
     body: {
       margin: 4,

@@ -31,17 +31,10 @@ class Home extends Component {
   workoutIsInLastWeek = (workout) => {
     // check whether a previous date is within 7 days of today
     const workoutDate = workout['Start'];
-    console.log('wd', workoutDate);
-    console.log(workoutDate.slice(0,4));
-    console.log(workoutDate.slice(5,7));
     let prev_date = new Date(workoutDate.slice(0,4), workoutDate.slice(5,7), workoutDate.slice(8,10));
-
-    let millisecond_dif = Date.now() - prev_date; // this is nan...
+    let millisecond_dif = Date.now() - prev_date;
     let days_diff = (millisecond_dif / (1000*60*60*24));
-    console.log("ddif", millisecond_dif);
-  
-    console.log('result it', (days_diff <= 7.0));
-    return days_diff <= 7.0;java
+    return days_diff <= 7.0;
   
   };
   
@@ -57,7 +50,15 @@ class Home extends Component {
     return [workoutsWithinLastWeek.length, workoutsWithinLastWeek.reduce(this.getCaloriesBurned, 0)];
   };
 
+  isStrengthWorkout = (workout) => {
+    return workout['Total Energy']
+  };
 
+  calculateStrengthCardioBalance = () => {
+    let workoutsWithinLastWeek = user_activity_data.filter(this.workoutIsInLastWeek);
+    strengthCount
+
+  };
   
   signUpForm = () => {
     return (
@@ -115,12 +116,12 @@ class Home extends Component {
             <ScrollView>
               <View
                 style={{
-                  height: 10.0,
+                  height: 20.0,
                   width: '100%',
                 }}
               />
               <Card style={{
-                  height: 280.0,
+                  height: 288.0,
                   width: 410,
                   borderRadius: 40,
                 }}>
@@ -141,11 +142,11 @@ class Home extends Component {
               </Card>
               <View
                 style={{
-                  height: 10.0,
+                  height: 20.0,
                 }}
               />
               <Card style={{
-                  height: 340.0,
+                  height: 365.0,
                   width: 410,
                   borderRadius: 40,                  
                 }}>
