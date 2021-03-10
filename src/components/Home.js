@@ -93,15 +93,20 @@ class Home extends Component {
       // 3. calculate numWorkouts
       // 4. parse workoutGoal from user form 
 
-      let calsBurned = 540; // fetch this
-      let numWorkouts = 3;
+      // let calsBurned = 540; // fetch this
+      // let numWorkouts = 3;
       let workoutGoal = 5;
-      let calsGoal = 1025; // calculate from age and weight
+      let calsGoal = 1025; // (((user_weight/2.205)*1000*3.5)/1000)*5
+      // calculate from age and weight
       // num workouts cardio and strength percentage 
-
+      // lowrange =(((user_weight/2.205)*500*3.5)/1000)*
+      // highrange = =
 
       // 5. change text based on time of day 
-      
+      const results = this.calculateCaloriesBurnedInLastWeek();
+      // 1000 calories for now?
+      const numWorkouts = results[0];
+      const calsBurned = results[1].toFixed(0);      
     
       return (
         <View style={styles.container}>
@@ -172,12 +177,6 @@ class Home extends Component {
   
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
-    const results = this.calculateCaloriesBurnedInLastWeek();
-    // 1000 calories for now?
-    const days = results[0];
-    const calsBurned = results[1];
-    console.log("days", days);
-    console.log("cals are", calsBurned);
 
     if (this.state.hasSignedUp) {
       console.log("hi!!!!")

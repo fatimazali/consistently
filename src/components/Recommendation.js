@@ -4,12 +4,12 @@ import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import Home from './Home';
 import activities_json from '../../data/activities.json';
-// import history_json from '../../data/history.json';
-// import user_json from '../../data/user.json';
-// import checkin_json from '../../data/dailyCheckIn.json';
-import history_json from '../../data/history-2.json';
-import user_json from '../../data/user-2.json';
-import checkin_json from '../../data/dailyCheckIn2.json';
+import history_json from '../../data/history.json';
+import user_json from '../../data/user.json';
+import checkin_json from '../../data/dailyCheckIn.json';
+// import history_json from '../../data/history-2.json';
+// import user_json from '../../data/user-2.json';
+// import checkin_json from '../../data/dailyCheckIn2.json';
 
 class Recommendation extends Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class Recommendation extends Component {
     getCheckInData = () => {
         console.log('fetching data from daily check-in...');
         var checkin = checkin_json[0];
-        console.log(checkin);
+        // console.log(checkin);
         this.state.intensity = checkin['intensity']
         this.state.focus = checkin['focus']
         this.state.duration = checkin['duration']
@@ -50,12 +50,12 @@ class Recommendation extends Component {
         //     checkInLoaded: true
         // });
         this.state.checkInLoaded = true;
-        console.log('state:');
-        console.log(this.state);   
+        // console.log('state:');
+        // console.log(this.state);   
     };
     
     getWeatherFromApi = async () => {
-        console.log('hey');
+        // console.log('hey');
         try {
             const response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip=95014&appid=5dd419bb060b722ca2357dcabe755c61&units=imperial');
             const json = await response.json();
@@ -111,7 +111,7 @@ componentDidMount() {
     build_activity_vector = () => { // hey 
         for (let i = 0; i < activities_json.length; i++) {
             const cals = ((((this.state.user_weight/2.205)*(activities_json[i]['activity-met-value'])*3.5)/1000)*5)*this.state.duration;
-            console.log('state here is', this.state);
+            // console.log('state here is', this.state);
             
             var activity = {
                 activity_name : activities_json[i]['name'],
@@ -171,15 +171,20 @@ componentDidMount() {
     // Filter out all the activities that are required to be outdoors aka outdoor = 1
     filterByWeather = () => {
         var filteredActivities = [];
+        if (this.state.weatherLoaded === true) {
+            console.log('hii', this.toExcludeOutdoorActivities());
+        }
+
+        
         if((this.state.weatherLoaded === true) && this.toExcludeOutdoorActivities()) {
             for (let i = 0; i < this.state.activity_vector.length; i++) {
                 if(this.state.activity_vector[i]["outdoors"] != 1) {
                     filteredActivities.push(this.state.activity_vector[i]);
-                    console.log(this.state.activity_vector[i]['name']);
+                    // console.log(this.state.activity_vector[i]['name']);
                 }
             }
             this.state.activity_vector = filteredActivities;
-            console.log(this.state.activity_vector);
+            // console.log(this.state.activity_vector);
         }
     };
 
@@ -282,7 +287,7 @@ componentDidMount() {
 
     filterByEquipment = () => {
         var filteredActivities = [];
-        console.log(this.state.equipment);
+        // console.log(this.state.equipment);
         for (let i = 0; i < this.state.ranked.length; i++) {
             if(this.state.ranked[i]["activity_name"] == "Stationary cycling" && !this.state.equipment.includes("stationary bike")) {
                 continue;
@@ -309,10 +314,11 @@ componentDidMount() {
     
     render() {
         this.getCheckInData(); // Get data from Daily Check-In
-        if (!this.state.recommendationMade && this.state.checkInLoaded) {
-            console.log("activities", this.state.activity_vector);
+        if (!this.state.recommendationMade && this.state.checkInLoaded && this.state.weatherLoaded) {
+            // console.log("activities", this.state.activity_vector);
             this.build_user_vector(); // Builds user vector
             this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form\
+            console.log("final notfiltered", this.state.activity_vector);
             this.filterByWeather(); // must happen after compDidMount? otherwise: will be false until then which is fine
             this.compute_dot_product(); // Ranks the activities
             this.filterByEquipment(); //Post filter
