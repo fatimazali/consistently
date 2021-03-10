@@ -33,7 +33,7 @@ class Search extends Component {
         borderWidth: 1,
         paddingLeft: 20,
         margin: 5,
-        borderColor: '#009688',
+        borderColor: '#aca9ff',
         backgroundColor: '#FFFFFF',
       },
     });
@@ -157,19 +157,41 @@ class Search extends Component {
           img = require("../images/running3.png"); 
         }
 
+        // Find intensity to display
+        const intensityMap = {
+          "light" : item['intensity-1'],
+          "moderate" : item['intensity-2'],
+          "vigorous" : item['intensity-3'],
+          "extreme" : item['intensity-4'],
+        };
+        let intensityLevel = Object.keys(intensityMap).find(key => intensityMap[key] === 1);
+        
+        // Find body part to display
+        const focusMap = {
+          "lower body" : item['targets-lower'],
+          "upper body" : item['targets-upper'],
+          "abdominal" : item['targets-abdominal'],
+          "whole" : item['targets-whole'],
+        };
+        let focusLevel = Object.keys(focusMap).find(key => focusMap[key] === 1);
+
+        // Specify if cardio or strength
+        let classification = item.cardio ? 'CARDIO' : 'STRENGTH';
 
         if (this.state.loadedActivities) {
           return (
             // Flat List Item
             <Card>
               <Card.Content>
-                <Title>{item.name}</Title>
-                <Paragraph>{item.cardio ? 'CARDIO' : 'STRENGTH'}</Paragraph>
+                <Title><b>{item.name}</b></Title>
               </Card.Content>
               <Card.Cover source={img} />
               <Card.Actions>
-                <Button>Cancel</Button>
-                <Button>Ok</Button>
+                <Button mode="contained" color="#d8d6ff">{classification}</Button>
+                <Text>   </Text>
+                <Button mode="contained" color="#d8d6ff">{intensityLevel}</Button>
+                <Text>   </Text>
+                <Button mode="contained" color="#d8d6ff">{focusLevel}</Button>
               </Card.Actions>
             </Card>
           );
@@ -184,7 +206,7 @@ class Search extends Component {
             style={{
               height: 5.0,
               width: '100%',
-              backgroundColor: '#fff3e6',
+              backgroundColor: '#aca9ff',
             }}
           />
         );

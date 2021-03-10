@@ -376,18 +376,24 @@ componentDidMount() {
                     if (recommendation["activity_name"].includes("aerobics")) {
                       img = require("../images/running3.png"); 
                     }
+
+                    let classification = recommendation['cardio'] ? 'CARDIO' : 'STRENGTH';
+
             
                     return (
                         <Card>
                             <Card.Content>
-                                <Title>{recommendation["activity_name"]}</Title>
-                                <Paragraph>{recommendation["focus"] + " | " + recommendation["intensity"] + " | " + this.state.duration + " mins\n"
-                                + recommendation["cals"].toFixed(2) + " CALS"
+                                <Title><b>{recommendation["activity_name"]}</b></Title>
+                                <Paragraph> {this.state.duration + " MINS" + " | " + recommendation["cals"].toFixed(2) + " CALS"
                                 }</Paragraph>
                             </Card.Content>
                             <Card.Cover source={img} />
                             <Card.Actions>
-                                <Button>Do it!</Button>
+                                <Button mode="contained" color="#d8d6ff">{classification}</Button>
+                                <Text>   </Text>
+                                <Button mode="contained" color="#d8d6ff">{recommendation["intensity"]}</Button>
+                                <Text>   </Text>
+                                <Button mode="contained" color="#d8d6ff">{recommendation["focus"]}</Button>
                             </Card.Actions>
                         </Card>
 
