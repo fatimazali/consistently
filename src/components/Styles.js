@@ -96,7 +96,7 @@ export default StyleSheet.create({
       left: -85
     },
     button: {
-      backgroundColor: '#F8CDDA',
+      backgroundColor: '#d8d6ff',
       paddingVertical: 12, 
       paddingHorizontal: 25, 
       borderRadius: 25
