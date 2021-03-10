@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "expo": "~40.0.0",
+    "expo-linear-gradient": "~8.4.0",
     "expo-status-bar": "~1.0.3",
     "material-design-icons": "^3.0.1",
     "react": "16.13.1",
