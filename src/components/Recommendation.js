@@ -393,7 +393,6 @@ componentDidMount() {
                             <Title styles={styles.body_bold}>{recommendation["activity_name"]}</Title>
                                 <Paragraph> {this.state.duration + " MINS" + " | " + recommendation["cals"].toFixed(2) + " CALS"}</Paragraph>
                             </Card.Content>
-                            <Card.Cover source={img} />
                             <Card.Actions>
                                 <Button mode="contained" color="#d8d6ff">{classification}</Button>
                                 <Text>   </Text>
@@ -401,6 +400,7 @@ componentDidMount() {
                                 <Text>   </Text>
                                 <Button mode="contained" color="#d8d6ff">{recommendation["focus"]}</Button>
                             </Card.Actions>
+                            <Card.Cover source={img} />
                         </Card>
 
                 )})}

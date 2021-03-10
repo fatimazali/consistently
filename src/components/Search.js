@@ -180,9 +180,8 @@ class Search extends Component {
             // Flat List Item
             <Card>
               <Card.Content>
-                <Title styles={styles.body_bold}>{item.name}</Title>
+                <Title styles={styles.body_bold}>{item.name.toUpperCase()}</Title>
               </Card.Content>
-              <Card.Cover source={img} />
               <Card.Actions>
                 <Button mode="contained" color="#d8d6ff">{classification}</Button>
                 <Text>   </Text>
@@ -190,6 +189,8 @@ class Search extends Component {
                 <Text>   </Text>
                 <Button mode="contained" color="#d8d6ff">{focusLevel}</Button>
               </Card.Actions>
+              <Card.Cover source={img} />
+              <Text> </Text>
             </Card>
           );
         }
