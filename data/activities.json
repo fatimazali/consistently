@@ -17,8 +17,8 @@
   },
   {
     "name": "Stationary cycling",
-    "intensity-1": 1,
-    "intensity-2": 0,
+    "intensity-1": 0,
+    "intensity-2": 1,
     "intensity-3": 0,
     "intensity-4": 0,
     "targets-lower": 1,
