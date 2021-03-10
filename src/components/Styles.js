@@ -18,14 +18,19 @@ export default StyleSheet.create({
       borderRadius: 25,
       margin:10,
       width: 410,
-      
-
     },    
     header: {
       fontSize: 60,
       fontFamily: 'Arial',
       alignItems: 'center',
-      color: "black",
+      color: "white",
+      
+    },
+    subheader: {
+      fontSize: 20,
+      fontFamily: 'Arial',
+      alignItems: 'center',
+      color: "white",
     },
     subtitle: {
       marginLeft: 4,
