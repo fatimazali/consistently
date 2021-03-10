@@ -390,7 +390,7 @@ componentDidMount() {
                     return (
                         <Card>
                             <Card.Content>
-                                <Title><b>{recommendation["activity_name"]}</b></Title>
+                            <Title styles={styles.body_bold}>{recommendation["activity_name"]}</Title>
                                 <Paragraph> {this.state.duration + " MINS" + " | " + recommendation["cals"].toFixed(2) + " CALS"}</Paragraph>
                             </Card.Content>
                             <Card.Cover source={img} />
@@ -408,12 +408,6 @@ componentDidMount() {
          )
     }
 }
-
-/*
-                                {(recommendation.intensity_1 == 1) ? :"Light" : ""} 
-                                intensity_2 : (this.state.intensity == 'moderate') ? 1 : 0, 
-                                intensity_3 : (this.state.intensity == 'vigorous') ? 1 : 0, 
-                                intensity_4 : (this.state.intensity == 'extreme') ? 1 : 0, */
 
 export default Recommendation; // Don’t forget to use export default!
 

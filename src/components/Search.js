@@ -175,12 +175,12 @@ class Search extends Component {
         // Specify if cardio or strength
         let classification = item.cardio ? 'CARDIO' : 'STRENGTH';
 
-        if (this.state.loadedActivities) {
+        if (this.state.loadedActivities) { 
           return (
             // Flat List Item
             <Card>
               <Card.Content>
-                <Title><b>{item.name}</b></Title>
+                <Title styles={styles.body_bold}>{item.name}</Title>
               </Card.Content>
               <Card.Cover source={img} />
               <Card.Actions>

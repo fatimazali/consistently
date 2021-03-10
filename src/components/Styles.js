@@ -50,6 +50,13 @@ export default StyleSheet.create({
       fontWeight: 'normal',
       textAlign: 'left',
     }, 
+    body_bold: {
+      margin: 4,
+      fontSize: 18,
+      fontWeight: 'normal',
+      fontWeight: 'bold',
+      textAlign: 'left',
+    },     
     bodySpacing: {
       margin: 4,
       fontSize: 9,
