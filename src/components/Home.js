@@ -6,8 +6,10 @@ import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline,
   Modal, Dialog, ProgressBar, Portal, IconButton, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import Recommendation from './Recommendation';
 import activities_json from '../../data/activities.json';
-// import user_json from '../../data/user-2.json';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { LinearGradient } from 'expo-linear-gradient';
 
+// import user_json from '../../data/user-2.json';
 // user1: has two cardio workouts this week and gets strength picks
 import history_json from '../../data/history.json';
 import user_json from '../../data/user.json';
@@ -16,6 +18,8 @@ import user_json from '../../data/user.json';
 // import history_json from '../../data/history-2.json';
 // import user_json from '../../data/user-2.json';
 
+//npm install expo-linear-gradient
+//npm install react-native-svg
 
 class Home extends Component {
 
@@ -91,12 +95,22 @@ class Home extends Component {
   signUpForm = () => {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Welcome to consistent.ly!</Text>
+        <LinearGradient
+          colors={['#4568dc', '#b06ab3']}
+          style={styles.background}
+        />
+        <Text style={{color:'white', fontSize: 18}}>WELCOME TO</Text>
+        <View style={{flexDirection: "row"}}>
+          <Icon name="weight-lifter" size={60} color="white" />
+          <Text style={styles.header}>consistent.ly</Text>
+        </View>
+        <Text></Text>
         <Text></Text>
         <Text style={styles.subheader}> To get started, fill out our Google Form...</Text>
         <Text></Text>
+        <Text></Text>
         <Button style={styles.button} mode="contained" onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
-          Let's go!
+          <Text style={{color:'black'}}>Let's go!</Text>
         </Button>
       </View>      
     );

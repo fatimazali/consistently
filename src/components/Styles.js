@@ -2,6 +2,13 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
+    background: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      height: 1300,
+    },
     container: { 
       flex: 1,
       backgroundColor: '#aca9ff', // lightsteelblue
@@ -99,7 +106,8 @@ export default StyleSheet.create({
       backgroundColor: '#d8d6ff',
       paddingVertical: 12, 
       paddingHorizontal: 25, 
-      borderRadius: 25
+      borderRadius: 25,
+      color: "black"
     },
     buttonText: {
       color: "white",
