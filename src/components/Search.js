@@ -16,10 +16,7 @@ class Search extends Component {
         activities: [],
         loadedActivities: false,
       };
-    };
- 
-   
-    
+    };  
  
     searchstyles = StyleSheet.create({
       container: {
@@ -238,28 +235,25 @@ class Search extends Component {
               />
             </View>
         </ScrollView>
-          <Provider>
-              <Portal>
-                <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
-                <Dialog.Title>Add Activity</Dialog.Title>
-                  <Dialog.Content>
-                    <TextInput mode='outlined' label="Activity"/>
-                    <TextInput mode='outlined' label="Duration (in mins)"/>
-                  </Dialog.Content>
-                  <Dialog.Actions>
-                    <Button onPress={() => {hideDialog(); showSnackBar();}}>Submit</Button>
-                  </Dialog.Actions>
-                </Dialog>
-              </Portal>
-              <IconButton style={styles.bottomRightButton}
-                icon="plus"
-                color='black'
-                size={70}
-                onPress = {showDialog}
-              />
-          </Provider>
+            <Portal>
+              <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
+              <Dialog.Title>Add Activity</Dialog.Title>
+                <Dialog.Content>
+                  <TextInput mode='outlined' label="Activity"/>
+                  <TextInput mode='outlined' label="Duration (in mins)"/>
+                </Dialog.Content>
+                <Dialog.Actions>
+                  <Button onPress={() => {hideDialog(); showSnackBar();}}>Submit</Button>
+                </Dialog.Actions>
+              </Dialog>
+            </Portal>
+            <IconButton style={styles.bottomRightButton}
+              icon="plus"
+              color='black'
+              size={70}
+              onPress = {showDialog}
+            />
           <View style={styles.snackBar}>
-            <Button onPress={showSnackBar}>{this.state.snackBarVisible ? 'Hide' : 'Show'}</Button>
             <Snackbar
               visible={this.state.snackBarVisible}
               duration={2000}
