@@ -5,8 +5,15 @@ import styles from './Styles';
 import { Card, Button, useTheme, Paragraph, Title, Badge, Subheading, Headline, 
   Modal, Dialog, ProgressBar, Portal, IconButton, List, Provider, TextInput, RadioButton, Checkbox } from 'react-native-paper';
 import Recommendation from './Recommendation';
-import user_activity_data from '../../data/history.json';
+import activities_json from '../../data/activities.json';
+// import user_json from '../../data/user-2.json';
+
+// user1: has two cardio workouts this week and gets strength picks
+import history_json from '../../data/history.json';
 import user_json from '../../data/user.json';
+// user2: has two strength workouts this week and gets cardio activity-based picks
+
+// import history_json from '../../data/history-2.json';
 // import user_json from '../../data/user-2.json';
 
 
@@ -17,7 +24,7 @@ class Home extends Component {
     this.state = {
       visible: false,
       hasSignedUp: false,
-      
+      activity_vector: [], //Array of dictionaries, each dictionary is the activity's item vector      
       intensity: 'first',
       focus: 'first',
       duration: '15',
@@ -48,21 +55,50 @@ class Home extends Component {
   
   calculateCaloriesBurnedInLastWeek = () => {
     // if date within last 7 days, add calorie value
-    let workoutsWithinLastWeek = user_activity_data.filter(this.workoutIsInLastWeek);
-    console.log('last week?', workoutsWithinLastWeek);
+    let workoutsWithinLastWeek = history_json.filter(this.workoutIsInLastWeek);
+    //console.log('last week?', workoutsWithinLastWeek);
     return [workoutsWithinLastWeek.length, workoutsWithinLastWeek.reduce(this.getCaloriesBurned, 0)];
   };
 
   isStrengthWorkout = (workout) => {
-    return workout['Total Energy']
+    const activityName = workout["Type"];
+    console.log('aname', activityName);
+    for (let i = 0; i < activities_json.length; i++) {   
+      if (activities_json[i]['name'] ==  activityName) {
+        console.log('astre', activities_json[i]['strength']);
+        if (activities_json[i]['strength'] == 1) {
+          return true;
+        }
+        else {
+          return false;
+        } 
+      }
+    }
+    return false// whether this activity is strength or cardio based
   };
 
   calculateStrengthCardioBalance = () => {
-    let workoutsWithinLastWeek = user_activity_data.filter(this.workoutIsInLastWeek);
-    strengthCount
-
+    let workoutsWithinLastWeek = history_json.filter(this.workoutIsInLastWeek);
+    const workoutCount =  workoutsWithinLastWeek.length;
+    const strengthWorkouts = workoutsWithinLastWeek.filter(this.isStrengthWorkout)
+    console.log('sw', strengthWorkouts);
+    let strengthCount = 0; 
+    strengthCount = strengthWorkouts.length;
+    const cardioCount = workoutCount - strengthCount;
+    return [workoutCount, strengthCount, cardioCount];
   };
-  
+//   findActivityType = (activityName) => {
+//     for (let i = 0; i < activities_json.length; i++) {   
+//       if (activities_json[i]['name'] ==  activityName) {
+//         if (activities_json[i]['cardio'] == 1) {
+//           return 'cardio';
+//         }
+//         if (activities_json[i]['strength'] == 1) {
+//           return 'strength';
+//         }
+//       }  
+// };
+
   signUpForm = () => {
     return (
       <View style={styles.container}>
@@ -107,10 +143,12 @@ class Home extends Component {
       // num workouts cardio and strength percentage 
       // lowrange =(((user_weight/2.205)*500*3.5)/1000)*
       // highrange = =
+      let workoutBal = this.calculateStrengthCardioBalance();
+      const strengthCount = workoutBal[1]; 
+      const cardioCount = workoutBal[2]; 
 
       // 5. change text based on time of day 
       const results = this.calculateCaloriesBurnedInLastWeek();
-      // 1000 calories for now?
       const numWorkouts = results[0];
       const calsBurned = results[1].toFixed(0);      
     
@@ -138,11 +176,11 @@ class Home extends Component {
                         <Text style={styles.body}>{numWorkouts}/{workoutGoal} workouts logged</Text>
                         <ProgressBar style={styles.progressBar} progress={numWorkouts/workoutGoal}/>
                         <Text></Text>
-                        <Text style={styles.body}>{numWorkouts}/{workoutGoal} cardio workouts</Text>
-                        <ProgressBar style={styles.progressBar} progress={numWorkouts/workoutGoal}/>
+                        <Text style={styles.body}>{cardioCount}/{numWorkouts} cardio workouts</Text>
+                        <ProgressBar style={styles.progressBar} progress={cardioCount/numWorkouts}/>
                         <Text></Text>
-                        <Text style={styles.body}>{numWorkouts}/{workoutGoal} strength workouts</Text>
-                        <ProgressBar style={styles.progressBar} progress={numWorkouts/workoutGoal}/>
+                        <Text style={styles.body}>{strengthCount}/{numWorkouts} strength workouts</Text>
+                        <ProgressBar style={styles.progressBar} progress={strengthCount/numWorkouts}/>
                     </Card.Content>
               </Card>
               <View

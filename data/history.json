@@ -1,8 +1,26 @@
 [
   {
     "Type": "Stairmaster",
-    "Start": "2021-03-05 12:24",
-    "End": "2021-03-05 12:59",
+    "Start": "2021-03-08 12:24",
+    "End": "2021-03-08 12:59",
+    "Duration": "0:35:16",
+    "Distance": 6.747904429543516,
+    "Average Heart Rate": 160.82938388625593,
+    "Max Heart Rate": 180,
+    "Average Pace": "0:05:13",
+    "Average Speed": 11.477168137888038,
+    "Average Cadence": "",
+    "Active Energy": 260.23000000000006,
+    "Total Energy": 280.33799999999994,
+    "Elevation Ascended": 22.04,
+    "Elevation Descended": "",
+    "Weather Temperature": 32.99999912579858,
+    "Weather Humidity": 9
+  },
+  {
+    "Type": "Weight lifting",
+    "Start": "2021-03-06 12:24",
+    "End": "2021-03-06 12:59",
     "Duration": "0:35:16",
     "Distance": 6.747904429543516,
     "Average Heart Rate": 160.82938388625593,
@@ -20,8 +38,8 @@
 
   {
     "Type": "Dancing",
-    "Start": "2021-03-03 12:24",
-    "End": "2021-03-03 12:59",
+    "Start": "2021-03-07 12:24",
+    "End": "2021-03-07 12:59",
     "Duration": "0:35:16",
     "Distance": 6.747904429543516,
     "Average Heart Rate": 160.82938388625593,
