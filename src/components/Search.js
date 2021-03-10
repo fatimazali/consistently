@@ -183,11 +183,11 @@ class Search extends Component {
                 <Text style={styles.subtitle}>{item.name}</Text>
               </Card.Content>
               <Card.Actions>
-                <Button mode="contained" color="#d8d6ff">{classification}</Button>
+                <Button mode="contained" color="#d8d6ff" borderRadius="25" >{classification}</Button>
                 <Text>   </Text>
-                <Button mode="contained" color="#d8d6ff">{intensityLevel}</Button>
+                <Button mode="contained" color="#d8d6ff" borderRadius="25">{intensityLevel}</Button>
                 <Text>   </Text>
-                <Button mode="contained" color="#d8d6ff">{focusLevel}</Button>
+                <Button mode="contained" color="#d8d6ff" borderRadius="25">{focusLevel}</Button>
               </Card.Actions>
               <Card.Cover source={img} />
               <Text> </Text>

@@ -394,11 +394,11 @@ componentDidMount() {
                                 <Paragraph> {this.state.duration + " MINS" + " | " + recommendation["cals"].toFixed(2) + " CALS"}</Paragraph>
                             </Card.Content>
                             <Card.Actions>
-                                <Button mode="contained" color="#d8d6ff">{classification}</Button>
+                                <Button mode="contained" color="#d8d6ff" borderRadius="25">{classification}</Button>
                                 <Text>   </Text>
-                                <Button mode="contained" color="#d8d6ff">{recommendation["intensity"]}</Button>
+                                <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["intensity"]}</Button>
                                 <Text>   </Text>
-                                <Button mode="contained" color="#d8d6ff">{recommendation["focus"]}</Button>
+                                <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["focus"]}</Button>
                             </Card.Actions>
                             <Card.Cover source={img} />
                         </Card>
