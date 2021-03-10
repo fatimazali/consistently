@@ -18,6 +18,7 @@ export default StyleSheet.create({
       borderRadius: 25,
       margin:10,
       width: 410,
+      
 
     },    
     header: {

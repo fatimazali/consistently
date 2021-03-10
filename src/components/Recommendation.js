@@ -23,7 +23,7 @@ class Recommendation extends Component {
             weatherLoaded: false, 
             intensity: "", //light, moderate, vigorous, extreme 
             focus: "", //lower, upper, abdominal, whole
-            user_weight: 130,
+            user_weight: 0,
             duration: 0, //15-90
             equipment: [], //Array of Strings - equipment that is available to the user
             user_time: 30, // default in case of any issues in user data 
@@ -110,7 +110,6 @@ componentDidMount() {
     build_activity_vector = () => { // hey 
         for (let i = 0; i < activities_json.length; i++) {
             const cals = ((((this.state.user_weight/2.205)*(activities_json[i]['activity-met-value'])*3.5)/1000)*5)*this.state.duration;
-            const cals2 = ((((130/2.205)*(4.8)*3.5)/1000)*5)*45;
             console.log('state here is', this.state);
             
             var activity = {
@@ -309,11 +308,10 @@ componentDidMount() {
         this.getCheckInData(); // Get data from Daily Check-In
         if (!this.state.recommendationMade && this.state.checkInLoaded) {
             console.log("activities", this.state.activity_vector);
+            this.build_user_vector(); // Builds user vector
             this.build_activity_vector(); // Builds array of activities, each activity is in dictionary form\
             this.filterByWeather(); // must happen after compDidMount? otherwise: will be false until then which is fine
-            this.build_user_vector(); // Builds user vector
             this.compute_dot_product(); // Ranks the activities
-            let exclude = this.toExcludeOutdoorActivities();
             this.filterByEquipment(); //Post filter
             console.log("final ranked", this.state.ranked);
         }

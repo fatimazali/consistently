@@ -87,12 +87,20 @@ class Home extends Component {
   
       const containerStyle = {backgroundColor: 'white', padding: 50};
 
+      // 1. user weekly cal goals
+      // 2. calculate user's cals burned this week already
+
+      // 3. calculate numWorkouts
+      // 4. parse workoutGoal from user form 
+
       let calsBurned = 540; // fetch this
       let numWorkouts = 3;
       let workoutGoal = 5;
       let calsGoal = 1025; // calculate from age and weight
       // num workouts cardio and strength percentage 
-      // change text based on time of day 
+
+
+      // 5. change text based on time of day 
       
     
       return (
