@@ -9,12 +9,11 @@ import activities_json from '../../data/activities.json';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// import user_json from '../../data/user-2.json';
 // user1: has two cardio workouts this week and gets strength picks
 import history_json from '../../data/history.json';
 import user_json from '../../data/user.json';
-// user2: has two strength workouts this week and gets cardio activity-based picks
 
+// user2: has two strength workouts this week and gets cardio activity-based picks
 // import history_json from '../../data/history-2.json';
 // import user_json from '../../data/user-2.json';
 
@@ -40,7 +39,6 @@ class Home extends Component {
     };
 
   };
-
 
   workoutIsInLastWeek = (workout) => {
     // check whether a previous date is within 7 days of today
@@ -169,7 +167,7 @@ class Home extends Component {
               <Card style={{
                   height: 288.0,
                   width: 410,
-                  borderRadius: 40,
+                  borderRadius: 20,
                 }}>
                     <Card.Content>
                         <Text style={styles.subtitle}>This Week</Text>
@@ -194,7 +192,7 @@ class Home extends Component {
               <Card style={{
                   height: 365.0,
                   width: 410,
-                  borderRadius: 40,                  
+                  borderRadius: 20,                  
                 }}>
                     <Card.Content>
                         <Text style={styles.subtitle2}>Daily Check-In </Text>
@@ -237,39 +235,5 @@ class Home extends Component {
   }
 }
 
-/*
-class DataPipe extends Component {
-
-  constructor(props) {
-          super(props);
-          this.handler = this.handler.bind(this);
-  }
-
-  handler(tn, fo, du, af, hw, hm, hb, hs) {
-    this.setState({
-      intensity: tn,
-      focus: fo,
-      duration: du,
-      affirmation: af,
-      hasWeights: hw,
-      hasMat: hm,
-      hasBike: hb,
-      hasStepmill: hs,
-    });
-  }
-
-  render() {
-    console.log('IN DATAPIPE')
-    console.log(this.state)
-    return (
-      <Home handler = {this.handler} />
-    )
-    
-  }
-  
-}
-*/
-
-
-export default Home; // Don’t forget to use export default!
+export default Home; 
 

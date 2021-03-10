@@ -20,16 +20,17 @@ class Search extends Component {
  
     searchstyles = StyleSheet.create({
       container: {
-        backgroundColor: 'white',
+        backgroundColor: '#aca9ff',
+        paddingLeft: 8,
       },
       itemStyle: {
-        padding: 10,
+        //padding: 8,
       },
       textInputStyle: {
         height: 40,
         borderWidth: 1,
-        paddingLeft: 20,
-        margin: 5,
+        //paddingLeft: 8,
+        margin: 8,
         borderColor: '#aca9ff',
         backgroundColor: '#FFFFFF',
       },
@@ -178,7 +179,11 @@ class Search extends Component {
         if (this.state.loadedActivities) { 
           return (
             // Flat List Item
-            <Card>
+            <Card style={{
+              //height: 288.0,
+              width: 410,
+              borderRadius: 20,
+            }}>
               <Card.Content>
                 <Text style={styles.subtitle}>{item.name}</Text>
               </Card.Content>
@@ -202,7 +207,7 @@ class Search extends Component {
           // Flat List Item Separator
           <View
             style={{
-              height: 5.0,
+              height: 10.0,
               width: '100%',
               backgroundColor: '#aca9ff',
             }}
