@@ -10,8 +10,8 @@ class Search extends Component {
       this.state = {
         visible: false,
         searchQuery: '',
-        filteredDataSource: require('../../data/activities.json'),
-        masterDataSource: require('../../data/activities.json'),
+        filteredDataSource: require('../../data/search-db.json'),
+        masterDataSource: require('../../data/search-db.json'),
         snackBarVisible: false,
         activities: [],
         loadedActivities: false,
@@ -70,7 +70,7 @@ class Search extends Component {
       const showSnackBar = () => this.setState({snackBarVisible: true});
       const setSearch = query => this.setState({searchQuery : query});
  
-      const ourData = require('../../data/activities.json');
+      const ourData = require('../../data/search-db.json');
       const setFilteredDataSource = someData => this.setState({filteredDataSource : someData});
       const setMasterDataSource = someData => this.setState({masterDataSource : someData});
  
