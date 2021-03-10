@@ -4,11 +4,12 @@ import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import Home from './Home';
 import activities_json from '../../data/activities.json';
-import history_json from '../../data/history.json';
-// import history_json from '../../data/history-2.json';
-import user_json from '../../data/user.json';
-// import user_json from '../../data/user-2.json';
-import checkin_json from '../../data/dailyCheckIn.json';
+// import history_json from '../../data/history.json';
+// import user_json from '../../data/user.json';
+// import checkin_json from '../../data/dailyCheckIn.json';
+import history_json from '../../data/history-2.json';
+import user_json from '../../data/user-2.json';
+import checkin_json from '../../data/dailyCheckIn2.json';
 
 class Recommendation extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class Recommendation extends Component {
     // Get data from Daily Check-In and set state
     getCheckInData = () => {
         console.log('fetching data from daily check-in...');
-        var checkin = require('../../data/dailyCheckIn.json')[0];
+        var checkin = checkin_json[0];
         console.log(checkin);
         this.state.intensity = checkin['intensity']
         this.state.focus = checkin['focus']
@@ -166,6 +167,7 @@ componentDidMount() {
         }
         return focus;
     }
+
     // Filter out all the activities that are required to be outdoors aka outdoor = 1
     filterByWeather = () => {
         var filteredActivities = [];
@@ -270,7 +272,8 @@ componentDidMount() {
             activity_score += this.state.user_vector[0]["strength"] * this.state.activity_vector[i]["strength"];
             this.state.ranked.push({activity_name: this.state.activity_vector[i]["activity_name"], score: activity_score,
                                     intensity: this.getIntensity(this.state.activity_vector[i]), focus: this.getFocus(this.state.activity_vector[i]),
-                                    cals: this.state.activity_vector[i]["workout_calories"]});
+                                    cals: this.state.activity_vector[i]["workout_calories"], 
+                                    cardio: this.state.activity_vector[i]["cardio"] ? "Cardio" : "Strength"});
         }
         this.state.ranked.sort(function(a, b) { // Sorts the ranked list by its score
             return b.score - a.score;
@@ -321,8 +324,8 @@ componentDidMount() {
             <ScrollView style={{
             paddingVertical: 20,
           }}>
-                <Text style={styles.homePageHeader}>  Top 3 Picks</Text> 
-                {this.state.ranked.slice(0, 7).map((recommendation) => {
+                <Text style={styles.homePageHeader}>  Top 4 Picks</Text> 
+                {this.state.ranked.slice(0, 4).map((recommendation) => {
                     
                     let img = require("../images/circuitTraining.png"); //set general default image
 
@@ -379,7 +382,8 @@ componentDidMount() {
                         <Card>
                             <Card.Content>
                                 <Title>{recommendation["activity_name"]}</Title>
-                                <Paragraph>{recommendation["focus"] + " | " + recommendation["intensity"] + " | " + this.state.duration + " mins\n"
+                                <Paragraph>{recommendation["focus"] + " | " + recommendation["intensity"] + " | "
+                                + recommendation["cardio"] + " | " + this.state.duration + " mins\n"
                                 + recommendation["cals"].toFixed(2) + " CALS"
                                 }</Paragraph>
                             </Card.Content>
