@@ -1,7 +1,7 @@
 import { Text, ScrollView, View } from 'react-native';
 import React, { Component } from 'react';
 import styles from './Styles.js';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Avatar, Button, Card, Title, Paragraph, Provider } from 'react-native-paper';
 import Home from './Home';
 import activities_json from '../../data/activities.json';
 // user1: has two cardio workouts this week and gets strength picks
@@ -298,6 +298,108 @@ componentDidMount() {
         this.setState({ recommendationMade: true }); //Once we make a recommendation, set to true
     }
     
+
+    ItemView = ({ recommendation }) => {
+
+        let img = require("../images/circuitTraining.png"); //set general default image
+
+        if (recommendation["activity_name"].includes("yoga")) {
+          img = require("../images/yoga.png"); 
+        }
+        if (recommendation["activity_name"].includes("conditioning")) {
+          img = require("../images/conditioning.png"); 
+        }
+        if (recommendation["activity_name"].includes("cycling")) {
+          img = require("../images/stationaryCycling.png"); 
+        }
+        if (recommendation["activity_name"].includes("Upper")) {
+          img = require("../images/upperBody.png"); 
+        }
+        if (recommendation["activity_name"].includes("Lower")) {
+          img = require("../images/lowerBody.png"); 
+        }
+        if (recommendation["activity_name"].includes("Weight")) {
+          img = require("../images/weightlifting.png"); 
+        }
+        if (recommendation["activity_name"].includes("Swimming")) {
+          img = require("../images/swimming.png"); 
+        }
+        if (recommendation["activity_name"].includes("Hiking")) {
+          img = require("../images/hiking.png"); 
+        }
+        if (recommendation["activity_name"].includes("Ab")) {
+          img = require("../images/abs.png"); 
+        }
+        if (recommendation["activity_name"].includes("Running")) {
+          img = require("../images/running2.png"); 
+        }
+        if (recommendation["activity_name"].includes("Walking")) {
+          img = require("../images/walking.png"); 
+        }
+        if (recommendation["activity_name"].includes("Sprinting")) {
+          img = require("../images/sprinting.png"); 
+        }
+        if (recommendation["activity_name"].includes("Dancing")) {
+          img = require("../images/dancing.png"); 
+        }
+        if (recommendation["activity_name"].includes("Biking")) {
+          img = require("../images/biking.png"); 
+        }
+        if (recommendation["activity_name"].includes("Pilates")) {
+          img = require("../images/pilates.png"); 
+        }
+        if (recommendation["activity_name"].includes("aerobics")) {
+          img = require("../images/running3.png"); 
+        }
+
+        let classification = recommendation['cardio'] ? 'CARDIO' : 'STRENGTH';
+        // Flat List Item
+        return (
+            <Card style={{
+                width: 410,
+                borderRadius: 20,
+              }}>
+                <Card.Content>
+                <Text style={styles.subtitle}>{recommendation["activity_name"]}</Text>
+                    <Paragraph style={styles.body}>{this.state.duration + " mins" + " | " + recommendation["cals"].toFixed(2) + " cals"}</Paragraph>
+                </Card.Content>
+                <Card.Actions>
+                    <Button mode="contained" color="#d8d6ff" style={styles.tags}>{classification}</Button>
+                    <Text> </Text>
+                    <Button mode="contained" color="#d8d6ff" style={styles.tags}>{recommendation["intensity"]}</Button>
+                    <Text> </Text>
+                    <Button mode="contained" color="#d8d6ff" style={styles.tags}>{recommendation["focus"]}</Button>
+                </Card.Actions>
+                <Card.Cover source={img} />
+            </Card>                        
+    )
+    };
+
+
+    ItemSeparatorView = () => {
+        return (
+          // Flat List Item Separator
+          <View
+            style={{
+              height: 10.0,
+              width: '100%',
+              backgroundColor: '#aca9ff',
+            }}
+          />
+        );
+      };
+
+
+    returnFlatList = () => {
+        return (
+            <FlatList
+            data={this.state.ranked}
+            //keyExtractor={(item, index) => index.toString()}
+            ItemSeparatorComponent={this.ItemSeparatorView}
+            renderItem={this.ItemView}
+          />
+        )
+    };
     render() {
         this.getCheckInData(); // Get data from Daily Check-In
         if (!this.state.recommendationMade && this.state.checkInLoaded && this.state.weatherLoaded) {
@@ -313,12 +415,16 @@ componentDidMount() {
 
         
         return (
-            <ScrollView style={{
-            paddingVertical: 20,
-            backgroundColor: "#aca9ff"
-          }}>
-                <Text style={styles.homePageHeader}>  Top 4 Picks</Text> 
-                <Text></Text>
+            <View style={styles.container}>
+                <Provider style={styles.container}>
+                <Text style={styles.homePageHeader}> Top 4 Picks</Text> 
+                <ScrollView>
+                <View
+                style={{
+                  height: 20.0,
+                  width: '100%',
+                }}
+              />
                 {this.state.ranked.slice(0, 4).map((recommendation) => {
                     
                     let img = require("../images/circuitTraining.png"); //set general default image
@@ -380,19 +486,19 @@ componentDidMount() {
                             <Card style={{
                                 width: 410,
                                 borderRadius: 20,
-                                marginLeft: 10,
+                                //marginLeft: 10,
                                 overflow: "hidden"
                             }}>
                                 <Card.Content>
-                                <Title style={styles.body_bold}>{recommendation["activity_name"]}</Title>
-                                    <Paragraph> {this.state.duration + " MINS" + " | " + recommendation["cals"].toFixed(2) + " CALS"}</Paragraph>
+                                <Title style={styles.subtitle}>{recommendation["activity_name"]}</Title>
+                                    <Paragraph> {this.state.duration + " min" + " | " + recommendation["cals"].toFixed(2) + " cal"}</Paragraph>
                                 </Card.Content>
                                 <Card.Actions>
-                                    <Button mode="contained" color="#d8d6ff" borderRadius="25">{classification}</Button>
-                                    <Text>   </Text>
-                                    <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["intensity"]}</Button>
-                                    <Text>   </Text>
-                                    <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["focus"]}</Button>
+                                    <Button mode="contained" color="#d8d6ff" style={styles.tags}>{classification}</Button>
+                                    <Text> </Text>
+                                    <Button mode="contained" color="#d8d6ff" style={styles.tags}>{recommendation["intensity"]}</Button>
+                                    <Text> </Text>
+                                    <Button mode="contained" color="#d8d6ff" style={styles.tags}>{recommendation["focus"]}</Button>
                                 </Card.Actions>
                                 <Card.Cover source={img} />
                             </Card>
@@ -401,6 +507,8 @@ componentDidMount() {
 
                 )})}
             </ScrollView>
+            </Provider>
+            </View>
          )
     }
 }
