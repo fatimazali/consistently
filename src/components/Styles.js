@@ -39,6 +39,12 @@ export default StyleSheet.create({
       alignItems: 'center',
       color: "white",
     },
+  tags: {
+      marginLeft: 8,
+      marginBottom: 4,
+      color: "#d8d6ff",
+      borderRadius: 25,
+  },  
     subtitle: {
       marginLeft: 4,
       marginBottom: 4,
