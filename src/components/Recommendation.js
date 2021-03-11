@@ -1,4 +1,4 @@
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 import React, { Component } from 'react';
 import styles from './Styles.js';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
@@ -315,8 +315,10 @@ componentDidMount() {
         return (
             <ScrollView style={{
             paddingVertical: 20,
+            backgroundColor: "#aca9ff"
           }}>
                 <Text style={styles.homePageHeader}>  Top 4 Picks</Text> 
+                <Text></Text>
                 {this.state.ranked.slice(0, 4).map((recommendation) => {
                     
                     let img = require("../images/circuitTraining.png"); //set general default image
@@ -374,20 +376,28 @@ componentDidMount() {
 
             
                     return (
-                        <Card>
-                            <Card.Content>
-                            <Title styles={styles.body_bold}>{recommendation["activity_name"]}</Title>
-                                <Paragraph> {this.state.duration + " MINS" + " | " + recommendation["cals"].toFixed(2) + " CALS"}</Paragraph>
-                            </Card.Content>
-                            <Card.Actions>
-                                <Button mode="contained" color="#d8d6ff" borderRadius="25">{classification}</Button>
-                                <Text>   </Text>
-                                <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["intensity"]}</Button>
-                                <Text>   </Text>
-                                <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["focus"]}</Button>
-                            </Card.Actions>
-                            <Card.Cover source={img} />
-                        </Card>
+                        <View>
+                            <Card style={{
+                                width: 410,
+                                borderRadius: 20,
+                                marginLeft: 10,
+                                overflow: "hidden"
+                            }}>
+                                <Card.Content>
+                                <Title style={styles.body_bold}>{recommendation["activity_name"]}</Title>
+                                    <Paragraph> {this.state.duration + " MINS" + " | " + recommendation["cals"].toFixed(2) + " CALS"}</Paragraph>
+                                </Card.Content>
+                                <Card.Actions>
+                                    <Button mode="contained" color="#d8d6ff" borderRadius="25">{classification}</Button>
+                                    <Text>   </Text>
+                                    <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["intensity"]}</Button>
+                                    <Text>   </Text>
+                                    <Button mode="contained" color="#d8d6ff" borderRadius="25">{recommendation["focus"]}</Button>
+                                </Card.Actions>
+                                <Card.Cover source={img} />
+                            </Card>
+                            <Text></Text>
+                        </View>
 
                 )})}
             </ScrollView>
