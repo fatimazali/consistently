@@ -27,10 +27,14 @@ class Search extends Component {
         //padding: 8,
       },
       textInputStyle: {
-        height: 40,
+        height: 50,
         borderWidth: 1,
+        width: 410,
         //paddingLeft: 8,
-        margin: 8,
+        //margin: 20,
+        marginBottom: 10,
+        marginTop: 10,
+        borderRadius: 10,
         borderColor: '#aca9ff',
         backgroundColor: '#FFFFFF',
       },
@@ -188,11 +192,11 @@ class Search extends Component {
                 <Text style={styles.subtitle}>{item.name}</Text>
               </Card.Content>
               <Card.Actions>
-                <Button mode="contained" color="#d8d6ff" borderRadius="25" >{classification}</Button>
-                <Text>   </Text>
-                <Button mode="contained" color="#d8d6ff" borderRadius="25">{intensityLevel}</Button>
-                <Text>   </Text>
-                <Button mode="contained" color="#d8d6ff" borderRadius="25">{focusLevel}</Button>
+                <Button mode="contained" color="#d8d6ff" style={styles.tags}>{classification}</Button>
+                <Text> </Text>
+                <Button mode="contained" color="#d8d6ff" style={styles.tags}>{intensityLevel}</Button>
+                <Text> </Text>
+                <Button mode="contained" color="#d8d6ff" style={styles.tags}>{focusLevel}</Button>
               </Card.Actions>
               <Card.Cover source={img} />
               <Text> </Text>
