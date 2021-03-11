@@ -205,7 +205,7 @@ class Home extends Component {
                             alignItems: "center"
                           }}>
                           <Text style={styles.body}>Let's find the best workouts for today!</Text>
-                          <IconButton style={styles.goButton} icon='arrow-right-bold-circle' color='#680aec' size={44}  onPress={() => Linking.openURL('https://forms.gle/6KkUUtxjgeTACWVn7')}>
+                          <IconButton style={styles.goButton} icon='arrow-right-bold-circle' color='#680aec' size={44}  onPress={() => Linking.openURL('https://forms.gle/mUmZ2pC4Sx4j8vcX9')}>
                           </IconButton>
                           </View>                       
 
