@@ -90,6 +90,12 @@ class Home extends Component {
     return [workoutCount, strengthCount, cardioCount];
   };
 
+  setSignedUp = () => {
+    setTimeout(() => {
+      this.setState({hasSignedUp:true});
+    }, 1000);
+  };
+
   signUpForm = () => {
     return (
       <View style={styles.container}>
@@ -107,7 +113,7 @@ class Home extends Component {
         <Text style={styles.subheader}> To get started, fill out our Google Form...</Text>
         <Text></Text>
         <Text></Text>
-        <Button style={styles.button} mode="contained" onPress={() => Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA')}>
+        <Button style={styles.button} mode="contained" onPress={() => {Linking.openURL('https://forms.gle/QwniWfidR5jZ62vFA'); this.setSignedUp();}}>
           <Text style={{color:'black'}}>Let's go!</Text>
         </Button>
       </View>      
@@ -223,7 +229,7 @@ class Home extends Component {
   render() {
     const dailyCheckIn2 = <Text style={styles.header}>Welcome back to consistent.ly!</Text>;
 
-    if (!this.state.hasSignedUp) {
+    if (this.state.hasSignedUp) {
       console.log("hi!!!!")
       console.log(this.state)
       console.log(this.props)
