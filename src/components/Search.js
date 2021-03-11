@@ -226,9 +226,8 @@ class Search extends Component {
  
  
       return(
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
           <ScrollView>
-            <View style={this.searchstyles.container}>
               <TextInput
                 style={this.searchstyles.textInputStyle}
                 onChangeText={(text) => searchFilterFunction(text)}
@@ -243,7 +242,6 @@ class Search extends Component {
                 ItemSeparatorComponent={ItemSeparatorView}
                 renderItem={ItemView}
               />
-            </View>
         </ScrollView>
             <Portal>
               <Dialog visible={this.state.visible} onDismiss={hideDialog} contentContainerStyle={{backgroundColor: 'white', padding: 20}}>
